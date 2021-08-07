@@ -1,0 +1,420 @@
+		/*general styling*/
+		.btn{
+      		border-radius: 30px; 
+        }
+        a{
+        	text-decoration: none;
+        }
+
+        /*homepage styling*/
+		#navBarLogo{
+		  	width: 35px; 
+		  	height: 35px;
+		}
+		#navBarColor{
+			background-color: #e3f2fd;
+		}
+		#introductionSection{
+    		margin-top: 60px;
+    	}
+    	@media screen and (max-width: 770px){
+    		#introductionSection h4{
+    			font-size: 20px;
+    		}
+    	}
+		#introductionSection .carousel-caption{
+			top:20%;
+			bottom: auto;
+		}
+		#introductionSection .carousel .carousel-inner{
+			height: 500px;
+		}
+		#introductionSection .carousel-inner .carousel-item img{
+			min-height: 200px;
+			object-fit: cover;
+		}
+		@media screen and (max-width: 770px){
+			#introductionSection .carousel-caption{
+				top:10%;
+				bottom: auto;
+			}
+			#introductionSection .carousel .carousel-inner{
+				height: 500px;
+			}
+			#introductionSection .carousel-inner .carousel-item img{
+				height: 300px;
+				object-fit: cover;
+			}
+		}
+		#aboutUsImg{
+			border-radius: 50%;
+			height: 300px;
+			width: 300px;
+		}
+		#aboutUsSection{
+			margin-top: 100px;
+		}
+		@media screen and (max-width: 770px){
+			#aboutUsSection{
+				margin-top: auto;
+			}
+		}
+		#featuresSection{
+			margin-top: 100px;
+			margin-bottom: 100px;
+		}
+        #featuresSubSection{
+            height: 240px;
+        }
+		#ourTeamImg{
+	        width: 100px; 
+	        height: 100px; 
+	        margin-top:2px;
+	        border-radius: 20px; 
+        }
+
+        /*footer styling*/
+        #footerSection{
+        	background-color: #d3d3d3;
+		    text-align: center;
+		    padding: 50px;
+		    margin-top: 100px;
+        }
+
+        /*styling for modal for login linked to the login button on homepage*/
+        #loginModalBody{
+			background-color: rgba(137, 196, 244, 0.2);
+			border: none; 		  
+		}
+
+		/*contact us styling*/
+		#contactUsIntroSection{
+			margin-top: 100px;
+			margin-left: 5px;
+		}
+		#contactUsMessageSection{
+			margin-top: 100px;
+			margin-left: 5px;
+		}
+		#signUpBreadCrum{
+			background: #f8f8ff; 
+			height: 35px; 
+			padding-left: 10px;
+			padding-top: 5px;
+		}
+		
+		#firstSectionSignUpContractor{
+				margin-top: 100px; 
+				margin-bottom: auto; 
+				text-align: center; 
+				width: 550px;
+				background: white;	
+				padding: 20px;
+				border-radius: 30px;			   		
+		}
+		@media screen and (max-width: 770px){
+			#firstSectionSignUpContractor{
+				width: auto;
+				margin: 30px;
+			}
+			#firstSectionSignUpContractor h1{
+				font-size: 30px;
+			}
+		}
+		
+		/*client dashboard*/
+		#clientBanner{
+              background: url(../img/you-x-ventures-bzqU01v-G54-unsplash.jpg);
+              background-size: cover;
+              background-position: center;
+              height: 50vh;
+              padding-top: 80px;
+               }
+        #clientBanner .banner-text{
+              text-align: center;
+              color: #fff;
+              
+                }
+        #clientBanner .banner-text h1{
+              font-size: 30px;
+              text-shadow: 2px 2px #808080;
+                }
+        #clientBanner .banner-text p{
+              font-size: 30px;
+              font-style: italic;
+              text-shadow: 2px 2px #808080;
+                }
+        @media screen and (max-width: 770px){
+              #clientBanner .banner-text h1{
+                    font-size: 30px;
+              }
+              #clientBanner .banner-text p{
+                    font-size: 18px;
+              }
+        }
+        #clientAccordion{
+            margin-top: 150px;
+        }
+        @media screen and (max-width: 770px){
+            #clientAccordion h1{
+                font-size: 30px
+            }
+            #clientAccordion p{
+                font-size: 18px
+            }
+        }
+        #testimonialCarousel{
+          padding: 30px;
+          border-top: 5px #00bfff double;
+          margin-bottom: auto;
+          margin-top: 150px;
+        }
+
+        /*styling for client sign up page*/
+    	#clientSignUpSection{
+    		width: 1330px;
+    	}
+    	@media screen and (max-width: 770px){
+    		#clientSignUpSection{
+	    		width: auto;
+	    	}
+    	}
+    	#clientSignUpSubSection1{
+    		height: 400px;
+    		background-image: url('../img/curved14.jpg');
+    		margin: 15px;
+    		border-radius: 5px;
+    	}
+    	#clientSignUpSubSection2{
+    		margin-top: 10px;
+    	}
+    	#clientSignUpSubSection3{
+    		color: white; 
+    		text-shadow: 2px 2px grey;
+    	}
+    	#clientSignUpSubSection5{
+    		position: relative;
+    		bottom: 100px;
+    		border-radius: 15px;
+    		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    		background-color: white;
+    		padding: 25px;
+    	}
+    	#clientSignUpSubSection4{
+    		height: 200px;
+
+    	}
+    	#clientSignUpBreadCrum{
+    		background-color: transparent !important;
+    		font-weight: bold;
+    	}
+    	#clientSignUpBreadCrum li{
+    		color: white;
+    	}
+    	#clientSignUpBreadCrum a{
+    		color: white;
+    	}
+
+        /*styling for client login page*/
+    	#clientLogInPage{
+    		width: 1335px;
+    	}
+    	@media screen and (max-width: 770px){
+    		#clientLogInPage{
+	    		width: auto;
+	    	}
+    	}
+    	#clientLogInPageSubSection1{
+    		width: 350px;
+    		padding-top: 100px;
+    		padding-bottom: 30px;
+    		padding-left: 50px;
+    	}
+    	#clientLogInPageSubSection2{
+    		background-image: url('../img/curved6.jpg');
+    		height: 700px;
+    		/*clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);*/
+    		clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);
+    		border-radius: 40px;
+    	}
+    	@media screen and (max-width: 770px){
+    		#clientLogInPageSubSection1{
+    			width: auto;
+    		}
+    		#clientLogInPageSubSection2{
+	    		display: none;
+	    	}
+    	}
+    	#clientLoginSection3{
+    		margin: 20px;
+    	}
+    	#clientLoginBreadCrum{
+    		background-color: transparent !important;
+    		font-weight: bold;
+    	}
+    	#clientLoginBreadCrum li{
+    		color: black;
+    	}
+    	#clientLoginBreadCrum a{
+    		color: black;
+    	}
+
+    	/*contractor dashboard*/
+		#contractorBanner{
+              background: url(../img/alvaro-reyes-qWwpHwip31M-unsplash.jpg);
+              background-size: cover;
+              background-position: center;
+              height: 50vh;
+              padding-top: 80px;
+        }
+        #contractorBanner .banner-text{
+              text-align: center;
+              color: #fff;
+        }
+        #contractorBanner .banner-text h1{
+              font-size: 40px;
+              text-shadow: 2px 2px #808080;
+        }
+        #contractorBanner .banner-text p{
+              font-size: 25px;
+              font-style: italic;
+              text-shadow: 2px 2px #808080;
+        }
+        @media screen and (max-width: 770px){
+	              #contractorBanner .banner-text h1{
+	                    font-size: 30px;
+	              }
+	              #contractorBanner .banner-text p{
+	                    font-size: 18px;
+	              }
+        }
+        #contractorAccordion{
+            margin-top: 150px;
+        }
+        @media screen and (max-width: 770px){
+            #contractorAccordion h1{
+                font-size: 30px
+            }
+            #contractorAccordion p{
+                font-size: 18px
+            }
+        }
+       
+    	/*styling for contractor sign up page*/
+    	#contractorSignUpSection{
+    		width: 1330px;
+    	}
+    	@media screen and (max-width: 770px){
+    		#contractorSignUpSection{
+	    		width: auto;
+	    	}
+    	}
+    	#contractorSignUpSubSection1{
+    		height: 400px;
+    		background-image: url('../img/curved0.jpg');
+    		margin: 15px;
+    		border-radius: 5px;
+    	}
+    	#contractorSignUpSubSection2{
+    		margin-top: 10px;
+    	}
+    	#contractorSignUpSubSection3{
+    		color: white; 
+    		text-shadow: 2px 2px grey;
+    	}
+    	#contractorSignUpSubSection5{
+    		position: relative;
+    		bottom: 100px;
+    		border-radius: 15px;
+    		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    		background-color: white;
+    		padding: 25px;
+    	}
+    	#contractorSignUpSubSection4{
+    		height: 200px;
+
+    	}
+    	#contractorSignUpBreadCrum{
+    		background-color: transparent !important;
+    		font-weight: bold;
+    	}
+    	#contractorSignUpBreadCrum li{
+    		color: white;
+    	}
+    	#contractorSignUpBreadCrum a{
+    		color: white;
+    	}
+
+    	/*styling for contractor login page*/
+    	#contractorlogInPage{
+    		width: 1335px;
+    	}
+    	@media screen and (max-width: 770px){
+    		#contractorlogInPage{
+	    		width: auto;
+	    	}
+    	}
+    	#contractorLogInPageSubSection1{
+    		width: 350px;
+    		padding-top: 100px;
+    		padding-bottom: 30px;
+    		padding-left: 50px;
+    	}
+    	#contractorLogInPageSubSection2{
+    		background-image: url('../img/curved8.jpg');
+    		height: 700px;
+    		/*clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);*/
+    		clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);
+    		border-radius: 40px;
+    	}
+    	@media screen and (max-width: 770px){
+    		#contractorLogInPageSubSection1{
+    			width: auto;
+    		}
+    		#contractorLogInPageSubSection2{
+	    		display: none;
+	    	}
+    	}
+    	#contractorLoginSubSection3{
+    		margin: 20px;
+    	}
+    	#contractorLoginBreadCrum{
+    		background-color: transparent !important;
+    		font-weight: bold;
+    	}
+    	#contractorLoginBreadCrum li{
+    		color: black;
+    	}
+    	#contractorLoginBreadCrum a{
+    		color: black;
+    	}
+
+        /*Project form styling*/
+		#projectForm{
+    		width: 50vw;
+    		background: white;
+    		margin-top: 50px;
+    		margin-bottom: auto;
+    		border-radius: 30px; 
+    	}
+    	@media screen and (max-width: 770px){
+    		#projectForm{
+	    		width: auto;
+	    		margin: 30px;
+	    	}
+    	}
+    	/*tender form styling*/
+		#tenderForm{
+    		width: 50vw;
+    		background: white;
+    		margin-top: 50px;
+    		margin-bottom: 50px;
+    		border-radius: 30px; 
+    	}
+    	@media screen and (max-width: 770px){
+    		#tenderForm{
+	    		width: auto;
+	    		margin: 30px;
+	    	}
+    	}
+
