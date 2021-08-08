@@ -82,7 +82,7 @@ if(isset($_POST['submit'])){
 			    </nav>
 			    <!--end of breadcrumb nav bar-->
 
-			    <!--section containing project form-->
+			    <!--section containing message form-->
 				<section class="container" id="projectForm">
 	                 <div class="p-5">
                             <div class="text-center">
@@ -114,7 +114,7 @@ if(isset($_POST['submit'])){
                             </form>
                     </div>
             	</section>
-            	<!--end of section containing project form-->
+            	<!--end of section containing message form-->
 
 	<script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
     <script src="../js/popper.min.js"></script> <!--link to popper js file-->

@@ -202,21 +202,14 @@
                     <div class="alert alert-warning alert-dismissible fade show container" role="alert" id="alert">Please input a location<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
                 </form>
 
-                <!--<div class="card border-dark mb-3" style="max-width: 18rem;">
-                  <div class="card-header">Project</div>
-                  <div class="card-body text-dark">
-                    <h5 class="card-title">Dark card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>-->
-
                 <div class="container">
                     <?php
 
+                        //check if the search button has been inserted
                         if(isset($_GET['searchInput'])){
-                            $searchInput = $_GET['searchInput'];
+                            $searchInput = $_GET['searchInput']; //search input variable for project location
                             echo ('<div style="display: flex; flex-wrap: wrap;">');
-                            $query="SELECT * FROM PRproject WHERE project_location LIKE '$searchInput'" ;
+                            $query="SELECT * FROM PRproject WHERE project_location LIKE '%$searchInput%'"; //select all cards where search input variable is similar to the project location on the card
                             $sql=$connection->prepare($query);
                             $sql->execute();
                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
@@ -239,6 +232,7 @@
 
                         }else{
 
+                            //else show all projects available
                             echo ('<div style="display: flex; flex-wrap: wrap;">');
                             $query="SELECT * FROM PRproject";
                             $sql=$connection->prepare($query);

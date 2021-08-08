@@ -202,24 +202,16 @@
                     <div class="alert alert-warning alert-dismissible fade show container" role="alert" id="alert">Please input a Project name, if you dont know Project name, please view Projects from the sidebar button<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
                 </form>
 
-                <!--<div class="card border-dark mb-3" style="max-width: 18rem;">
-                  <div class="card-header">Project</div>
-                  <div class="card-body text-dark">
-                    <h5 class="card-title">Dark card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>-->
-
                 <div class="container">
                     <?php
-
+                        //check if the search button has been inserted
                         if(isset($_GET['searchInput'])){
-                            $searchInput = $_GET['searchInput'];
+                            $searchInput = $_GET['searchInput']; //search input variable for project name
                             echo ('<div class="card shadow mb-4">');
                             echo ('<div class="card-body">');
                             echo ('<div class="table-responsive">');
                             echo ('<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">');
-                            $query="SELECT * FROM PRtender WHERE project_name LIKE '$searchInput'";
+                            $query="SELECT * FROM PRtender WHERE project_name LIKE '%$searchInput%'"; //select all rows where search input variable is similar to the project name from the table
                             $sql=$connection->prepare($query);
                             $sql->execute();
                             echo "<tr>";
@@ -262,6 +254,7 @@
 
                         }else{
 
+                            //else show all projects available
                             echo ('<div class="card shadow mb-4">');
                             echo ('<div class="card-body">');
                             echo ('<div class="table-responsive">');

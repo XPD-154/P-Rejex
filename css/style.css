@@ -417,4 +417,22 @@
 	    		margin: 30px;
 	    	}
     	}
+        /*Prequalification process form styling*/
+        #prequalificationForm{
+            width: 95vw;
+            background: white;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            border-radius: 30px; 
+        }
+        @media screen and (max-width: 770px){
+             #prequalificationForm{
+                width: auto;
+                margin: 3px;
+                padding: 0.5px;
+            }
+        }
+        .prequalificationSection{
+            margin-bottom: 100px;
+        }
 
