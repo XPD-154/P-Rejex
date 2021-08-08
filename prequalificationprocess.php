@@ -57,6 +57,455 @@ function test_input($data) {
 
 $percentageScore ="";
 $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q10 = $Q11 = $Q12 = $Q13 = $Q14 = $Q15 = $Q16 = $Q17 = $Q18 = $Q19 = $Q20 = $Q21A = $Q21B = $Q21C = $Q21D = $Q21E = $Q21F = $Q22A = $Q22B = $Q22C = $Q22D = $Q22E = $Q22F = $Q23A = $Q23B = $Q23C = $Q23D = $Q23E = $Q23F = $Q24 = $Q25 = "";
+
+
+if(isset($_POST['calculateScore'])) {
+
+
+    if (empty($_POST['auditedAccounts'])) {
+
+         $_SESSION['error'] .= "A response is required for question on audited accounts <br>";
+         
+
+    }else{
+
+        $Q1 = test_input($_POST['auditedAccounts']);
+
+    }
+
+    if (empty($_POST['bankingAgreement'])) {
+
+         $_SESSION['error'] .= "A response is required for question on banking agreement <br>";
+         
+
+    }else{
+
+        $Q2 = test_input($_POST['bankingAgreement']);
+
+    }
+
+    if (empty($_POST['obligations'])) {
+
+         $_SESSION['error'] .= "A response is required for question on obligations <br>";
+         
+
+    }else{
+
+        $Q3 = test_input($_POST['obligations']);
+
+    }
+
+
+    if(isset($_POST['TotalDebt']) && isset($_POST['TotalAssets'])){
+
+        $Q4A = test_input($_POST['TotalDebt']);
+        $Q4B = test_input($_POST['TotalAssets']);
+    }
+
+    if (empty($_POST['creditRating'])) {
+
+         $_SESSION['error'] .= "A response is required for question on credit rating <br>";
+         
+
+    }else{
+
+        $Q5 = test_input($_POST['creditRating']);
+
+    }
+
+    if (empty($_POST['employersLiabilityInsurance'])) {  
+
+         $_SESSION['error'] .= "A response is required for question on Employers' liability insurance <br>";
+         
+
+    }else{
+
+        $Q6 = test_input($_POST['employersLiabilityInsurance']);
+    }
+
+
+    if (empty($_POST['publicLiabilityInsurance'])) {  
+
+         $_SESSION['error'] .= "A response is required for question on Public liability insurance <br>";
+         
+
+    }else{
+
+        $Q7 = test_input($_POST['publicLiabilityInsurance']);
+
+    }
+
+    if (empty($_POST['NumberOfSimilarProjects'])) {
+
+         $_SESSION['error'] .= "A response is required for question on Number Of Similar Projects <br>";
+        
+
+    }else{
+
+        $Q8 = test_input($_POST['NumberOfSimilarProjects']);
+
+    }
+
+    if (empty($_POST['numberOfYears'])) {
+
+         $_SESSION['error'] .= "A response is required for question on number of years in the construction business <br>";
+         
+
+    }else{
+
+        $Q9 = test_input($_POST['numberOfYears']);
+
+    }
+
+    if (empty($_POST['NumberOfStaff'])) {
+
+         $_SESSION['error'] .= "A response is required for question on Number Of Staff <br>";
+         
+
+    }else{
+
+        $Q10 = test_input($_POST['NumberOfStaff']);
+
+    }
+
+    if (empty($_POST['HQofStaff'])) {
+
+         $_SESSION['error'] .= "A response is required for question on Highest Qualification of Staff <br>";
+         
+
+    }else{
+
+        $Q11 = test_input($_POST['HQofStaff']);
+
+    }
+
+    if (empty($_POST['contractTerminated'])) {
+
+         $_SESSION['error'] .= "A response is required for question on contract terminated <br>";
+         
+
+    }else{
+
+        $Q12 = test_input($_POST['contractTerminated']);
+
+    }
+
+    if (empty($_POST['managementCertification'])) {
+
+         $_SESSION['error'] .= "A response is required for question on management certification <br>";
+         
+
+    }else{
+
+        $Q13 = test_input($_POST['managementCertification']);
+
+    }
+
+    if (empty($_POST['managementSystem'])) {
+
+         $_SESSION['error'] .= "A response is required for question on management system <br>";
+        
+
+    }else{
+
+        $Q14 = test_input($_POST['managementSystem']);
+
+    }
+
+    if (empty($_POST['HSEpolicy'])) {
+
+         $_SESSION['error'] .= "A response is required for question on HSE policy <br>";
+        
+
+    }else{
+
+        $Q15 = test_input($_POST['HSEpolicy']);
+
+    }
+
+    if (empty($_POST['routinelyRecord'])) {
+
+         $_SESSION['error'] .= "A response is required for question on routinely record <br>";
+         
+
+    }else{
+
+        $Q16 = test_input($_POST['routinelyRecord']);
+
+    }
+
+    if (empty($_POST['HSEadvice'])) {
+
+         $_SESSION['error'] .= "A response is required for question on HSE advice <br>";
+         
+
+    }else{
+
+        $Q17 = test_input($_POST['HSEadvice']);
+
+    }
+
+    if (empty($_POST['environmentalManagementSystem'])) {
+
+         $_SESSION['error'] .= "A response is required for question on Environmental Management System <br>";
+         
+    }else{
+
+        $Q18 = test_input($_POST['environmentalManagementSystem']);
+
+    }
+
+    if (empty($_POST['BPS1'])) {
+
+         $_SESSION['error'] .= "A response is required for question on BUSINESS AND PROFESSIONAL STANDING question 1 <br>";
+         
+
+    }else{
+
+        $Q19 = test_input($_POST['BPS1']);
+
+    }
+
+    if (empty($_POST['BPS2'])) {
+
+         $_SESSION['error'] .= "A response is required for question on BUSINESS AND PROFESSIONAL STANDING question 2 <br>";
+         
+    }else{
+
+        $Q20 = test_input($_POST['BPS2']);
+
+    }
+
+    if (isset($_POST['reference1Name']) && isset($_POST['reference1ProjectName']) && isset($_POST['reference1Description']) && isset($_POST['reference1DateA']) && isset($_POST['reference1DateC']) && isset($_POST['reference1Value'])) {
+
+        $Q21A = test_input($_POST['reference1Name']);
+        $Q21B = test_input($_POST['reference1ProjectName']);
+        $Q21C = test_input($_POST['reference1Description']);
+        $Q21D = test_input($_POST['reference1DateA']);
+        $Q21E = test_input($_POST['reference1DateC']);
+        $Q21F = test_input($_POST['reference1Value']);
+
+    }
+
+    if (isset($_POST['reference2Name']) && isset($_POST['reference2ProjectName']) && isset($_POST['reference2Description']) && isset($_POST['reference2DateA']) && isset($_POST['reference2DateC']) && isset($_POST['reference2Value'])) {
+
+        $Q22A = test_input($_POST['reference2Name']);
+        $Q22B = test_input($_POST['reference2ProjectName']);
+        $Q22C = test_input($_POST['reference2Description']);
+        $Q22D = test_input($_POST['reference2DateA']);
+        $Q22E = test_input($_POST['reference2DateC']);
+        $Q22F = test_input($_POST['reference2Value']);
+
+    }
+
+    if (isset($_POST['reference3Name']) && isset($_POST['reference3ProjectName']) && isset($_POST['reference3Description']) && isset($_POST['reference3DateA']) && isset($_POST['reference3DateC']) && isset($_POST['reference3Value'])) {
+
+        $Q23A = test_input($_POST['reference3Name']);
+        $Q23B = test_input($_POST['reference3ProjectName']);
+        $Q23C = test_input($_POST['reference3Description']);
+        $Q23D = test_input($_POST['reference3DateA']);
+        $Q23E = test_input($_POST['reference3DateC']);
+        $Q23F = test_input($_POST['reference3Value']);
+
+    }
+
+    if (empty($_POST['externalResources'])) {
+
+         $_SESSION['error'] .= "A response is required for question on external resources <br>";
+         
+    }else{
+
+        $Q24 = test_input($_POST['externalResources']);
+
+    }
+
+    if (empty($_POST['storage'])) {
+
+         $_SESSION['error'] .= "A response is required for question on storage facilities <br>";
+         
+    }else{
+
+        $Q25 = test_input($_POST['storage']);
+
+    }
+
+      if (!empty($Q1) && !empty($Q2) && !empty($Q3) && !empty($Q5) && !empty($Q6) && !empty($Q7) && !empty($Q8) && !empty($Q9) && !empty($Q10) && !empty($Q11) && !empty($Q12) && !empty($Q13) && !empty($Q14) && !empty($Q15) && !empty($Q16) && !empty($Q17) && !empty($Q18) && !empty($Q19) && !empty($Q20) && !empty($Q24) && !empty($Q25)){
+
+
+        $obj = new CalculateTotal;
+
+        $obj->Q1_score = ($Q1==1) ? 1 : 0;
+        $obj->Q2_score = ($Q2==1) ? 1 : 0;
+        $obj->Q3_score = ($Q3==1) ? 1 : 0;
+        $obj->Q4_score = (isset($Q4A) && isset($Q4B)) ? 1 : 0; 
+
+        if  ($Q5==1){
+
+                $obj->Q5_score =1;
+
+        }elseif($Q5==2){
+                
+                $obj->Q5_score =2;
+
+        }elseif($Q5==3){
+                
+                $obj->Q5_score =3;
+                
+        }elseif($Q5==4){
+                
+                $obj->Q5_score =4;
+                
+        }elseif($Q5==5){
+                
+                $obj->Q5_score =5;
+                
+        }elseif($Q5==6){
+                
+                $obj->Q5_score =6;
+                
+        }elseif($Q5==7){
+                
+                $obj->Q5_score =7;
+                
+        }elseif($Q5==8){
+                
+                $obj->Q5_score =8;
+                
+        }elseif($Q5==9){
+                
+                $obj->Q5_score =9;
+                
+        } 
+
+        $obj->Q6_score = ($Q6==1) ? 1 : 0;
+        
+        $obj->Q7_score = ($Q7==1) ? 1 : 0;
+
+        if($Q8==0){
+
+            $obj->Q8_score =0;
+
+        }elseif($Q8>0 && $Q8<=2){
+
+            $obj->Q8_score =1;
+
+        }elseif($Q8>2 && $Q8<=4){
+
+            $obj->Q8_score =2;
+
+        }elseif($Q8>4 && $Q8<=6){
+
+            $obj->Q8_score =3;
+
+        }elseif($Q8>6){
+
+            $obj->Q8_score =4;
+
+        }
+
+        if($Q9==0){
+
+            $obj->Q9_score =0;
+
+        }elseif($Q9>0 && $Q9<=2){
+
+            $obj->Q9_score =1;
+
+        }elseif($Q9>2 && $Q9<=4){
+
+            $obj->Q9_score =2;
+
+        }elseif($Q9>4 && $Q9<=6){
+
+            $obj->Q9_score =3;
+
+        }elseif($Q9>6){
+
+            $obj->Q9_score =4;
+
+        } 
+
+        if($Q10<50){
+
+            $obj->Q10_score =1;
+
+        }elseif($Q10>50 && $Q10<=200){
+
+            $obj->Q10_score =2;
+
+        }elseif($Q10>200 && $Q10<=400){
+
+            $obj->Q10_score =3;
+
+        }elseif($Q10>400 && $Q10<=600){
+
+            $obj->Q10_score =4;
+
+        }elseif($Q10>600){
+
+            $obj->Q10_score =5;
+
+        }
+
+        if  ($Q11==1){
+
+                $obj->Q11_score =1;
+
+        }elseif($Q11==2){
+                
+                $obj->Q11_score =2;
+
+        }elseif($Q11==3){
+                
+                $obj->Q11_score =3;
+                
+        }elseif($Q11==4){
+                
+                $obj->Q11_score =4;
+                
+        }elseif($Q11==5){
+                
+                $obj->Q11_score =5;
+                
+        }elseif($Q11==6){
+                
+                $obj->Q11_score =6;
+                
+        }elseif($Q11==7){
+                
+                $obj->Q11_score =7;
+                
+        }elseif($Q11==8){
+                
+                $obj->Q11_score =8;
+                
+        }elseif($Q11==9){
+                
+                $obj->Q11_score =9;
+                
+        }  
+
+        $obj->Q12_score = ($Q12==2) ? 1 : 0; 
+        $obj->Q13_score = ($Q13==1) ? 1 : 0;
+        $obj->Q14_score = ($Q14==1) ? 1 : 0; 
+        $obj->Q15_score = ($Q15==1) ? 1 : 0;
+        $obj->Q16_score = ($Q16==1) ? 1 : 0;
+        $obj->Q17_score = ($Q17==1) ? 1 : 0;
+        $obj->Q18_score = ($Q18==1) ? 1 : 0;
+        $obj->Q19_score = ($Q19==2) ? 1 : 0;
+        $obj->Q20_score = ($Q20==2) ? 1 : 0;
+        $obj->Q21_score = (isset($Q21A) && isset($Q21B) && isset($Q21C) && isset($Q21D) && isset($Q21E) && isset($Q21F)) ? 1 : 0;
+        $obj->Q22_score = (isset($Q22A) && isset($Q22B) && isset($Q22C) && isset($Q22D) && isset($Q22E) && isset($Q22F)) ? 1 : 0;
+        $obj->Q23_score = (isset($Q23A) && isset($Q23B) && isset($Q23C) && isset($Q23D) && isset($Q23E) && isset($Q23F)) ? 1 : 0;
+        $obj->Q24_score = ($Q24==2) ? 1 : 0;
+        $obj->Q24_score = ($Q25==1) ? 1 : 0;
+
+        $percentageScore .= $obj->getPercentage();
+            
+
+    }
+
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,15 +571,15 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
 
                                     <div class="form-group row">
                                         <div class="col-12 col-sm-6">
-                                            <label for="auditedAccounts">Can a copy of the most recent audited accounts for your organization covering either the most recent three year period of trading, or if trading for less than three years, the period that is available?</label>
+                                            <label for="auditedAccounts">Can a copy of the most recent audited accounts for your organization covering either the most recent three year period of trading, or if trading for less than three years, the period that is available?</label> 
                                         </div>
 
                                         <div  class="col-12 col-sm-2 form-inline">
-                                            <select id="auditedAccounts" name="auditedAccounts" class="form-control">
+                                            <select id="auditedAccounts" name="auditedAccounts" class="form-control m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q1) && $Q1 === '1') ? 'selected':'';?>>yes</option>
                                                 <option value="2" <?php echo (isset($Q1) && $Q1 === '2') ? 'selected':'';?>>no</option>
-                                            </select>
+                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                         <div class="col-12 col-sm-4">
                                             <div class="row">
@@ -146,15 +595,15 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
 
                                      <div class="form-group row">
                                         <div class="col-12 col-sm-6">
-                                            <label for="bankingAgreement">Has your organisation met the terms of its banking facilities and loan agreement (if any) during the past year</label>
+                                            <label for="bankingAgreement">Has your organisation met the terms of its banking facilities and loan agreement (if any) during the past year</label> 
                                         </div>
 
                                         <div  class="col-12 col-sm-2 form-inline">
-                                            <select id="bankingAgreement" name="bankingAgreement" class="form-control">
+                                            <select id="bankingAgreement" name="bankingAgreement" class="form-control m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q2) && $Q2 === '1') ? 'selected':'';?>>yes</option>
                                                 <option value="2" <?php echo (isset($Q2) && $Q2 === '2') ? 'selected':'';?>>no</option>
-                                            </select>
+                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
 
@@ -164,21 +613,21 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                         </div>
 
                                         <div  class="col-12 col-sm-2 form-inline">
-                                            <select id="obligations" name="obligations" class="form-control">
+                                            <select id="obligations" name="obligations" class="form-control m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q3) && $Q3 === '1') ? 'selected':'';?>>yes</option>
                                                 <option value="2" <?php echo (isset($Q3) && $Q3 === '2') ? 'selected':'';?>>no</option>
-                                            </select>
+                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                             <div class="col-12 col-sm-3 mb-2">
-                                                <input type="text" class="form-control" id="TotalDebt" name="TotalDebt" placeholder="Total Debt" value="<?php if($Q4A!=""){echo $Q4A;}?>">
+                                                <input type="text" class="form-control" id="TotalDebt" name="TotalDebt" placeholder="Total Debt" value="<?php if($Q4A!=""){echo $Q4A;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                             </div>
 
                                             <div  class="col-12 col-sm-3">
-                                                <input type="text" class="form-control" id="TotalAssets" name="TotalAssets" placeholder="Total Assets" value="<?php if($Q4B!=""){echo $Q4B;}?>">
+                                                <input type="text" class="form-control" id="TotalAssets" name="TotalAssets" placeholder="Total Assets" value="<?php if($Q4B!=""){echo $Q4B;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                             </div>
                                             <div  class="col-12 col-sm-4">
                                                 <?php
@@ -201,7 +650,7 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                              <label for="creditRating">Credit Rating of Company</label>
                                         </div>
                                         <div class="col-12 col-sm-6 form-inline">
-                                             <select class="form-control" id="creditRating" name="creditRating">
+                                             <select class="form-control m-1" id="creditRating" name="creditRating">
                                                     <option disabled selected>select credit rating</option>
                                                     <option value="1" <?php echo (isset($Q5) && $Q5 === '1') ? 'selected':'';?>>In Default, with Little Possibility of Recovery (Between CC and C)</option>
                                                     <option value="2" <?php echo (isset($Q5) && $Q5 === '2') ? 'selected':'';?>>In or Near Default, with Possibility of Recovery (Between CC and C)</option>
@@ -212,7 +661,7 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                     <option value="7" <?php echo (isset($Q5) && $Q5 === '7') ? 'selected':'';?>>Low Credit Risk (Between A+ and A-)</option>
                                                     <option value="8" <?php echo (isset($Q5) && $Q5 === '8') ? 'selected':'';?>>Very Low Credit Risk (AA+)</option>
                                                     <option value="9" <?php echo (isset($Q5) && $Q5 === '9') ? 'selected':'';?>>Minimal Credit Risk (AAA)</option>
-                                            </select>
+                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>    
                                     </div>
 
@@ -228,11 +677,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                     <p>Do you as a Contractor hold Employers Liability Insurance?</p>
                                                 </div>
                                                 <div class="col-12 col-sm-3">
-                                                    <select id="employersLiabilityInsurance" name="employersLiabilityInsurance" class="form-control">
+                                                    <select id="employersLiabilityInsurance" name="employersLiabilityInsurance" class="form-control m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q6) && $Q6 === '1') ? 'selected':'';?>>yes</option>
                                                         <option value="2" <?php echo (isset($Q6) && $Q6 === '2') ? 'selected':'';?>>no</option>
-                                                    </select>
+                                                    </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                 </div>
                                                 <div class="col-12 col-sm-3">
                                                     <p>If “Yes” please state value in Naira:</p>
@@ -249,11 +698,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                     <p>Do you as a Contractor hold Public Liability Insurance?</p>
                                                 </div>
                                                 <div class="col-12 col-sm-3">
-                                                    <select id="publicLiabilityInsurance" name="publicLiabilityInsurance" class="form-control">
+                                                    <select id="publicLiabilityInsurance" name="publicLiabilityInsurance" class="form-control m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q7) && $Q7 === '1') ? 'selected':'';?>>yes</option>
                                                         <option value="2" <?php echo (isset($Q7) && $Q7 === '2') ? 'selected':'';?>>no</option>
-                                                    </select>
+                                                    </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                 </div>
                                                 <div class="col-12 col-sm-3">
                                                     <p>If “Yes” please state value in Naira:</p>
@@ -280,7 +729,7 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                              <label for="NumberOfSimilarProjects">Number of Similar Projects Handled</label>
                                         </div>
                                         <div class="col-12 col-sm-6 form-inline">
-                                            <input type="number" class="form-control form-control-user" id="NumberOfSimilarProjects" name="NumberOfSimilarProjects" value="<?php if($Q8!=""){echo $Q8;}?>">
+                                            <input type="number" class="form-control form-control-user m-1" id="NumberOfSimilarProjects" name="NumberOfSimilarProjects" value="<?php if($Q8!=""){echo $Q8;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
 
@@ -289,7 +738,7 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                              <label for="numberOfYears">State the number of years in the construction business and verify by submittion of the certificate of registration for business</label>
                                         </div>
                                         <div class="col-12 col-sm-3 form-inline">
-                                            <input type="number" class="form-control form-control-user" id="numberOfYears" name="numberOfYears" value="<?php if($Q9!=""){echo $Q9;}?>">
+                                            <input type="number" class="form-control form-control-user m-1" id="numberOfYears" name="numberOfYears" value="<?php if($Q9!=""){echo $Q9;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                         <div class="col-12 col-sm-2">
                                             <input type="file" class="form-control-file" id="numberOfYearsInput" name="numberOfYearsInput">
@@ -432,7 +881,7 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                              <label for="NumberOfStaff">Number of staff</label>
                                         </div>
                                         <div class="col-12 col-sm-3 form-inline">
-                                            <input type="number" class="form-control form-control-user" id="NumberOfStaff" name="NumberOfStaff" value="<?php if($Q10!=""){echo $Q10;}?>">
+                                            <input type="number" class="form-control form-control-user m-1" id="NumberOfStaff" name="NumberOfStaff" value="<?php if($Q10!=""){echo $Q10;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
 
@@ -441,7 +890,7 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                              <label for="HQofStaff">Highest Qualification of Staff</label>
                                         </div>
                                         <div class="col-12 col-sm-4 form-inline">
-                                             <select class="form-control" id="HQofStaff" name="HQofStaff">
+                                             <select class="form-control m-1" id="HQofStaff" name="HQofStaff">
                                                     <option disabled selected>select qualification</option>
                                                     <option value="1" <?php echo (isset($Q11) && $Q11 === '1') ? 'selected':'';?>>No Qualification</option>
                                                     <option value="2" <?php echo (isset($Q11) && $Q11 === '2') ? 'selected':'';?>>FSLC</option>
@@ -452,7 +901,7 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                     <option value="7" <?php echo (isset($Q11) && $Q11 === '7') ? 'selected':'';?>>PGD</option>
                                                     <option value="8" <?php echo (isset($Q11) && $Q11 === '8') ? 'selected':'';?>>MSc</option>
                                                     <option value="9" <?php echo (isset($Q11) && $Q11 === '9') ? 'selected':'';?>>PhD</option>
-                                            </select>
+                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>    
                                     </div>
 
@@ -463,11 +912,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                         </div>
 
                                         <div  class="col-12 col-sm-2 form-inline">
-                                            <select id="contractTerminated" name="contractTerminated" class="form-control">
+                                            <select id="contractTerminated" name="contractTerminated" class="form-control m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q12) && $Q12 === '1') ? 'selected':'';?>>yes</option>
                                                 <option value="2" <?php echo (isset($Q12) && $Q12 === '2') ? 'selected':'';?>>no</option>
-                                            </select>
+                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
 
@@ -494,11 +943,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                         </div>
 
                                         <div  class="col-12 col-sm-2 form-inline">
-                                            <select id="managementCertification" name="managementCertification" class="form-control">
+                                            <select id="managementCertification" name="managementCertification" class="form-control m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q13) && $Q13 === '1') ? 'selected':'';?>>yes</option>
                                                 <option value="2" <?php echo (isset($Q13) && $Q13 === '2') ? 'selected':'';?>>no</option>
-                                            </select>
+                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
 
@@ -508,11 +957,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                         </div>
 
                                         <div  class="col-12 col-sm-2 form-inline">
-                                            <select id="managementSystem" name="managementSystem" class="form-control">
+                                            <select id="managementSystem" name="managementSystem" class="form-control m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q14) && $Q14 === '1') ? 'selected':'';?>>yes</option>
                                                 <option value="2" <?php echo (isset($Q14) && $Q14 === '2') ? 'selected':'';?>>no</option>
-                                            </select>
+                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
                                 </div>
@@ -529,11 +978,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                 </div>
 
                                                 <div  class="col-12 col-sm-2 form-inline">
-                                                    <select id="HSEpolicy" name="HSEpolicy" class="form-control">
+                                                    <select id="HSEpolicy" name="HSEpolicy" class="form-control m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q15) && $Q15 === '1') ? 'selected':'';?>>yes</option>
                                                         <option value="2" <?php echo (isset($Q15) && $Q15 === '2') ? 'selected':'';?>>no</option>
-                                                    </select>
+                                                    </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                     
                                                 </div>
                                                 <div class="col-12 col-sm-4">
@@ -554,11 +1003,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                 </div>
 
                                                 <div  class="col-12 col-sm-2 form-inline">
-                                                    <select id="routinelyRecord" name="routinelyRecord" class="form-control">
+                                                    <select id="routinelyRecord" name="routinelyRecord" class="form-control m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q16) && $Q16 === '1') ? 'selected':'';?>>yes</option>
                                                         <option value="2" <?php echo (isset($Q16) && $Q16 === '3') ? 'selected':'';?>>no</option>
-                                                    </select>
+                                                    </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                     
                                                 </div>
                                                 <div class="col-12 col-sm-4">
@@ -580,11 +1029,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                 <div class="col-12 col-sm-6">
                                                     <div class="row">
                                                         <div class="col-12 col-sm-6 form-inline">
-                                                            <select id="HSEadvice" name="HSEadvice" class="form-control">
+                                                            <select id="HSEadvice" name="HSEadvice" class="form-control m-1">
                                                                 <option disabled selected>select answer</option>
                                                                 <option value="1" <?php echo (isset($Q17) && $Q17 === '1') ? 'selected':'';?>>yes</option>
                                                                 <option value="2" <?php echo (isset($Q17) && $Q17 === '2') ? 'selected':'';?>>no</option>
-                                                            </select>
+                                                            </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                             
                                                         </div>
                                                     </div>
@@ -597,11 +1046,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                             </div>
 
                                             <div  class="col-12 col-sm-2 form-inline">
-                                                <select id="environmentalManagementSystem" name="environmentalManagementSystem" class="form-control">
+                                                <select id="environmentalManagementSystem" name="environmentalManagementSystem" class="form-control m-1">
                                                     <option disabled selected>select answer</option>
                                                     <option value="1" <?php echo (isset($Q18) && $Q18 === '1') ? 'selected':'';?>>yes</option>
                                                     <option value="2" <?php echo (isset($Q18) && $Q18 === '2') ? 'selected':'';?>>no</option>
-                                                </select>
+                                                </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                 
                                             </div>
                                         </div>
@@ -621,11 +1070,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                             </div>
 
                                             <div  class="col-12 col-sm-3 form-inline">
-                                                <select id="BPS1" name="BPS1" class="form-control">
+                                                <select id="BPS1" name="BPS1" class="form-control m-1">
                                                     <option disabled selected>select answer</option>
                                                     <option value="1" <?php echo (isset($Q19) && $Q19 === '1') ? 'selected':'';?>>yes</option>
                                                     <option value="2" <?php echo (isset($Q19) && $Q19 === '2') ? 'selected':'';?>>no</option>
-                                                </select>
+                                                </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                 
                                             </div>
                                         </div>
@@ -636,11 +1085,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                             </div>
 
                                             <div  class="col-12 col-sm-3 form-inline">
-                                                <select id="BPS2" name="BPS2" class="form-control">
+                                                <select id="BPS2" name="BPS2" class="form-control m-1">
                                                     <option disabled selected>select answer</option>
                                                     <option value="1" <?php echo (isset($Q20) && $Q20 === '1') ? 'selected':'';?>>yes</option>
                                                     <option value="2" <?php echo (isset($Q20) && $Q20 === '2') ? 'selected':'';?>>no</option>
-                                                </select>
+                                                </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                 
                                             </div>
                                         </div>
@@ -658,11 +1107,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                 </div>
 
                                                 <div  class="col-12 col-sm-2 form-inline">
-                                                    <select id="externalResources" name="externalResources" class="form-control">
+                                                    <select id="externalResources" name="externalResources" class="form-control m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q24) && $Q24 === '1') ? 'selected':'';?>>yes</option>
                                                         <option value="2" <?php echo (isset($Q24) && $Q24 === '2') ? 'selected':'';?>>no</option>
-                                                    </select>
+                                                    </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                     
                                                 </div>
                                         </div>
@@ -682,11 +1131,11 @@ $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q1
                                                 </div>
 
                                                 <div  class="col-12 col-sm-2 form-inline">
-                                                    <select id="storage" name="storage" class="form-control">
+                                                    <select id="storage" name="storage" class="form-control m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q25) && $Q25 === '1') ? 'selected':'';?>>yes</option>
                                                         <option value="2" <?php echo (isset($Q25) && $Q25 === '2') ? 'selected':'';?>>no</option>
-                                                    </select>
+                                                    </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                     
                                                 </div>
                                         </div>
