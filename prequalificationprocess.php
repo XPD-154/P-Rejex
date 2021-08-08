@@ -42,6 +42,7 @@ class CalculateTotal
 
     public function getPercentage(){
         return ((($this->Q1_score + $this->Q2_score + $this->Q3_score + $this->Q4_score + $this->Q5_score + $this->Q6_score + $this->Q7_score + $this->Q8_score + $this->Q9_score + $this->Q10_score + $this->Q11_score + $this->Q12_score + $this->Q13_score + $this->Q14_score + $this->Q15_score + $this->Q16_score + $this->Q17_score + $this->Q18_score + $this->Q19_score + $this->Q20_score + $this->Q21_score + $this->Q22_score + $this->Q23_score + $this->Q24_score + $this->Q25_score)/51)*100);
+
     }
  
 }
@@ -498,7 +499,7 @@ if(isset($_POST['calculateScore'])) {
         $obj->Q22_score = (isset($Q22A) && isset($Q22B) && isset($Q22C) && isset($Q22D) && isset($Q22E) && isset($Q22F)) ? 1 : 0;
         $obj->Q23_score = (isset($Q23A) && isset($Q23B) && isset($Q23C) && isset($Q23D) && isset($Q23E) && isset($Q23F)) ? 1 : 0;
         $obj->Q24_score = ($Q24==2) ? 1 : 0;
-        $obj->Q24_score = ($Q25==1) ? 1 : 0;
+        $obj->Q25_score = ($Q25==1) ? 1 : 0;
 
         $percentageScore .= $obj->getPercentage();
             
@@ -1155,21 +1156,27 @@ if(isset($_POST['calculateScore'])) {
                                 <button type="submit" name="calculateScore" class="btn btn-warning btn-user btn-block">Submit</button>
                             </form>
 
-                            <div id="percentageScore">
+                            <div id="percentageScore" style="margin-top: 50px;">
                                 <?php 
 
                                       if($percentageScore>60){
 
-                                            echo '<div class="container" id="submitSection">
+                                            echo '<div id="submitSection">
                                                     <a class="btn btn-success" href="biddingformprojectA.php" id="navBarAnchorBtn">Bid</a>
+                                                  </div>';
+
+                                            echo '<div id="submitSection">
+                                                    <a class="btn btn-success" href="biddingformprojectA.php" id="navBarAnchorBtn">'.$percentageScore.'</a>
                                                   </div>';
 
                                         }elseif($percentageScore<60 && $percentageScore>=1){
 
-                                            echo '<div class="container" id="submitSection">
+                                            echo '<div id="submitSection">
                                                     <a class="btn btn-danger" href="index.php" id="navBarAnchorBtn">Thank for your participation</a>
                                                   </div>';
-
+                                            echo '<div id="submitSection">
+                                                    <a class="btn btn-danger" href="biddingformprojectA.php" id="navBarAnchorBtn">'.$percentageScore.'</a>
+                                                  </div>';
                                         }
                                 ?> 
                             </div>
