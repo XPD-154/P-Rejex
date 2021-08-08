@@ -1,12 +1,23 @@
 <?php
   
-  //start database connection
+    //start database connection
 
-  include ("../connection.php");
+    include ("../connection.php");
 
-  //start session connection
+    //start session connection
 
-  session_start();  
+    session_start();  
+
+    $CNuniqueID=$_SESSION['CNuniqueID'];
+    $query="SELECT * FROM PRcontractor WHERE CNuniqueId = '$CNuniqueID' LIMIT 1";
+    $sql=$connection->prepare($query);
+    $sql->execute();
+    while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+
+        $_SESSION['CNcompany_name'] = $row['CNcompany_name'];
+        $_SESSION['CNemail'] = $row['CNemail'];
+        $_SESSION['CNphone_number'] = $row['CNphone_number'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -386,6 +397,10 @@
                                 echo "Company Name: ".$row['CNcompany_name']."<br>";
                                 echo "Company Email: ".$row['CNemail']."<br>";
                                 echo "Company Phone Number: ".$row['CNphone_number']."<br>";
+
+                                $_SESSION['CNcompany_name'] = $row['CNcompany_name'];
+                                $_SESSION['CNemail'] = $row['CNemail'];
+                                $_SESSION['CNphone_number'] = $row['CNphone_number'];
                             }
                         ?>
                       </div>

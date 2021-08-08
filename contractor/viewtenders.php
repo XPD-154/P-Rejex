@@ -225,6 +225,7 @@
                             echo "<th>Bid Opening Date</th>";
                             echo "<th>Any Other Information</th>";
                             echo "<th>Disclaimer</th>";
+                            echo "<th>Prequalification</th>";
                             echo "</tr>";
                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
                                 
@@ -248,6 +249,8 @@
                                 echo ($row['any_other_information']);
                                 echo ("</td><td>");
                                 echo ($row['disclaimer']);
+                                echo ("</td><td>");
+                                echo ('<a type="button" class="btn btn-secondary" href="../prequalificationprocess.php?project_name='.$row['project_name'].'">Start</a>');
                                 echo ("</td></tr><br>");
                                 
                             };
@@ -273,6 +276,7 @@
                             echo "<th>Bid Opening Date</th>";
                             echo "<th>Any Other Information</th>";
                             echo "<th>Disclaimer</th>";
+                            echo "<th>Prequalification</th>";
                             echo "</tr>";
                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
                                 
@@ -296,6 +300,8 @@
                                 echo ($row['any_other_information']);
                                 echo ("</td><td>");
                                 echo ($row['disclaimer']);
+                                echo ("</td><td>");
+                                echo ('<a type="button" class="btn btn-secondary" href="../prequalificationprocess.php?project_name='.$row['project_name'].'">Start</a>');
                                 echo ("</td></tr><br>");
                                 
                             };

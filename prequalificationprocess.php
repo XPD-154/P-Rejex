@@ -10,6 +10,39 @@ session_start();
 
 //creation of database table for prequalification process if it doesnt exist
 
+$query = "CREATE TABLE IF NOT EXISTS PRprequalification (
+                            resultID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                            project_name VARCHAR(50) NOT NULL,
+                            CNuniqueId VARCHAR(50) NOT NULL,
+                            CNcompany_name VARCHAR(50) NOT NULL,
+                            CNemail VARCHAR(50) NOT NULL,
+                            CNphone_number VARCHAR(50) NOT NULL,
+                            score DECIMAL(4,2) NOT NULL,
+                            verdict TEXT NOT NULL,
+                            INDEX(CNuniqueId, project_name),
+                            CONSTRAINT f4  
+                            FOREIGN KEY (project_name)   
+                            REFERENCES prproject (project_name)
+                            ON DELETE CASCADE
+                            ON UPDATE CASCADE)";
+$sql= $connection->prepare($query);
+$sql->execute();
+
+//alter PRprequalification by adding a foreign key to CNuniqueid
+try {
+    $query="ALTER TABLE PRprequalification add FOREIGN KEY(CNuniqueId) REFERENCES PRcontractor(CNuniqueId)";
+    $sql= $connection->prepare($query);
+    $sql->execute();
+} catch (PDOException $exception) {
+    if($exception->errorInfo[2] == 1061) {
+        // references already exists
+    } else {
+        // Another error occurred
+    }
+}
+
+
+
 class CalculateTotal
 {
    
@@ -502,11 +535,34 @@ if(isset($_POST['calculateScore'])) {
         $obj->Q25_score = ($Q25==1) ? 1 : 0;
 
         $percentageScore .= $obj->getPercentage();
+
+        if($percentageScore>60){
+
+            $verdict="Qualified";
+
+        }elseif($percentageScore<60 && $percentageScore>=1){
+
+            $verdict="Disqualified";
+
+        }
+
+        $query = "INSERT INTO PRprequalification (project_name, CNuniqueId, CNcompany_name, CNemail, CNphone_number, score, verdict) VALUES (:project_name, :CNuniqueId, :CNcompany_name, :CNemail, :CNphone_number, :score, :verdict)";
+        $sql = $connection->prepare($query);
+        $sql->execute(array(':project_name'=>$_GET['project_name'],
+                            ':CNuniqueId'=>$_SESSION['CNuniqueID'],
+                            ':CNcompany_name'=>$_SESSION['CNcompany_name'],
+                            ':CNemail'=>$_SESSION['CNemail'],
+                            ':CNphone_number'=>$_SESSION['CNphone_number'],
+                            ':score'=>$percentageScore,
+                            ':verdict'=>$verdict));
+        
             
 
     }
 
 };
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -540,7 +596,7 @@ if(isset($_POST['calculateScore'])) {
                 <!--breadcrumb nav bar-->
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php">Contractor Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="contractor/index.php">Contractor Dashboard</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Prequalification</li>
                   </ol>
                 </nav>
@@ -1162,20 +1218,13 @@ if(isset($_POST['calculateScore'])) {
                                       if($percentageScore>60){
 
                                             echo '<div id="submitSection">
-                                                    <a class="btn btn-success" href="biddingformprojectA.php" id="navBarAnchorBtn">Bid</a>
-                                                  </div>';
-
-                                            echo '<div id="submitSection">
-                                                    <a class="btn btn-success" href="biddingformprojectA.php" id="navBarAnchorBtn">'.$percentageScore.'</a>
+                                                    <a class="btn btn-success" href="biddingformprojectA.php" id="navBarAnchorBtn">Congratulations on the successful completion of the process. Details of your company will be sent to the project client</a>
                                                   </div>';
 
                                         }elseif($percentageScore<60 && $percentageScore>=1){
 
                                             echo '<div id="submitSection">
-                                                    <a class="btn btn-danger" href="index.php" id="navBarAnchorBtn">Thank for your participation</a>
-                                                  </div>';
-                                            echo '<div id="submitSection">
-                                                    <a class="btn btn-danger" href="biddingformprojectA.php" id="navBarAnchorBtn">'.$percentageScore.'</a>
+                                                    <a class="btn btn-danger" href="index.php" id="navBarAnchorBtn">Thank for your participation, but you failed to meet up with the requirements</a>
                                                   </div>';
                                         }
                                 ?> 
