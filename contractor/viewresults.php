@@ -1,12 +1,16 @@
 <?php
+  
+  //start database connection
 
   include ("../connection.php");
+
+  //start session connection
 
   session_start();  
 ?>
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,24 +30,27 @@
 
     <!-- Custom styles for this template-->
     <link href="../dashboard-asserts/css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"> <!--link to css stylesheet for project-->
+    <style type="text/css">
+
+       
+    </style>
+    
 </head>
-
-
 <body id="page-top">
 
-	<!-- Page Wrapper -->
+    <!-- Page Wrapper -->
     <div id="wrapper">
 
 		<!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <img src="../img/Untitled-5.png" id="navBarAnchorImg" style="width: 35px; height: 35px;">
                 </div>
-                <div class="sidebar-brand-text mx-3">P-Rejex Client</div>
+                <div class="sidebar-brand-text mx-3">P-Rejex Contractor</div>
             </a>
 
             <!-- Divider -->
@@ -74,8 +81,7 @@
                 <div id="collapseClient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Projects Information:</h6>
-                        <a class="collapse-item" href="addprojectform.php">Add Project</a>
-                        <a class="collapse-item" href="#">View Projects</a>
+                        <a class="collapse-item" href="viewprojects.php">View Projects</a>
                     </div>
                 </div>
             </li>
@@ -88,7 +94,6 @@
                 <div id="collapseContractor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tenders Information:</h6>
-                        <a class="collapse-item" href="addtenderform.php">Add Tender</a>
                         <a class="collapse-item" href="viewtenders.php">View Tender</a>
                     </div>
                 </div>
@@ -111,8 +116,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">PQ information:</h6>
-                        <a class="collapse-item" href="viewresults.php">View Results</a>
+                        <h6 class="collapse-header">PQ Information:</h6>
+                        <a class="collapse-item" href="#">View Result</a>
                     </div>
                 </div>
             </li>
@@ -128,7 +133,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Content:</h6>
-                        <a class="collapse-item" href="messageus.php">Colors</a>
+                        <a class="collapse-item" href="messageus.php">Message</a>
                     </div>
                 </div>
             </li>
@@ -167,7 +172,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><b>User ID: </b><?php echo $_SESSION['CLuniqueID']; ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><b>User ID: </b><?php echo $_SESSION['CNuniqueID']; ?></span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -187,50 +192,43 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Begin Table Content for displaying projects -->
-                <div class="container-fluid">
+
+                <div class="container">
 
                     <!-- Table Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Projects Table</h1>
-                    <p class="mb-4">Tables showing projects offered by <?= $_SESSION['CLuniqueID'] ?> </p>
+                    <h1 class="h3 mb-2 text-gray-800">Company Result</h1>
 
-                   	<?php
-
-    	               	$CLuniqueID=$_SESSION['CLuniqueID'];
-    	               	echo ('<div class="card shadow mb-4">');
-    	               	echo ('<div class="card-body">');
-    	               	echo ('<div class="table-responsive">');
-    					echo ('<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">');
-    					$query="SELECT * FROM PRproject WHERE CLuniqueId = '$CLuniqueID'";
-    					$sql=$connection->prepare($query);
-    					$sql->execute();
-    					echo "<tr>";
-    					echo "<th>Project Name</th>";
-    					echo "<th>Project Type</th>";
-    					echo "<th>Project Location</th>";
-    					echo "<th>Estimated Budget</th>";
-    					echo "</tr>";
-    					while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-    						
-    						echo"<tr><td>";
-    						echo ($row['project_name']);
-    						echo ("</td><td>");
-    						echo ($row['project_type']);
-    						echo ("</td><td>");
-    						echo ($row['project_location']);
-    						echo ("</td><td>");
-    						echo ($row['project_est_bugt']);
-    						echo ("</td></tr><br>");
-    						
-    					};
+                    <?php
+                            //else show all results available in connection with the contractor
+                            $CNuniqueID = $_SESSION['CNuniqueID'];
+                            echo ('<div class="card shadow mb-4">');
+                            echo ('<div class="card-body">');
+                            echo ('<div class="table-responsive">');
+                            echo ('<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">');
+                            $query="SELECT * FROM PRprequalification WHERE CNuniqueId = '$CNuniqueID'";
+                            $sql=$connection->prepare($query);
+                            $sql->execute();
+                            echo "<tr>";
+                            echo "<th>Project Name</th>";
+                            echo "<th>Score</th>";
+                            echo "<th>Verdict</th>";
+                            echo "</tr>";
+                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+                                
+                                echo"<tr><td>";
+                                echo ($row['project_name']);
+                                echo ("</td><td>");
+                                echo ($row['score']);
+                                echo ("</td><td>");
+                                echo ($row['verdict']);
+                                echo ("</td></tr><br>");
+                                
+                            };
                         
-    				?>
+                    ?>
+                </div>    
 
-                </div>
-                <!-- end of Table Content -->
-
-
-			</div>
+            </div>
             <!-- End of Main Content -->
 
         </div> 
@@ -238,6 +236,7 @@
 
     </div>
     <!-- End of Page Wrapper -->
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -275,15 +274,15 @@
                       </div>
                       <div class="modal-body">
                         <?php
-                            $CLuniqueID=$_SESSION['CLuniqueID'];
-                            $query="SELECT * FROM prclient WHERE CLuniqueId = '$CLuniqueID' LIMIT 1";
+                            $CNuniqueID=$_SESSION['CNuniqueID'];
+                            $query="SELECT * FROM PRcontractor WHERE CNuniqueId = '$CNuniqueID' LIMIT 1";
                             $sql=$connection->prepare($query);
                             $sql->execute();
                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
 
-                                echo "Company Name: ".$row['CLcompany_name']."<br>";
-                                echo "Company Email: ".$row['CLemail']."<br>";
-                                echo "Company Phone Number: ".$row['CLphone_number']."<br>";
+                                echo "Company Name: ".$row['CNcompany_name']."<br>";
+                                echo "Company Email: ".$row['CNemail']."<br>";
+                                echo "Company Phone Number: ".$row['CNphone_number']."<br>";
                             }
                         ?>
                       </div>
@@ -295,7 +294,9 @@
                 </div>
     <!--end of Modal for user profile-->
 
-	<script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
+
+
+    <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
     <script src="../js/popper.min.js"></script> <!--link to popper js file-->
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> <!--link to boostrap js file-->
 

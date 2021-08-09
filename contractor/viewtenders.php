@@ -117,7 +117,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">PQ Information:</h6>
-                        <a class="collapse-item" href="buttons.html">View Result</a>
+                        <a class="collapse-item" href="viewresults.php">View Result</a>
                     </div>
                 </div>
             </li>
@@ -192,17 +192,23 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <form class="container" style="margin-top: 25px;">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="search" name="searchInput" id="myInput">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
-                        </div>
-                    </div>
-                    <div class="alert alert-warning alert-dismissible fade show container" role="alert" id="alert">Please input a Project name, if you dont know Project name, please view Projects from the sidebar button<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
-                </form>
+                
 
-                <div class="container">
+                <div class="container-fluid">
+
+                    <!-- Table Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Available Tenders</h1>
+
+                    <form style="margin-top: 25px;">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="search" name="searchInput" id="myInput">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
+                            </div>
+                        </div>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input a Project name, if you dont know Project name, please view Projects from the sidebar button<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
+                    </form>
+
                     <?php
                         //check if the search button has been inserted
                         if(isset($_GET['searchInput'])){

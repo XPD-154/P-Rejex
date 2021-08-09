@@ -128,7 +128,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">PQ Information:</h6>
-                        <a class="collapse-item" href="buttons.html">View Result</a>
+                        <a class="collapse-item" href="viewresults.php">View Result</a>
                     </div>
                 </div>
             </li>
@@ -244,7 +244,7 @@
                         </h2>
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                           <div class="accordion-body">
-                            <strong>Concerning Tender:</strong> Check to see available projects and ensure your eligibility!!!
+                            <strong>Concerning Projects and Tenders:</strong> Check to see available projects/tenders from the sidebar and ensure your eligibility!!!
                           </div>
                         </div>
                       </div>
@@ -256,7 +256,7 @@
                         </h2>
                         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                           <div class="accordion-body">
-                            <strong>Concerning Prequalification:</strong> Next, having examining the Tender documentation available, engage the Prequalification process<br>
+                            <strong>Concerning Prequalification:</strong> Next, having examining the Tender documentation available and assertained your eligibility, engage the Prequalification process with the start button besides the tender.<br> Any attempt to retake the prequalification more than once for a particular project results in disqualification. 
                           </div>
                         </div>
                       </div>
@@ -268,7 +268,7 @@
                         </h2>
                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                           <div class="accordion-body">
-                            <strong>Concerning Results:</strong> Check result of evaluation or Prequalification process.....Thank you for your time
+                            <strong>Concerning Results:</strong> Check result of evaluation or Prequalification process from the sidebar.....Thank you for your time.
                           </div>
                         </div>
                       </div>

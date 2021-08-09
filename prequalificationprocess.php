@@ -42,10 +42,10 @@ try {
 }
 
 
-
+//create a class to calculate total score after the the questions are answered
 class CalculateTotal
 {
-   
+    //initialize every score as a public member of the class
     public $Q1_score = "";
     public $Q2_score = "";
     public $Q3_score = "";
@@ -72,7 +72,7 @@ class CalculateTotal
     public $Q24_score = "";
     public $Q25_score = "";
     
-
+    //create a function to get the percentage
     public function getPercentage(){
         return ((($this->Q1_score + $this->Q2_score + $this->Q3_score + $this->Q4_score + $this->Q5_score + $this->Q6_score + $this->Q7_score + $this->Q8_score + $this->Q9_score + $this->Q10_score + $this->Q11_score + $this->Q12_score + $this->Q13_score + $this->Q14_score + $this->Q15_score + $this->Q16_score + $this->Q17_score + $this->Q18_score + $this->Q19_score + $this->Q20_score + $this->Q21_score + $this->Q22_score + $this->Q23_score + $this->Q24_score + $this->Q25_score)/51)*100);
 
@@ -80,19 +80,23 @@ class CalculateTotal
  
 }
 
-
+//a function created for the modification of user input 
 function test_input($data) {
 
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
+            $data = trim($data); // strip unnecessary characters (extra space, tab, newline, etc.) from the user input data
+            $data = stripslashes($data); // remove backslashes from the user input data
+            $data = htmlspecialchars($data); //convert special characters to HTML entities
             return $data;
          }
 
+//declare percentage score as an empty string
 $percentageScore ="";
+
+//declare all score variables as an empty string
 $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q10 = $Q11 = $Q12 = $Q13 = $Q14 = $Q15 = $Q16 = $Q17 = $Q18 = $Q19 = $Q20 = $Q21A = $Q21B = $Q21C = $Q21D = $Q21E = $Q21F = $Q22A = $Q22B = $Q22C = $Q22D = $Q22E = $Q22F = $Q23A = $Q23B = $Q23C = $Q23D = $Q23E = $Q23F = $Q24 = $Q25 = "";
 
 
+//form submission and validation
 if(isset($_POST['calculateScore'])) {
 
 
@@ -362,12 +366,13 @@ if(isset($_POST['calculateScore'])) {
         $Q25 = test_input($_POST['storage']);
 
     }
-
+      //check if every score variable is filled up
       if (!empty($Q1) && !empty($Q2) && !empty($Q3) && !empty($Q5) && !empty($Q6) && !empty($Q7) && !empty($Q8) && !empty($Q9) && !empty($Q10) && !empty($Q11) && !empty($Q12) && !empty($Q13) && !empty($Q14) && !empty($Q15) && !empty($Q16) && !empty($Q17) && !empty($Q18) && !empty($Q19) && !empty($Q20) && !empty($Q24) && !empty($Q25)){
 
-
+        //create a new object
         $obj = new CalculateTotal;
 
+        //assign the object to each member of the class to determine the mark on each variable
         $obj->Q1_score = ($Q1==1) ? 1 : 0;
         $obj->Q2_score = ($Q2==1) ? 1 : 0;
         $obj->Q3_score = ($Q3==1) ? 1 : 0;
@@ -534,8 +539,10 @@ if(isset($_POST['calculateScore'])) {
         $obj->Q24_score = ($Q24==2) ? 1 : 0;
         $obj->Q25_score = ($Q25==1) ? 1 : 0;
 
+        //calculate percentage score
         $percentageScore .= $obj->getPercentage();
 
+        //determine the verdict based on score
         if($percentageScore>60){
 
             $verdict="Qualified";
@@ -546,6 +553,7 @@ if(isset($_POST['calculateScore'])) {
 
         }
 
+        //insert the information into the PRprequalification table
         $query = "INSERT INTO PRprequalification (project_name, CNuniqueId, CNcompany_name, CNemail, CNphone_number, score, verdict) VALUES (:project_name, :CNuniqueId, :CNcompany_name, :CNemail, :CNphone_number, :score, :verdict)";
         $sql = $connection->prepare($query);
         $sql->execute(array(':project_name'=>$_GET['project_name'],
@@ -602,7 +610,7 @@ if(isset($_POST['calculateScore'])) {
                 </nav>
                 <!--end of breadcrumb nav bar-->
 
-                <!--section containing project form-->
+                <!--section containing prequalification process form-->
                 <section class="container-fluid" id="prequalificationForm">
                      <div class="p-5">
                             
@@ -1218,13 +1226,13 @@ if(isset($_POST['calculateScore'])) {
                                       if($percentageScore>60){
 
                                             echo '<div id="submitSection">
-                                                    <a class="btn btn-success" href="biddingformprojectA.php" id="navBarAnchorBtn">Congratulations on the successful completion of the process. Details of your company will be sent to the project client</a>
+                                                    <a class="btn btn-success" href="contractor/index.php" id="navBarAnchorBtn">Congratulations on the successful completion of the process. Details of your company will be sent to the project client</a>
                                                   </div>';
 
                                         }elseif($percentageScore<60 && $percentageScore>=1){
 
                                             echo '<div id="submitSection">
-                                                    <a class="btn btn-danger" href="index.php" id="navBarAnchorBtn">Thank for your participation, but you failed to meet up with the requirements</a>
+                                                    <a class="btn btn-danger" href="contractor/index.php" id="navBarAnchorBtn">Thank for your participation, but you failed to meet up with the requirements</a>
                                                   </div>';
                                         }
                                 ?> 
