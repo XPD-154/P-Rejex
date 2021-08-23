@@ -122,7 +122,7 @@
 			}
 		}
 		
-		/*client dashboard*/
+		/*client dashboard styling*/
 		#clientBanner{
               background: url(../img/you-x-ventures-bzqU01v-G54-unsplash.jpg);
               background-size: cover;
@@ -172,7 +172,7 @@
 
         /*styling for client sign up page*/
     	#clientSignUpSection{
-    		width: 1330px;
+    		width: 1250px;
     	}
     	@media screen and (max-width: 770px){
     		#clientSignUpSection{
@@ -217,7 +217,7 @@
 
         /*styling for client login page*/
     	#clientLogInPage{
-    		width: 1335px;
+    		width: 1250px;
     	}
     	@media screen and (max-width: 770px){
     		#clientLogInPage{
@@ -259,7 +259,7 @@
     		color: black;
     	}
 
-    	/*contractor dashboard*/
+    	/*contractor dashboard styling*/
 		#contractorBanner{
               background: url(../img/alvaro-reyes-qWwpHwip31M-unsplash.jpg);
               background-size: cover;
@@ -302,7 +302,7 @@
        
     	/*styling for contractor sign up page*/
     	#contractorSignUpSection{
-    		width: 1330px;
+    		width: 1250px;
     	}
     	@media screen and (max-width: 770px){
     		#contractorSignUpSection{
@@ -347,7 +347,7 @@
 
     	/*styling for contractor login page*/
     	#contractorlogInPage{
-    		width: 1335px;
+    		width: 1250px;
     	}
     	@media screen and (max-width: 770px){
     		#contractorlogInPage{
