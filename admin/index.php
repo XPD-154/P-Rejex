@@ -22,6 +22,8 @@
       header('location:adminlogin.php');
       return;
   }
+
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -180,6 +182,48 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">
+                                    <?php
+                                        $query = "SELECT * FROM PRadminmessage";
+                                        $sql = $connection->prepare($query);
+                                        $sql->execute();
+                                        $rowCount = $sql->rowCount();
+                                        echo $rowCount;
+                                    ?>
+                                </span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <?php
+                                    $query = "SELECT * FROM PRadminmessage LIMIT 4";
+                                    $sql = $connection->prepare($query);
+                                    $sql->execute();
+                                    while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+                                        echo '<a class="dropdown-item d-flex align-items-center" href="#">';
+                                        echo '<div class="font-weight-bold">';
+                                        echo ('<div class="text-truncate">'.$row['message'].'</div>');
+                                        echo ('<div class="small text-gray-500">'.$row['useruniqueId'].'</div>');
+                                        echo '</div></a>';
+
+                                    };
+                                    
+                                ?>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -206,11 +250,11 @@
                 <!-- End of Topbar -->
 
                 <!--section for introductory banner-->
-                <section id="clientBanner">
+                <section id="adminBanner">
                     <div class="banner-text">
                         <h1>Welcome to P-Rejex</h1>
                         <hr>
-                        <p>Lets help you get your projects and tender offers out there</p>
+                        <p>Admin Dashboard</p>
                     </div>
                 </section>
                 <!--end of section for introductory banner-->
@@ -228,6 +272,78 @@
                    ?> 
                 </div>
                 <!--end of section for success alert upon adding project-->
+
+                <!-- Content Row -->
+                <section class="container">
+                    <div class="row">
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-12 col-md-4 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Client Organizations</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-12 col-md-4 mb-4">
+                                <div class="card border-left-secondary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                                    Contractors</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-12 col-md-4 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Prequalification Tasks
+                                                </div>
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-warning" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </section>
+                <!-- End of Content Row -->
 
                 <!--section containing accordion for client--> 
                 <section class="container" id="clientAccordion">

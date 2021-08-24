@@ -436,3 +436,34 @@
             margin-bottom: 100px;
         }
 
+        /*admin dashboard styling*/
+        #adminBanner{
+              background: url(../img/austin-distel-2vCqH34PqWs-unsplash.jpg);
+              background-size: cover;
+              background-position: center;
+              height: 50vh;
+              padding-top: 80px;
+               }
+        #adminBanner .banner-text{
+              text-align: center;
+              color: #fff;
+              
+                }
+        #adminBanner .banner-text h1{
+              font-size: 30px;
+              text-shadow: 2px 2px #808080;
+                }
+        #adminBanner .banner-text p{
+              font-size: 30px;
+              font-style: italic;
+              text-shadow: 2px 2px #808080;
+                }
+        @media screen and (max-width: 770px){
+              #adminBanner .banner-text h1{
+                    font-size: 30px;
+              }
+              #adminBanner .banner-text p{
+                    font-size: 18px;
+              }
+        }
+        
