@@ -161,8 +161,8 @@
 		</header>
 
 		<main class="row">
-			<div class="col-2 col-sm-4" id="clientSignUpSubSection4"></div>
-			<div class="col-8 col-sm-4" id="clientSignUpSubSection5">
+			<div class="col-2 col-md-4 col-lg-4" id="clientSignUpSubSection4"></div>
+			<div class="col-8 col-md-4 col-lg-4" id="clientSignUpSubSection5">
 
 				<div class="text-center mb-5">
 					<h4>Register with</h4>
@@ -221,7 +221,7 @@
 					</div>		                       
 				</form>
 			</div>
-			<div class="col-2 col-sm-4" id="clientSignUpSubSection4"></div>
+			<div class="col-2 col-md-4 col-lg-4" id="clientSignUpSubSection4"></div>
 		</main>
 
 	</div>

@@ -299,8 +299,8 @@ if(isset($_POST['contractorSubmit'])){
 			</div>
 
 			<div class="row align-items-stretch" id="featuresSection">
-		                       <div class="col-12 col-sm-4 col-lg-4 mb-3">
-					                <div class="card shadow-lg" id="featuresSubSection">
+		                       <div class="col-12 col-md-4 col-lg-4 mb-3">
+					                <div class="card shadow-lg">
 					                    <h3 class="card-header bg-light"><i class="fa fa-tasks fa-lg"></i> Prequalification</h3>
 					                    <div class="card-body justify-content-center">
 					                        <p>Prequalification is a procedure of deciding a contractor's capacity to meet the particular necessities for a project including a wide scope of models and data</p>
@@ -309,8 +309,8 @@ if(isset($_POST['contractorSubmit'])){
 					                </div>
 					            </div>
 
-					            <div class="col-12 col-sm-4 col-lg-4 mb-3">
-					                <div class="card shadow-lg" id="featuresSubSection">
+					            <div class="col-12 col-md-4 col-lg-4 mb-3">
+					                <div class="card shadow-lg">
 					                    <h3 class="card-header bg-info text-white"><i class="fa fa-bell fa-lg"></i> Project Broadcasting</h3>
 					                    <div class="card-body justify-content-center">
 					                        <p>Project advertisement, a notice or announcement in a public medium promoting a product, service, or event for easy application, tendering and bidding</p>
@@ -319,8 +319,8 @@ if(isset($_POST['contractorSubmit'])){
 					                </div>
 					            </div>
 
-					            <div class="col-12 col-sm-4 col-lg-4 mb-3">
-					                <div class="card shadow-lg" id="featuresSubSection">
+					            <div class="col-12 col-md-4 col-lg-4 mb-3">
+					                <div class="card shadow-lg">
 					                    <h3 class="card-header bg-success text-white"><i class="fa fa-clipboard fa-lg"></i> Project Consulting</h3>
 					                    <div class="card-body justify-content-center">
 					                        <p>Project analysis can be used to estimate the economic or engineering viability of projects by performing lifecycle analysis of project performance and maintenance</p>

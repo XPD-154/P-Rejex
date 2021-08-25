@@ -391,13 +391,13 @@ if(isset($_POST['submit'])){
 								<label for="floatingInput">Last Name</label>
 							</div>
 							<div class="row mt-3">
-								<div class="col-4">
+								<div class="col-4 col-sm-6">
 									<div class="form-floating">
 										<input type="text" name="area_code" placeholder="area code" class="form-control" id="floatingInput">
 										<label for="floatingInput">Area Code</label>
 									</div>
 								</div>
-								<div class="col-8">
+								<div class="col-8 col-sm-6">
 									<div class="form-floating">
 										<input type="text" name="phone_number" placeholder="phone number" class="form-control" id="floatingInput">
 										<label for="floatingInput">Telephone</label>
