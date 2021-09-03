@@ -39,6 +39,16 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h6 class="m-0 font-weight-bold text-primary">Client Table</h6>
+
+                                            <form style="margin-top: 25px;">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="search" name="searchInput" id="myInput">
+                                                    <div class="input-group-append">
+                                                        <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
+                                                    </div>
+                                                </div>
+                                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input Company Name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
+                                            </form>
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -82,40 +92,65 @@
                                                       
                                                       //total number of pages available based on rows in database
                                                       $total_no_pages_available=ceil($total_rows_available/$no_of_records_displayed_per_page);
-                                                        $query="SELECT * FROM prclient LIMIT $limit_to_display, $no_of_records_displayed_per_page";
-                                                        $sql=$connection->prepare($query);
-                                                        $sql->execute();
 
-                                                        while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                            
-                                                            echo"<tr><td>";
-                                                            echo ($row['CLuniqueId']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CLcompany_name']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CLemail']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CLphone_number']);
-                                                            echo ("</td></tr>");
-                                                            
-                                                        };
+                                                      if(isset($_GET['searchInput'])){
+
+                                                            $searchInput = $_GET['searchInput'];
+                                                            $query="SELECT * FROM prclient WHERE CLcompany_name LIKE '%$searchInput%'";
+                                                            $sql=$connection->prepare($query);
+                                                            $sql->execute();
+
+                                                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+                                                                
+                                                                echo"<tr><td>";
+                                                                echo ($row['CLuniqueId']);
+                                                                echo ("</td><td>");
+                                                                echo ($row['CLcompany_name']);
+                                                                echo ("</td><td>");
+                                                                echo ($row['CLemail']);
+                                                                echo ("</td><td>");
+                                                                echo ($row['CLphone_number']);
+                                                                echo ("</td></tr>");
+                                                                
+                                                            };
+
+                                                        }else{
+
+                                                            $query="SELECT * FROM prclient LIMIT $limit_to_display, $no_of_records_displayed_per_page";
+                                                            $sql=$connection->prepare($query);
+                                                            $sql->execute();
+
+                                                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+                                                                
+                                                                echo"<tr><td>";
+                                                                echo ($row['CLuniqueId']);
+                                                                echo ("</td><td>");
+                                                                echo ($row['CLcompany_name']);
+                                                                echo ("</td><td>");
+                                                                echo ($row['CLemail']);
+                                                                echo ("</td><td>");
+                                                                echo ($row['CLphone_number']);
+                                                                echo ("</td></tr>");
+                                                                
+                                                            };
+
+                                                            $v=1;
+                                                            echo  '<ul class="pagination">';
+                                                            echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page_currently_on-$v.'">Prev</a></li>';
+
+                                                            for ($page=1; $page<=$total_no_pages_available; $page++) {
+
+                                                                 echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page.'">'.$page.'</a></li>'; 
+                                                             }
+
+                                                            echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page_currently_on+$v.'">Next</a></li>';
+                                                            echo  '</ul>'; 
+                                                    
+                                                        }
                                                         
                                                     ?>
                                                     </tbody>
                                                 </table>
-                                                <?php
-                                                    $v=1;
-                                                    echo  '<ul class="pagination">';
-                                                    echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page_currently_on-$v.'">Prev</a></li>';
-
-                                                    for ($page=1; $page<=$total_no_pages_available; $page++) {
-
-                                                         echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page.'">'.$page.'</a></li>'; 
-                                                     }
-
-                                                    echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page_currently_on+$v.'">Next</a></li>';
-                                                    echo  '</ul>'; 
-                                                ?>
 
                                             </div>
                                         </div>
