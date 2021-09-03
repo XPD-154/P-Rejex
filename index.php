@@ -206,7 +206,7 @@ if(isset($_POST['contractorSubmit'])){
 	<title>P-Rejex</title>
 	
 </head>
-<body>
+<body id="homepage">
 
 	<header>
 		<!--Navigation bar for homepage-->
@@ -237,6 +237,7 @@ if(isset($_POST['contractorSubmit'])){
 				      </ul>
 				      <div>
 				      		<a class="btn btn-success" href="" data-bs-toggle="modal" data-bs-target="#loginModal"><span class="fa fa-sign-in"></span> Login</a>
+				      		<a href="admin/index.php" class="btn btn-primary"><span class="fa fa-user"></span> Admin</a>
 				      </div>
 			    </div>
 		    </div>

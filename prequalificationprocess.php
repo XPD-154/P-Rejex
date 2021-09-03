@@ -596,6 +596,7 @@ if(isset($_POST['calculateScore'])) {
     <link href="dashboard-asserts/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
+        
     	
     </style>
 </head>
@@ -659,11 +660,11 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                      <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                             <label for="bankingAgreement">Has your organisation met the terms of its banking facilities and loan agreement (if any) during the past year</label> 
                                         </div>
 
-                                        <div  class="col-12 col-sm-2 form-inline">
+                                        <div  class="col-12 col-lg-2 form-inline">
                                             <select id="bankingAgreement" name="bankingAgreement" class="form-select m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q2) && $Q2 === '1') ? 'selected':'';?>>yes</option>
@@ -673,11 +674,11 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                             <label for="obligations">Has your organisation met all its obligations to pay its creditors and staff during the past year</label>
                                         </div>
 
-                                        <div  class="col-12 col-sm-2 form-inline">
+                                        <div  class="col-12 col-lg-2 form-inline">
                                             <select id="obligations" name="obligations" class="form-select m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q3) && $Q3 === '1') ? 'selected':'';?>>yes</option>
@@ -687,14 +688,14 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                            <div class="col-12 col-sm-3 mb-2">
+                                            <div class="col-12 col-lg-3 mb-2">
                                                 <input type="text" class="form-control form-control-user" id="TotalDebt" name="TotalDebt" placeholder="Total Debt" value="<?php if($Q4A!=""){echo $Q4A;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                             </div>
 
-                                            <div  class="col-12 col-sm-3">
+                                            <div  class="col-12 col-lg-3">
                                                 <input type="text" class="form-control form-control-user" id="TotalAssets" name="TotalAssets" placeholder="Total Assets" value="<?php if($Q4B!=""){echo $Q4B;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                             </div>
-                                            <div  class="col-12 col-sm-4">
+                                            <div  class="col-12 col-lg-4">
                                                 <?php
                                                         if (!empty($_POST['TotalAssets']) && !empty($_POST['TotalAssets'])){
 
@@ -711,10 +712,10 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                              <label for="creditRating">Credit Rating of Company</label>
                                         </div>
-                                        <div class="col-12 col-sm-6 form-inline">
+                                        <div class="col-12 col-lg-6 form-inline">
                                              <select class="form-select m-1" id="creditRating" name="creditRating">
                                                     <option disabled selected>select credit rating</option>
                                                     <option value="1" <?php echo (isset($Q5) && $Q5 === '1') ? 'selected':'';?>>In Default, with Little Possibility of Recovery (Between CC and C)</option>
@@ -731,27 +732,27 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-3">
+                                        <div class="col-12 col-lg-3">
                                              <p>Insurance statement and Certificates</p>
                                         </div>
 
-                                        <div class="col-12 col-sm-9">
+                                        <div class="col-12 col-lg-9">
 
                                             <div class="row">
-                                                <div class="col-12 col-sm-3">
+                                                <div class="col-12 col-lg-3">
                                                     <p>Do you as a Contractor hold Employers Liability Insurance?</p>
                                                 </div>
-                                                <div class="col-12 col-sm-3">
+                                                <div class="col-12 col-lg-3">
                                                     <select id="employersLiabilityInsurance" name="employersLiabilityInsurance" class="form-select m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q6) && $Q6 === '1') ? 'selected':'';?>>yes</option>
                                                         <option value="2" <?php echo (isset($Q6) && $Q6 === '2') ? 'selected':'';?>>no</option>
                                                     </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                 </div>
-                                                <div class="col-12 col-sm-3">
+                                                <div class="col-12 col-lg-3">
                                                     <p>If “Yes” please state value in Naira:</p>
                                                 </div>
-                                                <div class="col-12 col-sm-3">
+                                                <div class="col-12 col-lg-3">
                                                     <input type="text" name="employersLiabilityInsuranceAmount" class="form-control form-control-user">
                                                 </div>
 
@@ -759,20 +760,20 @@ if(isset($_POST['calculateScore'])) {
 
                                             <div class="row">
 
-                                                <div class="col-12 col-sm-3">
+                                                <div class="col-12 col-lg-3">
                                                     <p>Do you as a Contractor hold Public Liability Insurance?</p>
                                                 </div>
-                                                <div class="col-12 col-sm-3">
+                                                <div class="col-12 col-lg-3">
                                                     <select id="publicLiabilityInsurance" name="publicLiabilityInsurance" class="form-select m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q7) && $Q7 === '1') ? 'selected':'';?>>yes</option>
                                                         <option value="2" <?php echo (isset($Q7) && $Q7 === '2') ? 'selected':'';?>>no</option>
                                                     </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                 </div>
-                                                <div class="col-12 col-sm-3">
+                                                <div class="col-12 col-lg-3">
                                                     <p>If “Yes” please state value in Naira:</p>
                                                 </div>
-                                                <div class="col-12 col-sm-3">
+                                                <div class="col-12 col-lg-3">
                                                     <input type="text" name="publicLiabilityInsuranceAmount" class="form-control form-control-user">
                                                 </div>
 
@@ -790,22 +791,22 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                              <label for="NumberOfSimilarProjects">Number of Similar Projects Handled</label>
                                         </div>
-                                        <div class="col-12 col-sm-6 form-inline">
+                                        <div class="col-12 col-lg-6 form-inline">
                                             <input type="number" class="form-control form-control-user m-1" id="NumberOfSimilarProjects" name="NumberOfSimilarProjects" value="<?php if($Q8!=""){echo $Q8;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                              <label for="numberOfYears">State the number of years in the construction business and verify by submittion of the certificate of registration for business</label>
                                         </div>
-                                        <div class="col-12 col-sm-3 form-inline">
+                                        <div class="col-12 col-lg-3 form-inline">
                                             <input type="number" class="form-control form-control-user m-1" id="numberOfYears" name="numberOfYears" value="<?php if($Q9!=""){echo $Q9;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
-                                        <div class="col-12 col-sm-2">
+                                        <div class="col-12 col-lg-2">
                                             <input type="file" class="form-control-file" id="numberOfYearsInput" name="numberOfYearsInput">
                                         </div>
                                     </div>
@@ -942,19 +943,19 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                              <label for="NumberOfStaff">Number of staff</label>
                                         </div>
-                                        <div class="col-12 col-sm-3 form-inline">
+                                        <div class="col-12 col-lg-3 form-inline">
                                             <input type="number" class="form-control form-control-user m-1" id="NumberOfStaff" name="NumberOfStaff" value="<?php if($Q10!=""){echo $Q10;}?>"> <span class="badge rounded-pill bg-danger">impt</span>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                              <label for="HQofStaff">Highest Qualification of Staff</label>
                                         </div>
-                                        <div class="col-12 col-sm-4 form-inline">
+                                        <div class="col-12 col-lg-4 form-inline">
                                              <select class="form-select m-1" id="HQofStaff" name="HQofStaff">
                                                     <option disabled selected>select qualification</option>
                                                     <option value="1" <?php echo (isset($Q11) && $Q11 === '1') ? 'selected':'';?>>No Qualification</option>
@@ -972,11 +973,11 @@ if(isset($_POST['calculateScore'])) {
 
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                             <label for="contractTerminated">Has your organisation had any contract terminated for poor performance in the last three years, or any contracts where damages have been claimed by the contracting authority?</label>
                                         </div>
 
-                                        <div  class="col-12 col-sm-2 form-inline">
+                                        <div  class="col-12 col-lg-2 form-inline">
                                             <select id="contractTerminated" name="contractTerminated" class="form-select m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q12) && $Q12 === '1') ? 'selected':'';?>>yes</option>
@@ -986,10 +987,10 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                              <label for="contractTerminatedReason">If "YES" please give details?</label>
                                         </div>
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                             <textarea class="form-control form-control-user" id="contractTerminatedReason" name="contractTerminatedReason"></textarea>
                                         </div>
                                     </div>
@@ -1003,11 +1004,11 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                             <label for="managementCertification">Does your organisation hold a recognised quality management certification for example BS/EN/ISO 9000 or equivalent</label>
                                         </div>
 
-                                        <div  class="col-12 col-sm-2 form-inline">
+                                        <div  class="col-12 col-lg-2 form-inline">
                                             <select id="managementCertification" name="managementCertification" class="form-select m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q13) && $Q13 === '1') ? 'selected':'';?>>yes</option>
@@ -1017,11 +1018,11 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-lg-6">
                                             <label for="managementSystem">If not, does your organisation have a quality management system?</label>
                                         </div>
 
-                                        <div  class="col-12 col-sm-2 form-inline">
+                                        <div  class="col-12 col-lg-2 form-inline">
                                             <select id="managementSystem" name="managementSystem" class="form-select m-1">
                                                 <option disabled selected>select answer</option>
                                                 <option value="1" <?php echo (isset($Q14) && $Q14 === '1') ? 'selected':'';?>>yes</option>
@@ -1038,11 +1039,11 @@ if(isset($_POST['calculateScore'])) {
                                     </div>
 
                                     <div class="form-group row">
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                     <label for="HSEpolicy">Does your organisation have a written health and safety at work policy?</label>
                                                 </div>
 
-                                                <div  class="col-12 col-sm-2 form-inline">
+                                                <div  class="col-12 col-lg-2 form-inline">
                                                     <select id="HSEpolicy" name="HSEpolicy" class="form-select m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q15) && $Q15 === '1') ? 'selected':'';?>>yes</option>
@@ -1050,12 +1051,12 @@ if(isset($_POST['calculateScore'])) {
                                                     </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                     
                                                 </div>
-                                                <div class="col-12 col-sm-4">
+                                                <div class="col-12 col-lg-4">
                                                     <div class="row">
-                                                        <div class="col-12 col-sm-6">
+                                                        <div class="col-12 col-lg-6">
                                                            <label for="HSEpolicyD">if yes, please provide sample documentation</label>
                                                         </div>
-                                                        <div class="col-12 col-sm-6" >
+                                                        <div class="col-12 col-lg-6" >
                                                             <input type="file" class="form-control-file" id="HSEpolicyD" name="HSEpolicyD">
                                                         </div>
                                                     </div>
@@ -1063,11 +1064,11 @@ if(isset($_POST['calculateScore'])) {
                                             </div>
 
                                             <div class="form-group row">
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                     <label for="routinelyRecord">Do you routinely record and review accidents/incidents and undertake follow-up action?</label>
                                                 </div>
 
-                                                <div  class="col-12 col-sm-2 form-inline">
+                                                <div  class="col-12 col-lg-2 form-inline">
                                                     <select id="routinelyRecord" name="routinelyRecord" class="form-select m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q16) && $Q16 === '1') ? 'selected':'';?>>yes</option>
@@ -1075,12 +1076,12 @@ if(isset($_POST['calculateScore'])) {
                                                     </select> <span class="badge rounded-pill bg-danger">impt</span>
                                                     
                                                 </div>
-                                                <div class="col-12 col-sm-4">
+                                                <div class="col-12 col-lg-4">
                                                     <div class="row">
-                                                        <div class="col-12 col-sm-6">
+                                                        <div class="col-12 col-lg-6">
                                                            <label for="routinelyRecordD">if yes, please provide sample documentation</label>
                                                         </div>
-                                                        <div class="col-12 col-sm-6" >
+                                                        <div class="col-12 col-lg-6" >
                                                             <input type="file" class="form-control-file" id="routinelyRecordD" name="routinelyRecordD">
                                                         </div>
                                                     </div>
@@ -1088,12 +1089,12 @@ if(isset($_POST['calculateScore'])) {
                                             </div>
 
                                             <div class="form-group row">
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                      <label for="HSEadvice">Do you have access to competent H&S advice/assistance-both general and construction/sector related?</label>
                                                 </div>
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                     <div class="row">
-                                                        <div class="col-12 col-sm-6 form-inline">
+                                                        <div class="col-12 col-lg-6 form-inline">
                                                             <select id="HSEadvice" name="HSEadvice" class="form-select m-1">
                                                                 <option disabled selected>select answer</option>
                                                                 <option value="1" <?php echo (isset($Q17) && $Q17 === '1') ? 'selected':'';?>>yes</option>
@@ -1106,11 +1107,11 @@ if(isset($_POST['calculateScore'])) {
                                             </div>
 
                                             <div class="form-group row">
-                                            <div class="col-12 col-sm-6">
+                                            <div class="col-12 col-lg-6">
                                                 <label for="environmentalManagementSystem">Does your organisation have an environmental management system?</label>
                                             </div>
 
-                                            <div  class="col-12 col-sm-2 form-inline">
+                                            <div  class="col-12 col-lg-2 form-inline">
                                                 <select id="environmentalManagementSystem" name="environmentalManagementSystem" class="form-select m-1">
                                                     <option disabled selected>select answer</option>
                                                     <option value="1" <?php echo (isset($Q18) && $Q18 === '1') ? 'selected':'';?>>yes</option>
@@ -1130,11 +1131,11 @@ if(isset($_POST['calculateScore'])) {
                                         </div>
 
                                         <div class="form-group row text-justify">
-                                            <div class="col-12 col-sm-9">
+                                            <div class="col-12 col-lg-9">
                                                 <label for="BPS1">Has your company or any of its Directors and Executive Officers been the subject of criminal or civil court action  (including for bankruptcy or insolvency) in respect of the business activ ities currently engaged in, for which the outcome was a judgement against you or them?</label>
                                             </div>
 
-                                            <div  class="col-12 col-sm-3 form-inline">
+                                            <div  class="col-12 col-lg-3 form-inline">
                                                 <select id="BPS1" name="BPS1" class="form-select m-1">
                                                     <option disabled selected>select answer</option>
                                                     <option value="1" <?php echo (isset($Q19) && $Q19 === '1') ? 'selected':'';?>>yes</option>
@@ -1145,11 +1146,11 @@ if(isset($_POST['calculateScore'])) {
                                         </div>
 
                                         <div class="form-group row text-justify">
-                                            <div class="col-12 col-sm-9">
+                                            <div class="col-12 col-lg-9">
                                                 <label for="BPS2">If your company or any of its Directors and/or Executive Officers are the subject of ongoing or pending criminal or civil court action (including for bankruptcy or insolvency) in respect of the business activities currently engaged in, have all claims been properly notified in accordance with the suppliers Product Liability Insurance policy requirements and been accepted by insurers?</label>
                                             </div>
 
-                                            <div  class="col-12 col-sm-3 form-inline">
+                                            <div  class="col-12 col-lg-3 form-inline">
                                                 <select id="BPS2" name="BPS2" class="form-select m-1">
                                                     <option disabled selected>select answer</option>
                                                     <option value="1" <?php echo (isset($Q20) && $Q20 === '1') ? 'selected':'';?>>yes</option>
@@ -1167,11 +1168,11 @@ if(isset($_POST['calculateScore'])) {
                                         </div>
 
                                         <div class="form-group row">
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                     <label for="externalResources">Does the Contractor use external resources?</label>
                                                 </div>
 
-                                                <div  class="col-12 col-sm-2 form-inline">
+                                                <div  class="col-12 col-lg-2 form-inline">
                                                     <select id="externalResources" name="externalResources" class="form-select m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q24) && $Q24 === '1') ? 'selected':'';?>>yes</option>
@@ -1182,20 +1183,20 @@ if(isset($_POST['calculateScore'])) {
                                         </div>
 
                                         <div class="form-group row">
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                      <label for="externalResourcesReason">If "YES", provide clarification;</label>
                                                 </div>
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                     <textarea class="form-control form-control-user" id="externalResourcesReason" name="externalResourcesReason"></textarea>
                                                 </div>
                                         </div>
 
                                         <div class="form-group row">
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                     <label for="storage">Does the Contractor has a Storage/Warehousing?</label>
                                                 </div>
 
-                                                <div  class="col-12 col-sm-2 form-inline">
+                                                <div  class="col-12 col-lg-2 form-inline">
                                                     <select id="storage" name="storage" class="form-select m-1">
                                                         <option disabled selected>select answer</option>
                                                         <option value="1" <?php echo (isset($Q25) && $Q25 === '1') ? 'selected':'';?>>yes</option>
@@ -1206,10 +1207,10 @@ if(isset($_POST['calculateScore'])) {
                                         </div>
 
                                         <div class="form-group row">
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                      <label for="storageReason">If "YES", please provide the capacity (in m2):</label>
                                                 </div>
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-lg-6">
                                                     <textarea class="form-control form-control-user" id="storageReason" name="storageReason"></textarea>
                                                 </div>
                                         </div>
@@ -1217,7 +1218,7 @@ if(isset($_POST['calculateScore'])) {
                                         
                                 </div>
                                 
-                                <button type="submit" name="calculateScore" class="btn btn-warning btn-user btn-block">Submit</button>
+                                <button type="submit" name="calculateScore" id="calculateScoreBtn" class="btn btn-warning btn-user btn-block">Submit</button>
                             </form>
 
                             <div id="percentageScore" style="margin-top: 50px;">

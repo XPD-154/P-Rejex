@@ -263,7 +263,7 @@ if(isset($_POST['submit'])){
 	<link rel="stylesheet" href="css/style.css"><!--link to css stylesheet for project-->
 	<title>P-Rejex</title>
 </head>
-<body>
+<body id="contactus">
 
 	<header>
 
@@ -295,6 +295,7 @@ if(isset($_POST['submit'])){
 					      </ul>
 					      <div>
 					      		<a class="btn btn-success" href="" data-bs-toggle="modal" data-bs-target="#loginModal"><span class="fa fa-sign-in"></span> Login</a>
+					      		<a href="admin/index.php" class="btn btn-primary"><span class="fa fa-user"></span> Admin</a>
 					      </div>
 				    </div>
 			    </div>

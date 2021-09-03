@@ -1,12 +1,45 @@
 		/*general styling*/
 		.btn{
       		border-radius: 30px; 
+            -webkit-transition: all 500ms ease;
+            -moz-transition: all 500ms ease;
+            -o-transition: all 500ms ease;
+            -ms-transition: all 500ms ease;
+        }
+        .btn:hover{
+           padding: 10px 15px;
+        }
+        button{
+            -webkit-transition: all 500ms ease;
+            -moz-transition: all 500ms ease;
+            -o-transition: all 500ms ease;
+            -ms-transition: all 500ms ease;
+        }
+        button:hover{
+           padding: 10px 15px;
         }
         a{
         	text-decoration: none;
+            -webkit-transition: all 500ms ease;
+            -moz-transition: all 500ms ease;
+            -o-transition: all 500ms ease;
+            -ms-transition: all 500ms ease;
+        }
+        a:hover{
+            padding: 10px 15px;
         }
 
         /*homepage styling*/
+        #homepage{
+            -webkit-animation-name: fade-in;
+            -webkit-animation-duration: 2s;
+            -moz-animation-name: fade-in;
+            -moz-animation-duration: 2s;
+            -ms-animation-name: fade-in;
+            -ms-animation-duration: 2s;
+            -o-animation-name: fade-in;
+            -o-animation-duration: 2s;
+        }
 		#navBarLogo{
 		  	width: 35px; 
 		  	height: 35px;
@@ -50,6 +83,10 @@
 			border-radius: 50%;
 			height: 300px;
 			width: 300px;
+            -webkit-animation: transition-move 4s linear 0s 2 alternate-reverse;
+            -moz-animation: transition-move 4s linear 0s 2 alternate-reverse;
+            -o-animation: transition-move 4s linear 0s 2 alternate-reverse;
+            -ms-animation: transition-move 4s linear 0s 2 alternate-reverse;
 		}
 		#aboutUsSection{
 			margin-top: 100px;
@@ -85,6 +122,16 @@
 		}
 
 		/*contact us styling*/
+        #contactus{
+            -webkit-animation-name: fade-in;
+            -webkit-animation-duration: 2s;
+            -moz-animation-name: fade-in;
+            -moz-animation-duration: 2s;
+            -ms-animation-name: fade-in;
+            -ms-animation-duration: 2s;
+            -o-animation-name: fade-in;
+            -o-animation-duration: 2s;
+        }
 		#contactUsIntroSection{
 			margin-top: 100px;
 			margin-left: 5px;
@@ -463,4 +510,16 @@
                     font-size: 18px;
               }
         }
-        
+        /*animations*/
+        @keyframes fade-in{
+            0%{opacity: 0;}
+            50%{opacity: 0.5;}
+            100%{opacity: 1;}
+        }
+
+        @keyframes transition-move{
+            0%{padding: 0px 0px;}
+            50%{padding: 10px 15px;}
+            100%{padding: 20px 30px;}
+        }
+       

@@ -16,14 +16,14 @@ if(isset($_POST['submit'])){
 	if(!$_POST['admin_email']){
 
 		$_SESSION['error'] = "please input an email address <br>";
-		header('location: adminlogn.php');
+		header('location: adminlogin.php');
 		return;
 	}
     //check if a password is inserted
 	if(!$_POST['admin_password']){
 
 		$_SESSION['error'] = "please input a password <br>";
-		header('location: adminlogn.php');
+		header('location: adminlogin.php');
 		return;
 
 	}else{
@@ -55,13 +55,13 @@ if(isset($_POST['submit'])){
 
                 //alert an error if the password do not match
                 $_SESSION['error'] = "The email/password combination could not be found";
-                header('location: adminlogn.php');
+                header('location: adminlogin.php');
                 return;
             }
         }else{
             //alert an error if the row does not exists
             $_SESSION['error'] = "The email/password combination could not be found";
-            header('location: adminlogn.php');
+            header('location: adminlogin.php');
             return;
         }
 

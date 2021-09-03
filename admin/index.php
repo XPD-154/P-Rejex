@@ -63,7 +63,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <img src="../img/Untitled-5.png" id="navBarAnchorImg" style="width: 35px; height: 35px;">
                 </div>
-                <div class="sidebar-brand-text mx-3">P-Rejex Client</div>
+                <div class="sidebar-brand-text mx-3">P-Rejex Admin</div>
             </a>
 
             <!-- Divider -->
@@ -81,15 +81,15 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Activities
+                Users
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClient"
                     aria-expanded="true" aria-controls="collapseClient">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Project</span>
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Clients</span>
                 </a>
                 <div id="collapseClient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -102,8 +102,8 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContractor"
                     aria-expanded="true" aria-controls="collapseContractor">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Tender</span>
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Contractors</span>
                 </a>
                 <div id="collapseContractor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -119,7 +119,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interactions
+                Activities
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -127,7 +127,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Prequalification</span>
+                    <span>Projects</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -141,8 +141,24 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Tenders</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Content:</h6>
+                        <a class="collapse-item" href="messageus.php">Message</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Message Us</span>
+                    <span>Prequalification</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -278,14 +294,22 @@
                     <div class="row">
 
                             <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-12 col-md-4 mb-4">
+                            <div class="col-12 col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Client Organizations</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                    Clients</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php
+                                                        $query = "SELECT * FROM PRclient";
+                                                        $sql = $connection->prepare($query);
+                                                        $sql->execute();
+                                                        $rowCount = $sql->rowCount();
+                                                        echo $rowCount;
+                                                    ?>
+                                                </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -296,14 +320,22 @@
                             </div>
 
                             <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-12 col-md-4 mb-4">
+                            <div class="col-12 col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-secondary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                                                     Contractors</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php
+                                                        $query = "SELECT * FROM PRcontractor";
+                                                        $sql = $connection->prepare($query);
+                                                        $sql->execute();
+                                                        $rowCount = $sql->rowCount();
+                                                        echo $rowCount;
+                                                    ?>
+                                                </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -314,16 +346,24 @@
                             </div>
 
                             <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-12 col-md-4 mb-4">
+                            <div class="col-12 col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Prequalification Tasks
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Projects
                                                 </div>
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col-auto">
-                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                            <?php
+                                                                $query = "SELECT * FROM PRproject";
+                                                                $sql = $connection->prepare($query);
+                                                                $sql->execute();
+                                                                $rowCount = $sql->rowCount();
+                                                                echo $rowCount;
+                                                            ?>
+                                                        </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="progress progress-sm mr-2">
@@ -341,127 +381,157 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-12 col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tender
+                                                </div>
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                            <?php
+                                                                $query = "SELECT * FROM PRtender";
+                                                                $sql = $connection->prepare($query);
+                                                                $sql->execute();
+                                                                $rowCount = $sql->rowCount();
+                                                                echo $rowCount;
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-primary" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </section>
                 <!-- End of Content Row -->
 
-                <!--section containing accordion for client--> 
-                <section class="container" id="clientAccordion">
-                    <center>
-                        <h1>What exactly can i do as a Client?</h1>
-                        <hr>
-                        <p>simple steps to take</p>
-                    </center>
+                <section class="container">
+                        <div class="row">
 
-                    <div class="accordion" id="accordionPanelsStayOpenExample">
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            Number 1
-                          </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                          <div class="accordion-body">
-                            <strong>Concerning Projects:</strong> Simple start by creating a Project by clicking on the button on the side bar. Another button on the sidebar can be used to view projects created. Please make sure to create tender for Project create immediately!!!
-                          </div>
-                        </div>
-                      </div>
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Number 2
-                          </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                          <div class="accordion-body">
-                            <strong>Concerning Tenders:</strong> Next create a Tender to be published for the contractor's viewing by clicking on the button on the sidebar. it should contain the following;<br>
-                                <ul>
-                                    <li>Introduction</li>
-                                    <li>Scope of Work</li>
-                                    <li>Eligibility Criteria</li>
-                                    <li>List of Works for Tender</li>
-                                    <li>Tender Evaluation Procedure and Method</li>
-                                    <li>Submission Closing Date</li>
-                                    <li>Bid Opening Date</li>
-                                    <li>Any Other Information</li>
-                                    <li>Disclaimer</li>
-                                </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                            Number 3
-                          </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                          <div class="accordion-body">
-                            <strong>Concerning Results:</strong> Check result of evaluation or Prequalification process before finally awarding.....Thank you for your time
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                                <!--section containing table for client--> 
+                                <div class="col-12 col-xl-6 col-md-6 mb-4">
+
+                                    <!-- Table Heading -->
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Client Table</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Company Name</th>
+                                                            <th>Email</th>
+                                                            <th>Contact Line</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Company Name</th>
+                                                            <th>Email</th>
+                                                            <th>Contact Line</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                    <?php
+
+                                                        $query="SELECT * FROM prclient LIMIT 3";
+                                                        $sql=$connection->prepare($query);
+                                                        $sql->execute();
+                                                        while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+                                                            
+                                                            echo"<tr><td>";
+                                                            echo ($row['CLuniqueId']);
+                                                            echo ("</td><td>");
+                                                            echo ($row['CLcompany_name']);
+                                                            echo ("</td><td>");
+                                                            echo ($row['CLemail']);
+                                                            echo ("</td><td>");
+                                                            echo ($row['CLphone_number']);
+                                                            echo ("</td></tr>");
+                                                            
+                                                        };
+                                                        
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!--end of section containing table for client-->
+
+                                <!--section containing table for contractor--> 
+                                <div class="col-12 col-xl-6 col-md-6 mb-4">
+
+                                    <!-- Table Heading -->
+                                    <h3 class="h4 mb-2 text-gray-800">Contractor Table</h3>
+                                    <div class="card shadow mb-4">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                    <?php
+
+                                                        /*echo ('<div class="card shadow mb-4">');
+                                                        echo ('<div class="card-body">');
+                                                        echo ('<div class="table-responsive">');
+                                                        echo ('<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">');*/
+                                                        $query="SELECT * FROM prcontractor";
+                                                        $sql=$connection->prepare($query);
+                                                        $sql->execute();
+                                                        echo "<tr>";
+                                                        echo "<th>ID</th>";
+                                                        echo "<th>Company Name</th>";
+                                                        echo "<th>Email</th>";
+                                                        echo "<th>Contact Line</th>";
+                                                        echo "</tr>";
+                                                        while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+                                                            
+                                                            echo"<tr><td>";
+                                                            echo ($row['CNuniqueId']);
+                                                            echo ("</td><td>");
+                                                            echo ($row['CNcompany_name']);
+                                                            echo ("</td><td>");
+                                                            echo ($row['CNemail']);
+                                                            echo ("</td><td>");
+                                                            echo ($row['CNphone_number']);
+                                                            echo ("</td></tr><br>");
+                                                            
+                                                        };
+                                                        
+                                                    ?>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!--end of section containing table for contractor-->
+
+                        </div> 
                 </section>
-                <!--end of section containing accordion for client--> 
 
-                <!--testimonial carousel-->
-                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                  <h2 class="text-center">Testimonials</h2>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="10000">
-                        It is a technique for guaranteeing that a contractor can execute the allocated venture as per the customer and undertaking goals. Prequalification and offer assessments are right now utilized in numerous nations. In Nigeria, for example, this activity is named the "Due Process" and includes various kinds of rules to assess the general reasonableness of contractual workers
-                        <div class="text-center">
-                            <div>
-                                <div>
-                                    <img class="img-profile rounded-circle" src="../img/igho.png" style="height: 40px; width: 40px;">
-                                </div>
-                                <div>
-                                    <strong>Eddy Kate</strong><br>Researcher, XYZ Inc.
-                                </div>
-                            </div>
-                            <i class="fa fa-twitter fa-lg"></i>
-                        </div> 
-                    </div>
-                    <div class="carousel-item" data-bs-interval="2000">
-                        It is a technique for guaranteeing that a contractor can execute the allocated venture as per the customer and undertaking goals. Prequalification and offer assessments are right now utilized in numerous nations. In Nigeria, for example, this activity is named the "Due Process" and includes various kinds of rules to assess the general reasonableness of contractual workers
-                        <div class="text-center">
-                            <div>
-                                <div>
-                                    <img class="img-profile rounded-circle" src="../img/igho.png" style="height: 40px; width: 40px;">
-                                </div>
-                                <div>
-                                    <strong>Eddy Kate</strong><br>Researcher, XYZ Inc.
-                                </div>
-                            </div>
-                            <i class="fa fa-twitter fa-lg"></i>
-                        </div> 
-                    </div>
-                    <div class="carousel-item">
-                        It is a technique for guaranteeing that a contractor can execute the allocated venture as per the customer and undertaking goals. Prequalification and offer assessments are right now utilized in numerous nations. In Nigeria, for example, this activity is named the "Due Process" and includes various kinds of rules to assess the general reasonableness of contractual workers
-                        <div class="text-center">
-                            <div>
-                                <div>
-                                    <img class="img-profile rounded-circle" src="../img/igho.png" style="height: 40px; width: 40px;">
-                                </div>
-                                <div>
-                                    <strong>Eddy Kate</strong><br>Researcher, XYZ Inc.
-                                </div>
-                            </div>
-                            <i class="fa fa-twitter fa-lg"></i>
-                        </div> 
-                    </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-                <!--end of testimonial carousel-->
 
             </div>
             <!-- End of Main Content -->
@@ -520,15 +590,13 @@
                       <div class="modal-body">
                         <?php
                             //populate the information about user based on the uniqueID
-                            $CLuniqueID=$_SESSION['CLuniqueID'];
-                            $query="SELECT * FROM prclient WHERE CLuniqueId = '$CLuniqueID' LIMIT 1";
+                            $adminID=$_SESSION['adminID'];
+                            $query="SELECT * FROM pradmin WHERE adminID = '$adminID' LIMIT 1";
                             $sql=$connection->prepare($query);
                             $sql->execute();
                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
 
-                                echo "Company Name: ".$row['CLcompany_name']."<br>";
-                                echo "Company Email: ".$row['CLemail']."<br>";
-                                echo "Company Phone Number: ".$row['CLphone_number']."<br>";
+                                echo "Admin Email: ".$row['admin_email']."<br>";
                             }
                         ?>
                       </div>
