@@ -148,6 +148,21 @@ if (isset($_POST["submit"])){
 			 $sql = $connection->prepare($query);
 			 $sql->execute(array(':uniquetenderID'=>$uniquetenderID));
 
+			 //determine user that enters the visitors log
+	         if(!$_SESSION['CLuniqueID']){
+
+	            $_SESSION['user']="Visitor";
+	            $_SESSION['message']="Attempted adding project";
+
+	         }else{
+
+	            $_SESSION['user']=$_SESSION['CLuniqueID'];
+	            $_SESSION['message']="Sucessfully added tender";
+	         }
+
+	         //store users activity using this php file
+	         include 'user_activity_log_cl.php';
+
 			 $_SESSION['success'] = "Sucessfully added Tender";
 			 header('location: index.php');
 			 return;

@@ -8,6 +8,10 @@ include ("connection.php");
 
 session_start();
 
+//store users activity using this php file
+
+include 'user_activity_log.php';
+
 //Login form validation for client
 
 if(isset($_POST['clientSubmit'])){

@@ -59,6 +59,21 @@
 
 				if($count > 0){
 
+					//determine user that enters the visitors log
+					if(!$_SESSION['CLuniqueID']){
+
+						$_SESSION['user']="Visitor";
+						$_SESSION['message']="Attempted to Sign in";
+
+					}else{
+
+						$_SESSION['user']=$_SESSION['CLuniqueID'];
+						$_SESSION['message']="Signed in";
+					}
+
+					//store users activity using this php file
+					include 'user_activity_log_cl.php';
+					
 					$_SESSION['error'] = "email address already been taken";
 			  		header('location: clientsignup.php');
 					return;
@@ -78,6 +93,21 @@
 					$lastID = $connection->lastInsertId();
 
 					if(!$sql){
+
+						//determine user that enters the visitors log
+						if(!$_SESSION['CLuniqueID']){
+
+							$_SESSION['user']="Visitor";
+							$_SESSION['message']="Attempted to Sign in";
+
+						}else{
+
+							$_SESSION['user']=$_SESSION['CLuniqueID'];
+							$_SESSION['message']="Signed in";
+						}
+
+						//store users activity using this php file
+						include 'user_activity_log_cl.php';
 
 						//verify if the insertion of values was successful
 						$_SESSION['error'] = "Could not sign you up-please try again later";
@@ -106,6 +136,22 @@
 
 							$_SESSION['CLuniqueID'] = $row['CLuniqueId'];
 						}
+
+
+						//determine user that enters the visitors log
+						if(!$_SESSION['CLuniqueID']){
+
+							$_SESSION['user']="Visitor";
+							$_SESSION['message']="Attempted to Sign in";
+
+						}else{
+
+							$_SESSION['user']=$_SESSION['CLuniqueID'];
+							$_SESSION['message']="Signed in";
+						}
+
+						//store users activity using this php file
+						include 'user_activity_log_cl.php';
 
 						//if the client indicates a williness to be remembered, create session variable from the lastID
 						if($_POST['clientSignUpCheck']=='1'){

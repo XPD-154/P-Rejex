@@ -57,12 +57,42 @@ if(isset($_POST['clientSubmit'])){
 				$_SESSION['CLuniqueID'] = $row['CLuniqueId'];
 			}
 
+			//determine user that enters the visitors log
+			if(!$_SESSION['CLuniqueID']){
+
+				$_SESSION['user']="Visitor";
+				$_SESSION['message']="Attempted to login";
+
+			}else{
+
+				$_SESSION['user']=$_SESSION['CLuniqueID'];
+				$_SESSION['message']="Logged in";
+			}
+
+			//store users activity using this php file
+			include 'user_activity_log_cl.php';
+
 			//Welcome back alert
 			$_SESSION['success']="Welcome back!!!";
 			header('location: index.php');
 			return;
 			
 		}else{
+
+			//determine user that enters the visitors log
+			if(!$_SESSION['CLuniqueID']){
+
+				$_SESSION['user']="Visitor";
+				$_SESSION['message']="Attempted to login";
+
+			}else{
+
+				$_SESSION['user']=$_SESSION['CLuniqueID'];
+				$_SESSION['message']="Logged in";
+			}
+
+			//store users activity using this php file
+			include 'user_activity_log_cl.php';
 
 			$_SESSION['error'] = "The email/password combination could not be found";
 			header('location: clientlogin.php');
@@ -71,12 +101,31 @@ if(isset($_POST['clientSubmit'])){
 
 		
 	}else{
+
+		//determine user that enters the visitors log
+		if(!$_SESSION['CLuniqueID']){
+
+			$_SESSION['user']="Visitor";
+			$_SESSION['message']="Attempted to login";
+
+		}else{
+
+			$_SESSION['user']=$_SESSION['CLuniqueID'];
+			$_SESSION['message']="Logged in";
+		}
+
+		//store users activity using this php file
+		include 'user_activity_log_cl.php';
+		
 		$_SESSION['error'] = "The email/password combination could not be found";
 		header('location: clientlogin.php');
 		return;
 	}
 
 }
+
+
+
 }
 
 ?>

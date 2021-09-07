@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>P-Rejex Admin</title>
+    <title>P-Rejex Test</title>
     <link rel="shortcut icon" type="image/jpg" href="../img/Untitled-5.png"> <!--link to favicon-->
 
     <!--link to boostrap css file-->
@@ -32,222 +32,226 @@
 </head>
 <body>
 
-                                <!--section containing table for client--> 
-                                <div class="container" style="margin: 10px;">
+    <!--section containing table for client--> 
+    <div class="container" style="margin: 10px;">
 
-                                    <!-- Table Heading -->
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Client Table</h6>
+        <!-- Table Heading -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Client Table</h6>
 
-                                            <form style="margin-top: 25px;">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="search" name="searchInput" id="myInput">
-                                                    <div class="input-group-append">
-                                                        <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
-                                                    </div>
-                                                </div>
-                                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input Company Name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
-                                            </form>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Company Name</th>
-                                                            <th>Email</th>
-                                                            <th>Contact Line</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Company Name</th>
-                                                            <th>Email</th>
-                                                            <th>Contact Line</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                    <?php
-                                                        //determine the page we are currently on
-                                                      if(isset($_GET['page'])){
-                                                        $page_currently_on=$_GET['page'];
-                                                      }else{
-                                                        $page_currently_on=1;
-                                                      }
+                <form style="margin-top: 25px;">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="search" name="searchInput" id="myInput">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input Company Name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Contact Line</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Contact Line</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        <?php
 
-                                                      //number of records we want to display per page we are on
-                                                      $no_of_records_displayed_per_page=2;
+                          //determine the page we are currently on using a GET variable, if there is more than one table, all their GET variables should have unique names
+                          if(isset($_GET['page'])){
+                            $page_currently_on=$_GET['page'];
+                          }else{
+                            $page_currently_on=1;
+                          }
 
-                                                      //determine limit of data to show on any current page displaying
-                                                      $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
-                                                      
-                                                      //determine the amount of data in the database
-                                                      $query="SELECT * FROM prclient";
-                                                      $sql=$connection->prepare($query);
-                                                      $sql->execute();
-                                                      $total_rows_available = $sql->rowCount();
-                                                      
-                                                      //total number of pages available based on rows in database
-                                                      $total_no_pages_available=ceil($total_rows_available/$no_of_records_displayed_per_page);
+                          //number of records we want to display per page on the table we are on
+                          $no_of_records_displayed_per_page=2;
 
-                                                      if(isset($_GET['searchInput'])){
+                          //determine limit of data to show on any current table page displaying
+                          $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
+                          
+                          //determine the total amount of data in the database
+                          $query="SELECT * FROM prclient";
+                          $sql=$connection->prepare($query);
+                          $sql->execute();
+                          $total_rows_available = $sql->rowCount();
+                          
+                          //total number of pages available based on the total number of rows in database
+                          $total_no_pages_available=ceil($total_rows_available/$no_of_records_displayed_per_page);
 
-                                                            $searchInput = $_GET['searchInput'];
-                                                            $query="SELECT * FROM prclient WHERE CLcompany_name LIKE '%$searchInput%'";
-                                                            $sql=$connection->prepare($query);
-                                                            $sql->execute();
+                          if(isset($_GET['searchInput'])){
 
-                                                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                                
-                                                                echo"<tr><td>";
-                                                                echo ($row['CLuniqueId']);
-                                                                echo ("</td><td>");
-                                                                echo ($row['CLcompany_name']);
-                                                                echo ("</td><td>");
-                                                                echo ($row['CLemail']);
-                                                                echo ("</td><td>");
-                                                                echo ($row['CLphone_number']);
-                                                                echo ("</td></tr>");
-                                                                
-                                                            };
+                                $searchInput = $_GET['searchInput'];
+                                $query="SELECT * FROM prclient WHERE CLcompany_name LIKE '%$searchInput%'";
+                                $sql=$connection->prepare($query);
+                                $sql->execute();
 
-                                                        }else{
-
-                                                            $query="SELECT * FROM prclient LIMIT $limit_to_display, $no_of_records_displayed_per_page";
-                                                            $sql=$connection->prepare($query);
-                                                            $sql->execute();
-
-                                                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                                
-                                                                echo"<tr><td>";
-                                                                echo ($row['CLuniqueId']);
-                                                                echo ("</td><td>");
-                                                                echo ($row['CLcompany_name']);
-                                                                echo ("</td><td>");
-                                                                echo ($row['CLemail']);
-                                                                echo ("</td><td>");
-                                                                echo ($row['CLphone_number']);
-                                                                echo ("</td></tr>");
-                                                                
-                                                            };
-
-                                                            $v=1;
-                                                            echo  '<ul class="pagination">';
-                                                            echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page_currently_on-$v.'">Prev</a></li>';
-
-                                                            for ($page=1; $page<=$total_no_pages_available; $page++) {
-
-                                                                 echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page.'">'.$page.'</a></li>'; 
-                                                             }
-
-                                                            echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page_currently_on+$v.'">Next</a></li>';
-                                                            echo  '</ul>'; 
-                                                    
-                                                        }
-                                                        
-                                                    ?>
-                                                    </tbody>
-                                                </table>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                while($row=$sql->fetch(PDO::FETCH_ASSOC)){
                                     
-                                </div>
-
-                                <!--section containing table for contractor--> 
-                                <div class="container" style="margin: 10px;">
-
-                                    <!-- Table Heading -->
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Contractor Table</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Company Name</th>
-                                                            <th>Email</th>
-                                                            <th>Contact Line</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Company Name</th>
-                                                            <th>Email</th>
-                                                            <th>Contact Line</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                    <?php
-                                                        //determine the page we are currently on
-                                                      if(isset($_GET['page2'])){
-                                                        $page_currently_on2=$_GET['page2'];
-                                                      }else{
-                                                        $page_currently_on2=1;
-                                                      }
-
-                                                      //number of records we want to display per page we are on
-                                                      $no_of_records_displayed_per_page=2;
-
-                                                      //determine limit of data to show on any current page displaying
-                                                      $limit_to_display=($page_currently_on2-1)*$no_of_records_displayed_per_page;
-                                                      
-                                                      //determine the amount of data in the database
-                                                      $query="SELECT * FROM prcontractor";
-                                                      $sql=$connection->prepare($query);
-                                                      $sql->execute();
-                                                      $total_rows_available = $sql->rowCount();
-                                                      
-                                                      //total number of pages available based on rows in database
-                                                      $total_no_pages_available=ceil($total_rows_available/$no_of_records_displayed_per_page);
-                                                        $query="SELECT * FROM prcontractor LIMIT $limit_to_display, $no_of_records_displayed_per_page";
-                                                        $sql=$connection->prepare($query);
-                                                        $sql->execute();
-
-                                                        while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                            
-                                                            echo"<tr><td>";
-                                                            echo ($row['CNuniqueId']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CNcompany_name']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CNemail']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CNphone_number']);
-                                                            echo ("</td></tr>");
-                                                            
-                                                        };
-                                                        
-                                                    ?>
-                                                    </tbody>
-                                                </table>
-                                                <?php
-                                                    $v=1;
-                                                    echo  '<ul class="pagination">';
-                                                    echo '<li class="page-item"><a class="page-link" href="test.php?page2='.$page_currently_on2-$v.'">Prev</a></li>';
-
-                                                    for ($page2=1; $page2<=$total_no_pages_available; $page2++) {
-
-                                                         echo '<li class="page-item"><a class="page-link" href="test.php?page2='.$page2.'">'.$page2.'</a></li>'; 
-                                                     }
-
-                                                    echo '<li class="page-item"><a class="page-link" href="test.php?page2='.$page_currently_on2+$v.'">Next</a></li>';
-                                                    echo  '</ul>'; 
-                                                ?>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                    echo"<tr><td>";
+                                    echo ($row['CLuniqueId']);
+                                    echo ("</td><td>");
+                                    echo ($row['CLcompany_name']);
+                                    echo ("</td><td>");
+                                    echo ($row['CLemail']);
+                                    echo ("</td><td>");
+                                    echo ($row['CLphone_number']);
+                                    echo ("</td></tr>");
                                     
-                                </div>
+                                };
+
+                            }else{
+
+                                $query="SELECT * FROM prclient LIMIT $limit_to_display, $no_of_records_displayed_per_page";
+                                $sql=$connection->prepare($query);
+                                $sql->execute();
+
+                                while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+                                    
+                                    echo"<tr><td>";
+                                    echo ($row['CLuniqueId']);
+                                    echo ("</td><td>");
+                                    echo ($row['CLcompany_name']);
+                                    echo ("</td><td>");
+                                    echo ($row['CLemail']);
+                                    echo ("</td><td>");
+                                    echo ($row['CLphone_number']);
+                                    echo ("</td></tr>");
+                                    
+                                };
+
+                            
+                                echo  '<ul class="pagination">';
+                                if($page_currently_on>1){
+                                    echo '<li class="page-item"><a class="page-link" href="test.php?page='.($page_currently_on-1).'">Prev</a></li>';
+                                }
+                                
+                                for ($page=1; $page<=$total_no_pages_available; $page++) {
+
+                                     echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page.'">'.$page.'</a></li>'; 
+                                 }
+                                if($page>$page_currently_on){
+                                   echo '<li class="page-item"><a class="page-link" href="test.php?page='.($page_currently_on+1).'">Next</a></li>'; 
+                                }
+                                echo  '</ul>';
+                               
+                            }
+                            
+                        ?>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!--section containing table for contractor--> 
+    <div class="container" style="margin: 10px;">
+
+        <!-- Table Heading -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Contractor Table</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Contact Line</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Contact Line</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        <?php
+                            //determine the page we are currently on
+                          if(isset($_GET['page2'])){
+                            $page_currently_on2=$_GET['page2'];
+                          }else{
+                            $page_currently_on2=1;
+                          }
+
+                          //number of records we want to display per page we are on
+                          $no_of_records_displayed_per_page=2;
+
+                          //determine limit of data to show on any current page displaying
+                          $limit_to_display=($page_currently_on2-1)*$no_of_records_displayed_per_page;
+                          
+                          //determine the amount of data in the database
+                          $query="SELECT * FROM prcontractor";
+                          $sql=$connection->prepare($query);
+                          $sql->execute();
+                          $total_rows_available = $sql->rowCount();
+                          
+                          //total number of pages available based on rows in database
+                          $total_no_pages_available=ceil($total_rows_available/$no_of_records_displayed_per_page);
+                            $query="SELECT * FROM prcontractor LIMIT $limit_to_display, $no_of_records_displayed_per_page";
+                            $sql=$connection->prepare($query);
+                            $sql->execute();
+
+                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+                                
+                                echo"<tr><td>";
+                                echo ($row['CNuniqueId']);
+                                echo ("</td><td>");
+                                echo ($row['CNcompany_name']);
+                                echo ("</td><td>");
+                                echo ($row['CNemail']);
+                                echo ("</td><td>");
+                                echo ($row['CNphone_number']);
+                                echo ("</td></tr>");
+                                
+                            };
+                            
+                        ?>
+                        </tbody>
+                    </table>
+                    <?php
+                        $v=1;
+                        echo  '<ul class="pagination">';
+                        echo '<li class="page-item"><a class="page-link" href="test.php?page2='.$page_currently_on2-$v.'">Prev</a></li>';
+
+                        for ($page2=1; $page2<=$total_no_pages_available; $page2++) {
+
+                             echo '<li class="page-item"><a class="page-link" href="test.php?page2='.$page2.'">'.$page2.'</a></li>'; 
+                         }
+
+                        echo '<li class="page-item"><a class="page-link" href="test.php?page2='.$page_currently_on2+$v.'">Next</a></li>';
+                        echo  '</ul>'; 
+                    ?>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
 
     <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
     <script src="../js/popper.min.js"></script> <!--link to popper js file-->

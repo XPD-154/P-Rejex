@@ -8,6 +8,10 @@ include ("connection.php");
 
 session_start();
 
+//store users activity using this php file
+
+include 'user_activity_log.php';
+
 //creation of database table for client if it doesnt exist
 
 $query = "CREATE TABLE IF NOT EXISTS PRclient (
