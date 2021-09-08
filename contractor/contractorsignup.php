@@ -59,6 +59,21 @@
 
 				if($count > 0){
 
+					//determine user that enters the visitors log
+					if(!$_SESSION['CNuniqueID']){
+
+						$_SESSION['user']="Visitor";
+						$_SESSION['message']="Attempted to Sign in";
+
+					}else{
+
+						$_SESSION['user']=$_SESSION['CNuniqueID'];
+						$_SESSION['message']="Signed in";
+					}
+
+					//store users activity using this php file
+					include 'user_activity_log_cn.php';
+
 					$_SESSION['error'] = "email address already been taken";
 			  		header('location: contractorsignup.php');
 					return;
@@ -78,6 +93,21 @@
 					$lastID = $connection->lastInsertId();
 
 					if(!$sql){
+
+						//determine user that enters the visitors log
+						if(!$_SESSION['CNuniqueID']){
+
+							$_SESSION['user']="Visitor";
+							$_SESSION['message']="Attempted to Sign in";
+
+						}else{
+
+							$_SESSION['user']=$_SESSION['CNuniqueID'];
+							$_SESSION['message']="Signed in";
+						}
+
+						//store users activity using this php file
+						include 'user_activity_log_cn.php';
 
 						//verify if the insertion of values was successful
 						$_SESSION['error'] = "Could not sign you up-please try again later";
@@ -106,6 +136,21 @@
 
 							$_SESSION['CNuniqueID'] = $row['CNuniqueId'];
 						}
+
+						//determine user that enters the visitors log
+						if(!$_SESSION['CNuniqueID']){
+
+							$_SESSION['user']="Visitor";
+							$_SESSION['message']="Attempted to Sign in";
+
+						}else{
+
+							$_SESSION['user']=$_SESSION['CNuniqueID'];
+							$_SESSION['message']="Signed in";
+						}
+
+						//store users activity using this php file
+						include 'user_activity_log_cn.php';
 
 						//if the contractor indicates a williness to be remembered, create session variable from the lastID
 						if($_POST['contractorSignUpCheck']=='1'){

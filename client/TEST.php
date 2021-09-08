@@ -4,6 +4,15 @@
 
   session_start(); 
 
+  if (isset($_POST['log_out'])) {
+      
+      //echo "working";
+      $_SESSION['user']= "iru";//$_SESSION['CLuniqueID'];
+      $_SESSION['message']="Logged out";
+
+      //store users activity using this php file
+      include 'user_activity_log_cl.php';
+  }
 
 ?>
 <!DOCTYPE html>
@@ -31,6 +40,11 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
+
+    <form method="POST">
+        <!--<a class="btn btn-primary" href="../logout.php" name="log_out">Logout</a>-->
+        <button type="submit" name="log_out" class="btn btn-primary">Logout</button>
+    </form>
 
     <!--section containing table for client--> 
     <div class="container" style="margin: 10px;">

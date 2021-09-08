@@ -8,6 +8,12 @@
 
     session_start();  
 
+    //logout from dashboard and log that activity
+
+    include ("logout.php"); 
+
+    //retrive information from contractor table 
+
     $CNuniqueID=$_SESSION['CNuniqueID'];
     $query="SELECT * FROM PRcontractor WHERE CNuniqueId = '$CNuniqueID' LIMIT 1";
     $sql=$connection->prepare($query);
@@ -371,7 +377,9 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../logout.php">Logout</a>
+                    <form method="POST">
+                        <button type="submit" name="log_out" class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -379,58 +387,58 @@
     <!-- end of Logout Modal-->
 
     <!-- Modal for user profile-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <?php
-                            $CNuniqueID=$_SESSION['CNuniqueID'];
-                            $query="SELECT * FROM PRcontractor WHERE CNuniqueId = '$CNuniqueID' LIMIT 1";
-                            $sql=$connection->prepare($query);
-                            $sql->execute();
-                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <?php
+                $CNuniqueID=$_SESSION['CNuniqueID'];
+                $query="SELECT * FROM PRcontractor WHERE CNuniqueId = '$CNuniqueID' LIMIT 1";
+                $sql=$connection->prepare($query);
+                $sql->execute();
+                while($row=$sql->fetch(PDO::FETCH_ASSOC)){
 
-                                echo "Company Name: ".$row['CNcompany_name']."<br>";
-                                echo "Company Email: ".$row['CNemail']."<br>";
-                                echo "Company Phone Number: ".$row['CNphone_number']."<br>";
+                    echo "Company Name: ".$row['CNcompany_name']."<br>";
+                    echo "Company Email: ".$row['CNemail']."<br>";
+                    echo "Company Phone Number: ".$row['CNphone_number']."<br>";
 
-                                $_SESSION['CNcompany_name'] = $row['CNcompany_name'];
-                                $_SESSION['CNemail'] = $row['CNemail'];
-                                $_SESSION['CNphone_number'] = $row['CNphone_number'];
-                            }
-                        ?>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    $_SESSION['CNcompany_name'] = $row['CNcompany_name'];
+                    $_SESSION['CNemail'] = $row['CNemail'];
+                    $_SESSION['CNphone_number'] = $row['CNphone_number'];
+                }
+            ?>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--end of Modal for user profile-->
 
-        <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
-        <script src="../js/popper.min.js"></script> <!--link to popper js file-->
-        <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> <!--link to boostrap js file-->
+    <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
+    <script src="../js/popper.min.js"></script> <!--link to popper js file-->
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> <!--link to boostrap js file-->
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="../dashboard-asserts/vendor/jquery/jquery.min.js"></script>
-        <script src="../dashboard-asserts/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../dashboard-asserts/vendor/jquery/jquery.min.js"></script>
+    <script src="../dashboard-asserts/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="../dashboard-asserts/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../dashboard-asserts/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="../dashboard-asserts/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../dashboard-asserts/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="../dashboard-asserts/vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="../dashboard-asserts/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="../dashboard-asserts/js/demo/chart-area-demo.js"></script>
-        <script src="../dashboard-asserts/js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="../dashboard-asserts/js/demo/chart-area-demo.js"></script>
+    <script src="../dashboard-asserts/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>
