@@ -8,6 +8,21 @@ include ("connection.php");
 
 session_start();
 
+//determine user that enters the visitors log
+if(!$_SESSION['CNuniqueID']){
+
+    $_SESSION['user']="Visitor";
+    $_SESSION['message']="Attempted prequalification";
+
+}else{
+
+    $_SESSION['user']=$_SESSION['CNuniqueID'];
+    $_SESSION['message']="Attempted prequalification";
+}
+
+//store users activity using this php file
+include ('user_activity_log.php');
+
 //creation of database table for prequalification process if it doesnt exist
 
 $query = "CREATE TABLE IF NOT EXISTS PRprequalification (

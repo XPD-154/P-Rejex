@@ -260,6 +260,7 @@
                                 echo ("</td><td>");
                                 echo ('<a type="button" class="btn btn-secondary" href="../prequalificationprocess.php?project_name='.$row['project_name'].'">Start</a>');
                                 echo ("</td></tr><br>");
+                                $_SESSION['project_name']=$row['project_name'];
                                 
                             };
 
@@ -311,6 +312,7 @@
                                 echo ("</td><td>");
                                 echo ('<a type="button" class="btn btn-secondary" href="../prequalificationprocess.php?project_name='.$row['project_name'].'">Start</a>');
                                 echo ("</td></tr><br>");
+                                $_SESSION['project_name']=$row['project_name'];
                                 
                             };
                         }
