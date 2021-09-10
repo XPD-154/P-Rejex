@@ -73,48 +73,48 @@ if(isset($_POST['submit'])){
 </head>
 <body class="bg-gradient-info"> <!--color for the entire background-->
 
-				<!--breadcrumb nav bar-->
-				<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-			      <ol class="breadcrumb">
-			        <li class="breadcrumb-item"><a href="index.php">Client Dashboard</a></li>
-			        <li class="breadcrumb-item active" aria-current="page">Message Us</li>
-			      </ol>
-			    </nav>
-			    <!--end of breadcrumb nav bar-->
+	<!--breadcrumb nav bar-->
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.php">Client Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Message Us</li>
+      </ol>
+    </nav>
+    <!--end of breadcrumb nav bar-->
 
-			    <!--section containing feedback form-->
-				<section class="container" id="projectForm">
-	                 <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Message Us</h1>
-                            </div>
+    <!--section containing feedback form-->
+	<section class="container" id="projectForm">
+         <div class="p-5">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Message Us</h1>
+                </div>
 
-                            <!--div containing error alert-->
-                            <div id="error" class="text-center">
-                            	<?php
-                            		if(isset($_SESSION['error'])){
+                <!--div containing error alert-->
+                <div id="error" class="text-center">
+                	<?php
+                		if(isset($_SESSION['error'])){
 
-                            			echo ('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>'.$_SESSION['error'].'!</strong> You should check in on some of those fields below.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-                            			unset($_SESSION['error']);
-                            		}
-                            	?>
-                            </div>
-                            <!--end of div containing error alert-->
+                			echo ('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>'.$_SESSION['error'].'!</strong> You should check in on some of those fields below.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                			unset($_SESSION['error']);
+                		}
+                	?>
+                </div>
+                <!--end of div containing error alert-->
 
-                            <form class="user" method="POST">
-                       
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Subject Matter" name="subject">
-                                </div>
-                             	<div class="form-group">
-                                    <textarea type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Message" name="message"></textarea>
-                                </div>
-                                <button type="submit" name="submit" class="btn btn-info btn-user btn-block">Send Message</button>
-
-                            </form>
+                <form class="user" method="POST">
+           
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Subject Matter" name="subject">
                     </div>
-            	</section>
-            	<!--end of section containing feedback form-->
+                 	<div class="form-group">
+                        <textarea type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Message" name="message"></textarea>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-info btn-user btn-block">Send Message</button>
+
+                </form>
+        </div>
+	</section>
+	<!--end of section containing feedback form-->
 
 	<script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
     <script src="../js/popper.min.js"></script> <!--link to popper js file-->

@@ -260,6 +260,8 @@
                                 echo ("</td><td>");
                                 echo ('<a type="button" class="btn btn-secondary" href="../prequalificationprocess.php?project_name='.$row['project_name'].'">Start</a>');
                                 echo ("</td></tr><br>");
+                                
+                                //create a session variable for log when a client engages the prequalification process
                                 $_SESSION['project_name']=$row['project_name'];
                                 
                             };
@@ -312,6 +314,8 @@
                                 echo ("</td><td>");
                                 echo ('<a type="button" class="btn btn-secondary" href="../prequalificationprocess.php?project_name='.$row['project_name'].'">Start</a>');
                                 echo ("</td></tr><br>");
+
+                                //create a session variable for log when a client engages the prequalification process
                                 $_SESSION['project_name']=$row['project_name'];
                                 
                             };

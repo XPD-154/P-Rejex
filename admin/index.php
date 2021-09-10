@@ -139,12 +139,12 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTender"
+                    aria-expanded="true" aria-controls="collapseTender">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Tenders</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseTender" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Content:</h6>
@@ -155,12 +155,12 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePreq"
+                    aria-expanded="true" aria-controls="collapsePreq">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Prequalification</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapsePreq" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Content:</h6>
@@ -431,47 +431,84 @@
                                     <!-- Table Heading -->
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Client Table</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Users Log Information</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
                                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>Company Name</th>
-                                                            <th>Email</th>
-                                                            <th>Contact Line</th>
+                                                            <th>User IP Address</th>
+                                                            <th>User</th>
+                                                            <th>Message</th>
+                                                            <th>Project</th>
+                                                            <th>Time</th>
                                                         </tr>
                                                     </thead>
                                                     <tfoot>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>Company Name</th>
-                                                            <th>Email</th>
-                                                            <th>Contact Line</th>
+                                                            <th>User IP Address</th>
+                                                            <th>User</th>
+                                                            <th>Message</th>
+                                                            <th>Project</th>
+                                                            <th>Time</th>
                                                         </tr>
                                                     </tfoot>
                                                     <tbody>
                                                     <?php
+                                                        //determine the page we are currently on using a GET variable, if there is more than one table, all their GET variables should have unique names
+                                                        if(isset($_GET['page'])){
+                                                            $page_currently_on=$_GET['page'];
+                                                        }else{
+                                                            $page_currently_on=1;
+                                                        }
 
-                                                        $query="SELECT * FROM prclient LIMIT 3";
+                                                        //number of records we want to display per page on the table we are on
+                                                        $no_of_records_displayed_per_page=4;
+
+                                                        //determine limit of data to show on any current table page displaying
+                                                        $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
+                                                          
+                                                        //determine the total amount of data in the database
+                                                        $query="SELECT * FROM visitor_activity_logs";
+                                                        $sql=$connection->prepare($query);
+                                                        $sql->execute();
+                                                        $total_rows_available = $sql->rowCount();
+                                                          
+                                                        //total number of pages available based on the total number of rows in database
+                                                        $total_no_pages_available=ceil($total_rows_available/$no_of_records_displayed_per_page);
+
+                                                        $query="SELECT * FROM visitor_activity_logs ORDER BY created_on DESC LIMIT $limit_to_display, $no_of_records_displayed_per_page";
                                                         $sql=$connection->prepare($query);
                                                         $sql->execute();
                                                         while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                            
                                                             echo"<tr><td>";
-                                                            echo ($row['CLuniqueId']);
+                                                            echo ($row['user_ip_address']);
                                                             echo ("</td><td>");
-                                                            echo ($row['CLcompany_name']);
+                                                            echo ($row['user']);
                                                             echo ("</td><td>");
-                                                            echo ($row['CLemail']);
+                                                            echo ($row['message']);
                                                             echo ("</td><td>");
-                                                            echo ($row['CLphone_number']);
+                                                            echo ($row['project']);
+                                                            echo ("</td><td>");
+                                                            echo ($row['created_on']);
                                                             echo ("</td></tr>");
-                                                            
-                                                        };
+                                                        }
                                                         
+                                                        echo  '<ul class="pagination">';
+                                                        if($page_currently_on>1){
+                                                            echo '<li class="page-item"><a class="page-link" href="index.php?page='.($page_currently_on-1).'">Prev</a></li>';
+                                                        }
+                                                        
+                                                        for ($page=1; $page<=$total_no_pages_available; $page++) {
+
+                                                             echo '<li class="page-item"><a class="page-link" href="index.php?page='.$page.'">'.$page.'</a></li>'; 
+                                                         }
+                                                        if($page>$page_currently_on){
+                                                           echo '<li class="page-item"><a class="page-link" href="index.php?page='.($page_currently_on+1).'">Next</a></li>'; 
+                                                        }
+                                                        echo  '</ul>';
+
                                                     ?>
                                                     </tbody>
                                                 </table>

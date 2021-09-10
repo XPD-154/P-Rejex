@@ -61,6 +61,21 @@ if(isset($_POST['clientSubmit'])){
 				$_SESSION['CLuniqueID'] = $row['CLuniqueId'];
 			}
 
+			//determine user that enters the visitors log
+			if(!$_SESSION['CLuniqueID']){
+
+				$_SESSION['user']="Unregister user";
+				$_SESSION['message']="Attempted to login as a client";
+
+			}else{
+
+				$_SESSION['user']=$_SESSION['CLuniqueID'];
+				$_SESSION['message']="Logged in";
+			}
+
+			//store users activity using this php file
+			include 'client/user_activity_log_cl.php';
+
 			//Welcome back alert
 			$_SESSION['success']="Welcome back!!!";
 			header('location: client/index.php');
@@ -68,6 +83,20 @@ if(isset($_POST['clientSubmit'])){
 			
 		}else{
 
+			//determine user that enters the visitors log
+			if(!$_SESSION['CLuniqueID']){
+
+				$_SESSION['user']="Unregister user";
+				$_SESSION['message']="Attempted to login as a client";
+
+			}else{
+
+				$_SESSION['user']=$_SESSION['CLuniqueID'];
+				$_SESSION['message']="Logged in";
+			}
+
+			//store users activity using this php file
+			include 'client/user_activity_log_cl.php';
 			$_SESSION['error'] = "The email/password combination could not be found";
 			header('location: index.php');
 			return;
@@ -75,6 +104,21 @@ if(isset($_POST['clientSubmit'])){
 
 		
 	}else{
+
+		//determine user that enters the visitors log
+		if(!$_SESSION['CLuniqueID']){
+
+			$_SESSION['user']="Unregister user";
+			$_SESSION['message']="Attempted to login as a client";
+
+		}else{
+
+			$_SESSION['user']=$_SESSION['CLuniqueID'];
+			$_SESSION['message']="Logged in";
+		}
+
+		//store users activity using this php file
+		include 'client/user_activity_log_cl.php';
 
 		$_SESSION['error'] = "The email/password combination could not be found";
 		header('location: index.php');
@@ -134,12 +178,42 @@ if(isset($_POST['contractorSubmit'])){
 				$_SESSION['CNuniqueID'] = $row['CNuniqueId'];
 			}
 
+			//determine user that enters the visitors log
+			if(!$_SESSION['CNuniqueID']){
+
+				$_SESSION['user']="Unregister user";
+				$_SESSION['message']="Attempted to login as a contractor";
+
+			}else{
+
+				$_SESSION['user']=$_SESSION['CNuniqueID'];
+				$_SESSION['message']="Logged in";
+			}
+
+			//store users activity using this php file
+			include 'contractor/user_activity_log_cn.php';
+
 			//Welcome back alert
 			$_SESSION['success']="Welcome back!!!";
 			header('location: contractor/index.php');
 			return;
 
 		}else{
+
+			//determine user that enters the visitors log
+			if(!$_SESSION['CNuniqueID']){
+
+				$_SESSION['user']="Unregister user";
+				$_SESSION['message']="Attempted to login as a contractor";
+
+			}else{
+
+				$_SESSION['user']=$_SESSION['CNuniqueID'];
+				$_SESSION['message']="Logged in";
+			}
+
+			//store users activity using this php file
+			include 'contractor/user_activity_log_cn.php';
 
 			$_SESSION['error'] = "The email/password combination could not be found";
 			header('location: index.php');
@@ -148,6 +222,22 @@ if(isset($_POST['contractorSubmit'])){
 
 		
 	}else{
+
+		//determine user that enters the visitors log
+		if(!$_SESSION['CNuniqueID']){
+
+			$_SESSION['user']="Unregister user";
+			$_SESSION['message']="Attempted to login as a contractor";
+
+		}else{
+
+			$_SESSION['user']=$_SESSION['CNuniqueID'];
+			$_SESSION['message']="Logged in";
+		}
+
+		//store users activity using this php file
+		include 'contractor/user_activity_log_cn.php';
+			
 		$_SESSION['error'] = "The email/password combination could not be found";
 		header('location: index.php');
 		return;

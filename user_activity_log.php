@@ -18,7 +18,7 @@
 	$sql=$connection->prepare($query);
 	$sql->execute();
 
-
+	//check if a registered user is working within the site
 	if (isset($_SESSION['user']) && isset($_SESSION['message']) && isset($_SESSION['project_name'])) {
 		
 		$message=$_SESSION['message'];

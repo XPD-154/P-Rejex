@@ -11,7 +11,7 @@ session_start();
 //determine user that enters the visitors log
 if(!$_SESSION['CNuniqueID']){
 
-    $_SESSION['user']="Visitor";
+    $_SESSION['user']="Unregisterd user";
     $_SESSION['message']="Attempted prequalification";
 
 }else{

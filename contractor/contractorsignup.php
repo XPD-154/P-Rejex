@@ -62,7 +62,7 @@
 					//determine user that enters the visitors log
 					if(!$_SESSION['CNuniqueID']){
 
-						$_SESSION['user']="Visitor";
+						$_SESSION['user']="Unregistered user";
 						$_SESSION['message']="Attempted to Sign in";
 
 					}else{
@@ -97,7 +97,7 @@
 						//determine user that enters the visitors log
 						if(!$_SESSION['CNuniqueID']){
 
-							$_SESSION['user']="Visitor";
+							$_SESSION['user']="Unregistered user";
 							$_SESSION['message']="Attempted to Sign in";
 
 						}else{
@@ -140,7 +140,7 @@
 						//determine user that enters the visitors log
 						if(!$_SESSION['CNuniqueID']){
 
-							$_SESSION['user']="Visitor";
+							$_SESSION['user']="Unregistered user";
 							$_SESSION['message']="Attempted to Sign in";
 
 						}else{

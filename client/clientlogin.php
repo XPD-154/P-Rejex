@@ -60,7 +60,7 @@ if(isset($_POST['clientSubmit'])){
 			//determine user that enters the visitors log
 			if(!$_SESSION['CLuniqueID']){
 
-				$_SESSION['user']="Visitor";
+				$_SESSION['user']="Unregistered user";
 				$_SESSION['message']="Attempted to login";
 
 			}else{
@@ -82,7 +82,7 @@ if(isset($_POST['clientSubmit'])){
 			//determine user that enters the visitors log
 			if(!$_SESSION['CLuniqueID']){
 
-				$_SESSION['user']="Visitor";
+				$_SESSION['user']="Unregistered user";
 				$_SESSION['message']="Attempted to login";
 
 			}else{
@@ -105,7 +105,7 @@ if(isset($_POST['clientSubmit'])){
 		//determine user that enters the visitors log
 		if(!$_SESSION['CLuniqueID']){
 
-			$_SESSION['user']="Visitor";
+			$_SESSION['user']="Unregistered user";
 			$_SESSION['message']="Attempted to login";
 
 		}else{
