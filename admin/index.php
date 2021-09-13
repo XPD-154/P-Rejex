@@ -443,6 +443,7 @@
                                                             <th>Message</th>
                                                             <th>Project</th>
                                                             <th>Time</th>
+                                                            <th>Delete</th>
                                                         </tr>
                                                     </thead>
                                                     <tfoot>
@@ -452,6 +453,7 @@
                                                             <th>Message</th>
                                                             <th>Project</th>
                                                             <th>Time</th>
+                                                            <th>Delete</th>
                                                         </tr>
                                                     </tfoot>
                                                     <tbody>
@@ -492,6 +494,8 @@
                                                             echo ($row['project']);
                                                             echo ("</td><td>");
                                                             echo ($row['created_on']);
+                                                            echo ("</td><td>");
+                                                            echo ('<a href="delete.php?user='.$row['user'].'">Delete</a>');
                                                             echo ("</td></tr>");
                                                         }
                                                         
