@@ -75,9 +75,8 @@ session_start();
                 </a>
                 <div id="collapseClient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Projects Information:</h6>
-                        <a class="collapse-item" href="addprojectform.php">Add Project</a>
-                        <a class="collapse-item" href="viewprojects.php">View Projects</a>
+                        <h6 class="collapse-header">Client Information:</h6>
+                        <a class="collapse-item" href="client.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -89,9 +88,8 @@ session_start();
                 </a>
                 <div id="collapseContractor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tenders Information:</h6>
-                        <a class="collapse-item" href="addtenderform.php">Add Tender</a>
-                        <a class="collapse-item" href="viewtenders.php">View Tender</a>
+                        <h6 class="collapse-header">Contractor Information:</h6>
+                        <a class="collapse-item" href="contractor.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -113,8 +111,8 @@ session_start();
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">PQ information:</h6>
-                        <a class="collapse-item" href="viewresults.php">View Results</a>
+                        <h6 class="collapse-header">Project information:</h6>
+                        <a class="collapse-item" href="project.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -129,8 +127,8 @@ session_start();
                 <div id="collapseTender" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Content:</h6>
-                        <a class="collapse-item" href="messageus.php">Message</a>
+                        <h6 class="collapse-header">Tender information:</h6>
+                        <a class="collapse-item" href="Tender.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -145,12 +143,27 @@ session_start();
                 <div id="collapsePreq" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Results:</h6>
+                        <a class="collapse-item" href="Prequalification.php">Table</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInbox"
+                    aria-expanded="true" aria-controls="collapseInbox">
+                    <i class="fas fa-fw fa-info"></i>
+                    <span>Inbox</span>
+                </a>
+                <div id="collapseInbox" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Content:</h6>
                         <a class="collapse-item" href="messageus.php">Message</a>
                     </div>
                 </div>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -380,15 +393,15 @@ session_start();
                                         
                                             echo  '<ul class="pagination">';
                                             if($page_currently_on>1){
-                                                echo '<li class="page-item"><a class="page-link" href="test.php?page='.($page_currently_on-1).'">Prev</a></li>';
+                                                echo '<li class="page-item"><a class="page-link" href="client.php?page='.($page_currently_on-1).'">Prev</a></li>';
                                             }
                                             
                                             for ($page=1; $page<=$total_no_pages_available; $page++) {
 
-                                                 echo '<li class="page-item"><a class="page-link" href="test.php?page='.$page.'">'.$page.'</a></li>'; 
+                                                 echo '<li class="page-item"><a class="page-link" href="client.php?page='.$page.'">'.$page.'</a></li>'; 
                                              }
                                             if($page>$page_currently_on){
-                                               echo '<li class="page-item"><a class="page-link" href="test.php?page='.($page_currently_on+1).'">Next</a></li>'; 
+                                               echo '<li class="page-item"><a class="page-link" href="client.php?page='.($page_currently_on+1).'">Next</a></li>'; 
                                             }
                                             echo  '</ul>';
                                            
@@ -451,32 +464,32 @@ session_start();
     <!-- end of Logout Modal-->
 
     <!-- Modal for user profile-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <?php
-                            //populate the information about user based on the uniqueID
-                            $adminID=$_SESSION['adminID'];
-                            $query="SELECT * FROM pradmin WHERE adminID = '$adminID' LIMIT 1";
-                            $sql=$connection->prepare($query);
-                            $sql->execute();
-                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <?php
+                //populate the information about user based on the uniqueID
+                $adminID=$_SESSION['adminID'];
+                $query="SELECT * FROM pradmin WHERE adminID = '$adminID' LIMIT 1";
+                $sql=$connection->prepare($query);
+                $sql->execute();
+                while($row=$sql->fetch(PDO::FETCH_ASSOC)){
 
-                                echo "Admin Email: ".$row['admin_email']."<br>";
-                            }
-                        ?>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    echo "Admin Email: ".$row['admin_email']."<br>";
+                }
+            ?>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--end of Modal for user profile-->
 
     <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->

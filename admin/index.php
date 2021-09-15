@@ -93,9 +93,8 @@
                 </a>
                 <div id="collapseClient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Projects Information:</h6>
-                        <a class="collapse-item" href="addprojectform.php">Add Project</a>
-                        <a class="collapse-item" href="viewprojects.php">View Projects</a>
+                        <h6 class="collapse-header">Client Information:</h6>
+                        <a class="collapse-item" href="client.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -107,9 +106,8 @@
                 </a>
                 <div id="collapseContractor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tenders Information:</h6>
-                        <a class="collapse-item" href="addtenderform.php">Add Tender</a>
-                        <a class="collapse-item" href="viewtenders.php">View Tender</a>
+                        <h6 class="collapse-header">Contractor Information:</h6>
+                        <a class="collapse-item" href="contractor.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -131,8 +129,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">PQ information:</h6>
-                        <a class="collapse-item" href="viewresults.php">View Results</a>
+                        <h6 class="collapse-header">Project information:</h6>
+                        <a class="collapse-item" href="project.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -147,8 +145,8 @@
                 <div id="collapseTender" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Content:</h6>
-                        <a class="collapse-item" href="messageus.php">Message</a>
+                        <h6 class="collapse-header">Tender information:</h6>
+                        <a class="collapse-item" href="Tender.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -161,6 +159,22 @@
                     <span>Prequalification</span>
                 </a>
                 <div id="collapsePreq" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Results:</h6>
+                        <a class="collapse-item" href="Prequalification.php">Table</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInbox"
+                    aria-expanded="true" aria-controls="collapseInbox">
+                    <i class="fas fa-fw fa-info"></i>
+                    <span>Inbox</span>
+                </a>
+                <div id="collapseInbox" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Content:</h6>

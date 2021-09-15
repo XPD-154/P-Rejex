@@ -4,6 +4,7 @@ include ("../connection.php");
 //session start
 session_start();
 
+//check log activity table
 if(isset($_GET['user'])){
 
         if(isset($_POST['delete'])){
@@ -28,6 +29,8 @@ if(isset($_GET['user'])){
     }
 
 }
+
+//check for client table
 if(isset($_GET['CLuniqueId'])) {
 
     if(isset($_POST['delete'])){
@@ -43,6 +46,32 @@ if(isset($_GET['CLuniqueId'])) {
             $_SESSION['success']="Sucessfully deleted";
             header('location: client.php');
             return;
+        }else{
+            
+            $_SESSION['error']="Delete unsucessful";
+            header('location: delete.php');
+            return;
+        }
+    }
+}
+
+//check for contractor table
+if(isset($_GET['CNuniqueId'])) {
+
+    if(isset($_POST['delete'])){
+
+        $delete=$_POST['delete'];
+        $CNuniqueId=$_POST['CNuniqueId'];
+
+        if($delete!="" && $CNuniqueId!=""){
+
+            $query="DELETE FROM prcontractor WHERE CNuniqueId = :CNuniqueId";
+            $sql=$connection->prepare($query);
+            $sql->execute(array(':CNuniqueId'=>$CNuniqueId));
+            $_SESSION['success']="Sucessfully deleted";
+            header('location: contractor.php');
+            return;
+
         }else{
             
             $_SESSION['error']="Delete unsucessful";
@@ -124,9 +153,8 @@ if(isset($_GET['CLuniqueId'])) {
                 </a>
                 <div id="collapseClient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Projects Information:</h6>
-                        <a class="collapse-item" href="addprojectform.php">Add Project</a>
-                        <a class="collapse-item" href="viewprojects.php">View Projects</a>
+                        <h6 class="collapse-header">Client Information:</h6>
+                        <a class="collapse-item" href="client.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -138,9 +166,8 @@ if(isset($_GET['CLuniqueId'])) {
                 </a>
                 <div id="collapseContractor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tenders Information:</h6>
-                        <a class="collapse-item" href="addtenderform.php">Add Tender</a>
-                        <a class="collapse-item" href="viewtenders.php">View Tender</a>
+                        <h6 class="collapse-header">Contractor Information:</h6>
+                        <a class="collapse-item" href="contractor.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -162,8 +189,8 @@ if(isset($_GET['CLuniqueId'])) {
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">PQ information:</h6>
-                        <a class="collapse-item" href="viewresults.php">View Results</a>
+                        <h6 class="collapse-header">Project information:</h6>
+                        <a class="collapse-item" href="project.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -178,8 +205,8 @@ if(isset($_GET['CLuniqueId'])) {
                 <div id="collapseTender" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Content:</h6>
-                        <a class="collapse-item" href="messageus.php">Message</a>
+                        <h6 class="collapse-header">Tender information:</h6>
+                        <a class="collapse-item" href="Tender.php">Table</a>
                     </div>
                 </div>
             </li>
@@ -192,6 +219,22 @@ if(isset($_GET['CLuniqueId'])) {
                     <span>Prequalification</span>
                 </a>
                 <div id="collapsePreq" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Results:</h6>
+                        <a class="collapse-item" href="Prequalification.php">Table</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInbox"
+                    aria-expanded="true" aria-controls="collapseInbox">
+                    <i class="fas fa-fw fa-info"></i>
+                    <span>Inbox</span>
+                </a>
+                <div id="collapseInbox" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Content:</h6>
@@ -329,7 +372,7 @@ if(isset($_GET['CLuniqueId'])) {
                 <div class="container">
 	                <form method="POST">
 	                	<?php
-
+                            //fetch to display information for activity logs table 
                             if(isset($_GET['user'])) {
 
                                 $query="SELECT * FROM visitor_activity_logs WHERE user = :user";
@@ -344,6 +387,8 @@ if(isset($_GET['CLuniqueId'])) {
                                 echo '<input type="hidden" name="user" value="'.$row['user'].'">';
 
                             }
+
+                            //fetch to display information for client table
                             if(isset($_GET['CLuniqueId'])) {
                                 
                                 $query="SELECT * FROM prclient WHERE CLuniqueId = :CLuniqueId";
@@ -356,6 +401,21 @@ if(isset($_GET['CLuniqueId'])) {
                                 echo '<p>Company Name: '.$row['CLcompany_name'].'</p>';
                                 echo '<input class="btn btn-primary" type="submit" name="delete" value="Delete">';
                                 echo '<input type="hidden" name="CLuniqueId" value="'.$row['CLuniqueId'].'">';
+                            }
+
+                            //fetch to display information for contractor table
+                            if(isset($_GET['CNuniqueId'])) {
+                                
+                                $query="SELECT * FROM prcontractor WHERE CNuniqueId = :CNuniqueId";
+                                $sql=$connection->prepare($query);
+                                $sql->execute(array(':CNuniqueId'=>$_GET['CNuniqueId']));
+                                $row=$sql->fetch(PDO::FETCH_ASSOC);
+
+                                echo '<h3>Are you sure you want to delete this contractor information?</h3>';
+                                echo '<p>Client ID: '.$row['CNuniqueId'].'</p>';
+                                echo '<p>Company Name: '.$row['CNcompany_name'].'</p>';
+                                echo '<input class="btn btn-primary" type="submit" name="delete" value="Delete">';
+                                echo '<input type="hidden" name="CNuniqueId" value="'.$row['CNuniqueId'].'">';
                             }
     						
                         ?>
@@ -410,32 +470,32 @@ if(isset($_GET['CLuniqueId'])) {
     <!-- end of Logout Modal-->
 
     <!-- Modal for user profile-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <?php
-                            //populate the information about user based on the uniqueID
-                            $adminID=$_SESSION['adminID'];
-                            $query="SELECT * FROM pradmin WHERE adminID = '$adminID' LIMIT 1";
-                            $sql=$connection->prepare($query);
-                            $sql->execute();
-                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <?php
+                //populate the information about user based on the uniqueID
+                $adminID=$_SESSION['adminID'];
+                $query="SELECT * FROM pradmin WHERE adminID = '$adminID' LIMIT 1";
+                $sql=$connection->prepare($query);
+                $sql->execute();
+                while($row=$sql->fetch(PDO::FETCH_ASSOC)){
 
-                                echo "Admin Email: ".$row['admin_email']."<br>";
-                            }
-                        ?>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    echo "Admin Email: ".$row['admin_email']."<br>";
+                }
+            ?>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--end of Modal for user profile-->
 
     <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
