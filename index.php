@@ -51,7 +51,7 @@ $query="CREATE TABLE IF NOT EXISTS PRadminmessage (
 $sql= $connection->prepare($query);
 $sql->execute();
 
-//Login form validation for client
+//Login form validation for client in modal
 
 if(isset($_POST['clientSubmit'])){
 
@@ -112,7 +112,7 @@ if(isset($_POST['clientSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'client/user_activity_log_cl.php';
 
 			//Welcome back alert
@@ -134,7 +134,7 @@ if(isset($_POST['clientSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'client/user_activity_log_cl.php';
 
 			$_SESSION['error'] = "The email/password combination could not be found";
@@ -157,7 +157,7 @@ if(isset($_POST['clientSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'client/user_activity_log_cl.php';
 
 		$_SESSION['error'] = "The email/password combination could not be found";
@@ -170,7 +170,7 @@ if(isset($_POST['clientSubmit'])){
 
 
 
-//login form validation for contractor
+//login form validation for contractor modal
 
 if(isset($_POST['contractorSubmit'])){
 
@@ -230,7 +230,7 @@ if(isset($_POST['contractorSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'contractor/user_activity_log_cn.php';
 
 			//Welcome back alert
@@ -252,7 +252,7 @@ if(isset($_POST['contractorSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'contractor/user_activity_log_cn.php';
 
 			$_SESSION['error'] = "The email/password combination could not be found";
@@ -275,7 +275,7 @@ if(isset($_POST['contractorSubmit'])){
 			$_SESSION['message']="Logged in";
 		}
 
-		//store users activity using this php file
+		//store users activity using this file
 		include 'contractor/user_activity_log_cn.php';
 
 		$_SESSION['error'] = "The email/password combination could not be found";
@@ -395,74 +395,74 @@ if(isset($_POST['contractorSubmit'])){
 			</div>
 
 			<div class="row align-items-stretch" id="featuresSection">
-		                       <div class="col-12 col-md-4 col-lg-4 mb-3">
-					                <div class="card shadow-lg">
-					                    <h3 class="card-header bg-light"><i class="fa fa-tasks fa-lg"></i> Prequalification</h3>
-					                    <div class="card-body justify-content-center">
-					                        <p>Prequalification is a procedure of deciding a contractor's capacity to meet the particular necessities for a project including a wide scope of models and data</p>
-					                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="By Contacting us via mobile, email or our online support">learn more</button>
-					                    </div>
-					                </div>
-					            </div>
+               <div class="col-12 col-md-4 col-lg-4 mb-3">
+	                <div class="card shadow-lg">
+	                    <h3 class="card-header bg-light"><i class="fa fa-tasks fa-lg"></i> Prequalification</h3>
+	                    <div class="card-body justify-content-center">
+	                        <p>Prequalification is a procedure of deciding a contractor's capacity to meet the particular necessities for a project including a wide scope of models and data</p>
+	                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="By Contacting us via mobile, email or our online support">learn more</button>
+	                    </div>
+	                </div>
+	            </div>
 
-					            <div class="col-12 col-md-4 col-lg-4 mb-3">
-					                <div class="card shadow-lg">
-					                    <h3 class="card-header bg-info text-white"><i class="fa fa-bell fa-lg"></i> Project Broadcasting</h3>
-					                    <div class="card-body justify-content-center">
-					                        <p>Project advertisement, a notice or announcement in a public medium promoting a product, service, or event for easy application, tendering and bidding</p>
-					                        <button type="button" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="By Contacting us via mobile, email or our online support">learn more</button>
-					                    </div>
-					                </div>
-					            </div>
+	            <div class="col-12 col-md-4 col-lg-4 mb-3">
+	                <div class="card shadow-lg">
+	                    <h3 class="card-header bg-info text-white"><i class="fa fa-bell fa-lg"></i> Project Broadcasting</h3>
+	                    <div class="card-body justify-content-center">
+	                        <p>Project advertisement, a notice or announcement in a public medium promoting a product, service, or event for easy application, tendering and bidding</p>
+	                        <button type="button" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="By Contacting us via mobile, email or our online support">learn more</button>
+	                    </div>
+	                </div>
+	            </div>
 
-					            <div class="col-12 col-md-4 col-lg-4 mb-3">
-					                <div class="card shadow-lg">
-					                    <h3 class="card-header bg-success text-white"><i class="fa fa-clipboard fa-lg"></i> Project Consulting</h3>
-					                    <div class="card-body justify-content-center">
-					                        <p>Project analysis can be used to estimate the economic or engineering viability of projects by performing lifecycle analysis of project performance and maintenance</p>
-					                        <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="By Contacting us via mobile, email or our online support">learn more</button>
-					                    </div>
-					                </div>
-					            </div>                        
-		        </div>	
+	            <div class="col-12 col-md-4 col-lg-4 mb-3">
+	                <div class="card shadow-lg">
+	                    <h3 class="card-header bg-success text-white"><i class="fa fa-clipboard fa-lg"></i> Project Consulting</h3>
+	                    <div class="card-body justify-content-center">
+	                        <p>Project analysis can be used to estimate the economic or engineering viability of projects by performing lifecycle analysis of project performance and maintenance</p>
+	                        <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="By Contacting us via mobile, email or our online support">learn more</button>
+	                    </div>
+	                </div>
+	            </div>                        
+		    </div>	
 		</section>
 		<!--end of section containing about us-->
 
 		<!--section containing tab information about our team-->
 		<section id="ourTeamSection" class="container">
-				<div class="justify-content-center text-center">
-		        	<h2>Our Team</h2>
-		        	<p>We are a team of highly skilled researchers and solution provider from the School of Computing and Engineering Sciences, Babcock University, Nigeria</p>
-	        	</div>
+			<div class="justify-content-center text-center">
+	        	<h2>Our Team</h2>
+	        	<p>We are a team of highly skilled researchers and solution provider from the School of Computing and Engineering Sciences, Babcock University, Nigeria</p>
+        	</div>
 
-		        <ul class="nav nav-tabs" id="ourTeamTab" role="tablist">
-				  <li class="nav-item" role="presentation">
-				    <button class="nav-link active" id="prof-tab" data-bs-toggle="tab" data-bs-target="#prof" type="button" role="tab" aria-controls="prof" aria-selected="true">Lead Researcher</button>
-				  </li>
-				  <li class="nav-item" role="presentation">
-				    <button class="nav-link" id="enoch-tab" data-bs-toggle="tab" data-bs-target="#enoch" type="button" role="tab" aria-controls="enoch" aria-selected="false">Researcher</button>
-				  </li>
-				  <li class="nav-item" role="presentation">
-				    <button class="nav-link" id="iru-tab" data-bs-toggle="tab" data-bs-target="#iru" type="button" role="tab" aria-controls="iru" aria-selected="false">Researcher</button>
-				  </li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane fade show active" id="prof" role="tabpanel" aria-labelledby="prof-tab">
-				  	<h4><img src="img/ogbonna.jpg" id="ourTeamImg">Dr. Raymond Okoro</h4>
-				    <small>Lead Researcher</small>
-				    <p>A Expert in Software Engineering and Project Management</p>
-				  </div>
-				  <div class="tab-pane fade" id="enoch" role="tabpanel" aria-labelledby="enoch-tab">
-				  	<h4><img src="img/Enoch.jpg" id="ourTeamImg"> Oyerinde Enoch</h4>
-				    <small>Researcher</small>
-				    <p>Master's Degree student of Babcock University, in addition to being a front and backend developer</p>
-				  </div>
-				  <div class="tab-pane fade" id="iru" role="tabpanel" aria-labelledby="iru-tab">
-				  	<h4><img src="img/igho.png" id="ourTeamImg"> Igho-Iggue Iruesiri</h4>
-				    <small>Researcher</small>
-				    <p>Master's Degree student of Babcock University, in addition to being a front and backend developer</p>
-				  </div>
-				</div>
+	        <ul class="nav nav-tabs" id="ourTeamTab" role="tablist">
+			  <li class="nav-item" role="presentation">
+			    <button class="nav-link active" id="prof-tab" data-bs-toggle="tab" data-bs-target="#prof" type="button" role="tab" aria-controls="prof" aria-selected="true">Lead Researcher</button>
+			  </li>
+			  <li class="nav-item" role="presentation">
+			    <button class="nav-link" id="enoch-tab" data-bs-toggle="tab" data-bs-target="#enoch" type="button" role="tab" aria-controls="enoch" aria-selected="false">Researcher</button>
+			  </li>
+			  <li class="nav-item" role="presentation">
+			    <button class="nav-link" id="iru-tab" data-bs-toggle="tab" data-bs-target="#iru" type="button" role="tab" aria-controls="iru" aria-selected="false">Researcher</button>
+			  </li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+			  <div class="tab-pane fade show active" id="prof" role="tabpanel" aria-labelledby="prof-tab">
+			  	<h4><img src="img/ogbonna.jpg" id="ourTeamImg">Dr. Raymond Okoro</h4>
+			    <small>Lead Researcher</small>
+			    <p>A Expert in Software Engineering and Project Management</p>
+			  </div>
+			  <div class="tab-pane fade" id="enoch" role="tabpanel" aria-labelledby="enoch-tab">
+			  	<h4><img src="img/Enoch.jpg" id="ourTeamImg"> Oyerinde Enoch</h4>
+			    <small>Researcher</small>
+			    <p>Master's Degree student of Babcock University, in addition to being a front and backend developer</p>
+			  </div>
+			  <div class="tab-pane fade" id="iru" role="tabpanel" aria-labelledby="iru-tab">
+			  	<h4><img src="img/igho.png" id="ourTeamImg"> Igho-Iggue Iruesiri</h4>
+			    <small>Researcher</small>
+			    <p>Master's Degree student of Babcock University, in addition to being a front and backend developer</p>
+			  </div>
+			</div>
 		</section>
 		<!--end of section containing tab information about our team-->
 

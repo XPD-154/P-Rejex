@@ -1,7 +1,11 @@
 <?php
-
+//server name
 $serverName="localhost";
+
+//username
 $userName="root";
+
+//database name
 $dbname="preq";
 
 try{

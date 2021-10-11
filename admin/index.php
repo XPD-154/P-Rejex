@@ -50,7 +50,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css"> <!--link to css stylesheet for project-->
     
 </head>
-<body id="page-top">
+<body id="page-top" onload="displayCalendar()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -439,7 +439,7 @@
                 <section class="container">
                         <div class="row">
 
-                                <!--section containing table for client--> 
+                                <!--section containing table for user log--> 
                                 <div class="col-12 col-xl-6 col-md-6 mb-4">
 
                                     <!-- Table Heading -->
@@ -535,54 +535,25 @@
                                     </div>
                                     
                                 </div>
-                                <!--end of section containing table for client-->
+                                <!--end of section containing table for user log-->
 
-                                <!--section containing table for contractor--> 
+                                <!--section containing table for calender--> 
                                 <div class="col-12 col-xl-6 col-md-6 mb-4">
 
                                     <!-- Table Heading -->
-                                    <h3 class="h4 mb-2 text-gray-800">Contractor Table</h3>
                                     <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Calender</h6>
+                                        </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                    <?php
-
-                                                        /*echo ('<div class="card shadow mb-4">');
-                                                        echo ('<div class="card-body">');
-                                                        echo ('<div class="table-responsive">');
-                                                        echo ('<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">');*/
-                                                        $query="SELECT * FROM prcontractor";
-                                                        $sql=$connection->prepare($query);
-                                                        $sql->execute();
-                                                        echo "<tr>";
-                                                        echo "<th>ID</th>";
-                                                        echo "<th>Company Name</th>";
-                                                        echo "<th>Email</th>";
-                                                        echo "<th>Contact Line</th>";
-                                                        echo "</tr>";
-                                                        while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                            
-                                                            echo"<tr><td>";
-                                                            echo ($row['CNuniqueId']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CNcompany_name']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CNemail']);
-                                                            echo ("</td><td>");
-                                                            echo ($row['CNphone_number']);
-                                                            echo ("</td></tr><br>");
-                                                            
-                                                        };
-                                                        
-                                                    ?>
-                                                </table>
+                                                <div id="calendar"></div> 
                                             </div>
                                         </div>
                                     </div>
                                     
                                 </div>
-                                <!--end of section containing table for contractor-->
+                                <!--end of section containing table for calender-->
 
                         </div> 
                 </section>
@@ -635,53 +606,54 @@
     <!-- end of Logout Modal-->
 
     <!-- Modal for user profile-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <?php
-                            //populate the information about user based on the uniqueID
-                            $adminID=$_SESSION['adminID'];
-                            $query="SELECT * FROM pradmin WHERE adminID = '$adminID' LIMIT 1";
-                            $sql=$connection->prepare($query);
-                            $sql->execute();
-                            while($row=$sql->fetch(PDO::FETCH_ASSOC)){
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">User Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <?php
+                //populate the information about user based on the uniqueID
+                $adminID=$_SESSION['adminID'];
+                $query="SELECT * FROM pradmin WHERE adminID = '$adminID' LIMIT 1";
+                $sql=$connection->prepare($query);
+                $sql->execute();
+                while($row=$sql->fetch(PDO::FETCH_ASSOC)){
 
-                                echo "Admin Email: ".$row['admin_email']."<br>";
-                            }
-                        ?>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    echo "Admin Email: ".$row['admin_email']."<br>";
+                }
+            ?>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--end of Modal for user profile-->
 
-        <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
-        <script src="../js/popper.min.js"></script> <!--link to popper js file-->
-        <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> <!--link to boostrap js file-->
+    <script src="../js/script.js"></script><!--script containing calender-->
+    <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
+    <script src="../js/popper.min.js"></script> <!--link to popper js file-->
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> <!--link to boostrap js file-->
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="../dashboard-asserts/vendor/jquery/jquery.min.js"></script>
-        <script src="../dashboard-asserts/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../dashboard-asserts/vendor/jquery/jquery.min.js"></script>
+    <script src="../dashboard-asserts/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="../dashboard-asserts/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../dashboard-asserts/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="../dashboard-asserts/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../dashboard-asserts/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="../dashboard-asserts/vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="../dashboard-asserts/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="../dashboard-asserts/js/demo/chart-area-demo.js"></script>
-        <script src="../dashboard-asserts/js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="../dashboard-asserts/js/demo/chart-area-demo.js"></script>
+    <script src="../dashboard-asserts/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>

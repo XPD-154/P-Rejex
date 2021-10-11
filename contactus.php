@@ -8,11 +8,11 @@ include ("connection.php");
 
 session_start();
 
-//store users activity using this php file
+//store users activity using this file
 
 include 'user_activity_log.php';
 
-//Login form validation for client
+//Login form validation for client in modal
 
 if(isset($_POST['clientSubmit'])){
 
@@ -32,7 +32,7 @@ if(isset($_POST['clientSubmit'])){
 
 	}else{
 
-	//select all columns from PRclient table where inserted email matches
+	//select all columns from PRclient table where inserted email matches a record 
 	$query = "SELECT * FROM PRclient WHERE CLemail = :email";
 	$sql = $connection->prepare($query);
 	$sql->execute(array(':email'=>$_POST['CLemail']));
@@ -73,7 +73,7 @@ if(isset($_POST['clientSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'client/user_activity_log_cl.php';
 
 			//Welcome back alert
@@ -95,8 +95,9 @@ if(isset($_POST['clientSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'client/user_activity_log_cl.php';
+
 			$_SESSION['error'] = "The email/password combination could not be found";
 			header('location: index.php');
 			return;
@@ -117,7 +118,7 @@ if(isset($_POST['clientSubmit'])){
 			$_SESSION['message']="Logged in";
 		}
 
-		//store users activity using this php file
+		//store users activity using this file
 		include 'client/user_activity_log_cl.php';
 
 		$_SESSION['error'] = "The email/password combination could not be found";
@@ -130,7 +131,7 @@ if(isset($_POST['clientSubmit'])){
 
 
 
-//login form validation for contractor
+//login form validation for contractor in modal
 
 if(isset($_POST['contractorSubmit'])){
 
@@ -190,7 +191,7 @@ if(isset($_POST['contractorSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'contractor/user_activity_log_cn.php';
 
 			//Welcome back alert
@@ -212,7 +213,7 @@ if(isset($_POST['contractorSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this php file
+			//store users activity using this file
 			include 'contractor/user_activity_log_cn.php';
 
 			$_SESSION['error'] = "The email/password combination could not be found";
@@ -235,7 +236,7 @@ if(isset($_POST['contractorSubmit'])){
 			$_SESSION['message']="Logged in";
 		}
 
-		//store users activity using this php file
+		//store users activity using this file
 		include 'contractor/user_activity_log_cn.php';
 			
 		$_SESSION['error'] = "The email/password combination could not be found";
@@ -396,9 +397,9 @@ if(isset($_POST['submit'])){
 			</nav>
 			<!--end of navigation bar-->
 
-		</header>
+	</header>
 
-		<main class="container">
+	<main class="container">
 
 			<!--contact us intro section-->
 			<section id="contactUsIntroSection">
@@ -525,9 +526,9 @@ if(isset($_POST['submit'])){
 			</section>
 			<!--contact us message section-->
 			
-		</main>
+	</main>
 	
-	<!--login modal for homepage logon button-->
+	<!--login modal for homepage login button-->
 	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">

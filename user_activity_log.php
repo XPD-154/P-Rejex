@@ -53,11 +53,5 @@
 						':message'=>$message,
 						':project'=>$project));
 
-	/*$query = "INSERT INTO visitor_activity_logs (user_ip_address, user_agent, page_url, referrer_url) VALUES (:user_ip_address, :user_agent, :user_current_url, :referrer_url)"; 
-	$sql=$connection->prepare($query);
-	$sql->execute(array(':user_ip_address'=>$user_ip_address,
-						':user_agent'=>$user_agent,
-						':user_current_url'=>$user_current_url,
-						':referrer_url'=>$referrer_url))*/
 	
 ?>

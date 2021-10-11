@@ -522,4 +522,9 @@
             50%{padding: 10px 15px;}
             100%{padding: 20px 30px;}
         }
+        /*calender style*/
+        .dayNow{
+             border: 2px solid black;
+             font-weight: bold;
+        }
        
