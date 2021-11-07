@@ -19,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>P-Rejex Admin</title>
+    <title>P-Rejex</title>
     <link rel="shortcut icon" type="image/jpg" href="../img/Untitled-5.png"> <!--link to favicon-->
 
     <!--link to boostrap css file-->
