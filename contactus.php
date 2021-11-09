@@ -601,9 +601,3 @@ include("header.php");
 	<!--end of login modal for homepage logon button-->
 
 	<?php include("footer.php");?> <!--footer section-->
-
-	<script src="js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
-	<script src="js/popper.min.js"></script> <!--link to popper js file-->
-	<script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> <!--link to boostrap js file-->
-</body>
-</html>
