@@ -110,9 +110,21 @@ $percentageScore ="";
 //declare all score variables as an empty string
 $Q1 = $Q2 = $Q3 = $Q4A = $Q4B = $Q5 = $Q6 = $Q7A = $Q7B = $Q7C = $Q8 = $Q9 = $Q10 = $Q11 = $Q12 = $Q13 = $Q14 = $Q15 = $Q16 = $Q17 = $Q18 = $Q19 = $Q20 = $Q21A = $Q21B = $Q21C = $Q21D = $Q21E = $Q21F = $Q22A = $Q22B = $Q22C = $Q22D = $Q22E = $Q22F = $Q23A = $Q23B = $Q23C = $Q23D = $Q23E = $Q23F = $Q24 = $Q25 = "";
 
+//check if user has already attempted prequalification
+$query = "SELECT * FROM prprequalification WHERE CNuniqueID = :CNuniqueID AND project_name = :project_name";
+$sql = $connection->prepare($query);
+$sql->execute(array(':CNuniqueID'=>$_SESSION['user'],
+                    ':project_name'=>$_GET['project_name']));
+$count = $sql->rowCount();
 
+if($count > 0){
+
+    $_SESSION['error'] = "already attempted prequalification";
+    header('location: contractor/index.php');
+    return;
+}
 //form submission and validation
-if(isset($_POST['calculateScore'])) {
+elseif(isset($_POST['calculateScore'])) {
 
     if (empty($_POST['auditedAccounts'])) {
 
