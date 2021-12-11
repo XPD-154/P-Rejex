@@ -58,7 +58,7 @@ if(isset($_GET['CNuniqueId']) && isset($_POST['update'])) {
     
 }
 
-//check for contractor table
+//check for project table
 if(isset($_GET['projectID']) && isset($_POST['update'])) {
 
         $projectID=$_POST['projectID'];
@@ -72,6 +72,39 @@ if(isset($_GET['projectID']) && isset($_POST['update'])) {
 								':project_location'=>$_POST['project_location'],
 								':project_est_bugt'=>$_POST['project_est_bugt'],
 								':projectID'=>$projectID));
+			$_SESSION['success']="Record Updated";
+			header('location: index.php');
+			return;
+
+        }else{
+
+        	$_SESSION['error']="Update unsucessful";
+            header('location: edit.php');
+            return;
+        }
+    
+}
+
+//check for tender table
+if(isset($_GET['tenderID']) && isset($_POST['update'])) {
+
+        $tenderID=$_POST['tenderID'];
+
+        if($tenderID!=""){
+
+        	$query="UPDATE prtender SET project_name=:project_name, introduction=:introduction, scope_of_work=:scope_of_work, eligibility_criteria=:eligibility_criteria, list_of_work_for_tender=:list_of_work_for_tender, tender_evaluation_procedure_and_method=:tender_evaluation_procedure_and_method, submission_closing_date=:submission_closing_date, bid_opening_date=:bid_opening_date, any_other_information=:any_other_information, disclaimer=:disclaimer WHERE tenderID = :tenderID";
+			$sql=$connection->prepare($query);
+			$sql->execute(array(':project_name'=>$_POST['project_name'],
+								':introduction'=>$_POST['introduction'],
+								':scope_of_work'=>$_POST['scope_of_work'],
+								':eligibility_criteria'=>$_POST['eligibility_criteria'],
+								':list_of_work_for_tender'=>$_POST['list_of_work_for_tender'],
+								':tender_evaluation_procedure_and_method'=>$_POST['tender_evaluation_procedure_and_method'],
+								':submission_closing_date'=>$_POST['submission_closing_date'],
+								':bid_opening_date'=>$_POST['bid_opening_date'],
+								':any_other_information'=>$_POST['any_other_information'],
+								':disclaimer'=>$_POST['disclaimer'],
+								':tenderID'=>$tenderID));
 			$_SESSION['success']="Record Updated";
 			header('location: index.php');
 			return;
@@ -211,6 +244,73 @@ include ("header_ad.php");
 		                    echo '</div>';
 
 		                    echo '<input type="hidden" name="projectID" value="'.$row['projectID'].'">';
+		               
+		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
+		                }
+
+		                //check for tender
+		                if(isset($_GET['tenderID'])) {
+
+	                		$query="SELECT * FROM prtender WHERE tenderID = :tenderID";
+                            $sql=$connection->prepare($query);
+                            $sql->execute(array(':tenderID'=>$_GET['tenderID']));
+                            $row=$sql->fetch(PDO::FETCH_ASSOC);
+
+		                	echo '<div class="text-center">';
+			                echo '<h1 class="h4 text-gray-900 mb-4">Update Tender Information</h1>';
+			                echo '</div>';
+		           
+		                    echo '<div class="form-group">';
+		                    echo '<label for="projectName">Project Name</label>';
+		                    echo '<input type="text" id="projectName" class="form-control form-control-user" name="project_name" value="'.$row['project_name'].'">';
+		                    echo '</div>';
+
+		                 	echo '<div class="form-group">';
+		                 	echo '<label for="introduction">Introduction</label>';
+		                    echo '<input type="text" id="introduction" class="form-control form-control-user" name="introduction" value="'.$row['introduction'].'">';
+		                    echo '</div>';
+
+		                    echo '<div class="form-group">';
+		                    echo '<label for="scopeOfWork">Scope of Work</label>';
+		                    echo '<input type="text" id="scopeOfWork" class="form-control form-control-user" name="scope_of_work" value="'.$row['scope_of_work'].'">';
+		                    echo '</div>';
+
+		                    echo '<div class="form-group">';
+		                    echo '<label for="eligibilityCriteria">Eligibility Criteria</label>';
+		                    echo '<input type="text" id="eligibilityCriteria" class="form-control form-control-user" name="eligibility_criteria" value="'.$row['eligibility_criteria'].'">';
+		                    echo '</div>';
+
+		                    echo '<div class="form-group">';
+		                    echo '<label for="listOfWorkForTender">List of Work for Tender</label>';
+		                    echo '<input type="text" id="listOfWorkForTender" class="form-control form-control-user" name="list_of_work_for_tender" value="'.$row['list_of_work_for_tender'].'">';
+		                    echo '</div>';
+
+		                    echo '<div class="form-group">';
+		                    echo '<label for="tenderEvaluationProcedureAndMethod">Tender Evaluation Procedure and Method</label>';
+		                    echo '<input type="text" id="tenderEvaluationProcedureAndMethod" class="form-control form-control-user" name="tender_evaluation_procedure_and_method" value="'.$row['tender_evaluation_procedure_and_method'].'">';
+		                    echo '</div>';
+
+		                    echo '<div class="form-group">';
+		                    echo '<label for="submissionClosingDate">Submission Closing Date</label>';
+		                    echo '<input type="text" id="submissionClosingDate" class="form-control form-control-user" name="submission_closing_date" value="'.$row['submission_closing_date'].'">';
+		                    echo '</div>';
+
+		                    echo '<div class="form-group">';
+		                    echo '<label for="bidOpeningDate">Bid Opening Date</label>';
+		                    echo '<input type="text" id="bidOpeningDate" class="form-control form-control-user" name="bid_opening_date" value="'.$row['bid_opening_date'].'">';
+		                    echo '</div>';
+
+		                    echo '<div class="form-group">';
+		                    echo '<label for="anyOtherInformation">Any Other Information</label>';
+		                    echo '<input type="text" id="anyOtherInformation" class="form-control form-control-user" name="any_other_information" value="'.$row['any_other_information'].'">';
+		                    echo '</div>';
+
+		                    echo '<div class="form-group">';
+		                    echo '<label for="disclaimer">Disclaimer</label>';
+		                    echo '<input type="text" id="disclaimer" class="form-control form-control-user" name="disclaimer" value="'.$row['disclaimer'].'">';
+		                    echo '</div>';
+
+		                    echo '<input type="hidden" name="tenderID" value="'.$row['tenderID'].'">';
 		               
 		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
 		                }
