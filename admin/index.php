@@ -216,16 +216,6 @@
                                                             <th>Delete</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>User IP Address</th>
-                                                            <th>User</th>
-                                                            <th>Message</th>
-                                                            <th>Project</th>
-                                                            <th>Time</th>
-                                                            <th>Delete</th>
-                                                        </tr>
-                                                    </tfoot>
                                                     <tbody>
                                                     <?php
                                                         //determine the page we are currently on using a GET variable, if there is more than one table, all their GET variables should have unique names
@@ -269,25 +259,35 @@
                                                             echo ("</td></tr>");
                                                         }
                                                         
-                                                        echo  '<ul class="pagination">';
-                                                        if($page_currently_on>1){
-                                                            echo '<li class="page-item"><a class="page-link" href="index.php?page='.($page_currently_on-1).'">Prev</a></li>';
-                                                        }
-                                                        
-                                                        for ($page=1; $page<=$total_no_pages_available; $page++) {
-
-                                                             echo '<li class="page-item"><a class="page-link" href="index.php?page='.$page.'">'.$page.'</a></li>'; 
-                                                         }
-                                                        if($page>$page_currently_on){
-                                                           echo '<li class="page-item"><a class="page-link" href="index.php?page='.($page_currently_on+1).'">Next</a></li>'; 
-                                                        }
-                                                        echo  '</ul>';
-
                                                     ?>
                                                     </tbody>
                                                 </table>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-7">
+                                                        <ul class="pagination">
+                                                            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                                                            <li class="<?php if($page_currently_on <= 1){ echo 'disabled'; } ?> page-item">
+                                                                <a class="page-link" href="<?php if($page_currently_on <= 1){ echo '#'; } else { echo "?page=".($page_currently_on - 1); } ?>">Prev</a>
+                                                            </li>
+                                                            <li class="<?php if($page_currently_on >= $total_no_pages_available){ echo 'disabled'; } ?> page-item">
+                                                                <a class="page-link" href="<?php if($page_currently_on >= $total_no_pages_available){ echo '#'; } else { echo "?page=".($page_currently_on + 1); } ?>">Next</a>
+                                                            </li>
+                                                            <li class="page-item"><a class="page-link" href="?page=<?php echo $total_no_pages_available; ?>">Last</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="input-group mb-3 col-12 col-md-5">   
+
+                                                      <input id="page" type="number" maxlength="1" class="form-control" min="1" max="<?php echo $total_no_pages_available; ?>"   
+
+                                                      placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>   
+
+                                                      <button class="btn btn-primary" onClick="go2Page();">Go</button>   
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                     
                                 </div>
@@ -333,6 +333,22 @@
 
     </div>
     <!-- End of Page Wrapper -->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('table').DataTable();
+        });
+
+        function go2Page()   
+        {   
+            var page = document.getElementById("page").value;   
+
+            page = ((page><?php echo $total_no_pages_available; ?>)?<?php echo $total_no_pages_available; ?>:((page<1)?1:page));   
+
+            window.location.href = 'index.php?page='+page;   
+
+        } 
+    </script>
 
     <!--link to file containing user profile modal-->
     <?php include ("user_profile_ad.php"); ?>
