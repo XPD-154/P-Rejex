@@ -64,16 +64,6 @@ include ("header_ad.php");
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Company Name</th>
-                                            <th>Email</th>
-                                            <th>Contact Line</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                     <?php
 
@@ -85,7 +75,7 @@ include ("header_ad.php");
                                       }
 
                                       //number of records we want to display per page on the table we are on
-                                      $no_of_records_displayed_per_page=7;
+                                      $no_of_records_displayed_per_page=1;
 
                                       //determine limit of data to show on any current table page displaying
                                       $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
@@ -149,25 +139,36 @@ include ("header_ad.php");
                                             };
 
                                         
-                                            echo  '<ul class="pagination">';
-                                            if($page_currently_on>1){
-                                                echo '<li class="page-item"><a class="page-link" href="client.php?page='.($page_currently_on-1).'">Prev</a></li>';
-                                            }
                                             
-                                            for ($page=1; $page<=$total_no_pages_available; $page++) {
-
-                                                 echo '<li class="page-item"><a class="page-link" href="client.php?page='.$page.'">'.$page.'</a></li>'; 
-                                             }
-                                            if($page>$page_currently_on){
-                                               echo '<li class="page-item"><a class="page-link" href="client.php?page='.($page_currently_on+1).'">Next</a></li>'; 
-                                            }
-                                            echo  '</ul>';
                                            
                                         }
                                         
                                     ?>
                                     </tbody>
                                 </table>
+                                <div class="row">
+                                    <div class="col-12 col-md-7">
+                                        <ul class="pagination">
+                                            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                                            <li class="<?php if($page_currently_on <= 1){ echo 'disabled'; } ?> page-item">
+                                                <a class="page-link" href="<?php if($page_currently_on <= 1){ echo '#'; } else { echo "?page=".($page_currently_on - 1); } ?>">Prev</a>
+                                            </li>
+                                            <li class="<?php if($page_currently_on >= $total_no_pages_available){ echo 'disabled'; } ?> page-item">
+                                                <a class="page-link" href="<?php if($page_currently_on >= $total_no_pages_available){ echo '#'; } else { echo "?page=".($page_currently_on + 1); } ?>">Next</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="?page=<?php echo $total_no_pages_available; ?>">Last</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-group mb-3 col-12 col-md-5">   
+
+                                      <input id="page" type="number" maxlength="1" class="form-control" min="1" max="<?php echo $total_no_pages_available; ?>"   
+
+                                      placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>   
+
+                                      <button class="btn btn-primary" onClick="go2Page();">Go</button>   
+
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
