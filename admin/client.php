@@ -75,7 +75,11 @@ include ("header_ad.php");
                                       }
 
                                       //number of records we want to display per page on the table we are on
-                                      $no_of_records_displayed_per_page=1;
+                                      if(isset($_POST['no_of_records_displayed_per_page'])){
+                                            $no_of_records_displayed_per_page=$_POST['no_of_records_displayed_per_page'];
+                                      }else{
+                                            $no_of_records_displayed_per_page=5;
+                                      }
 
                                       //determine limit of data to show on any current table page displaying
                                       $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
@@ -138,9 +142,7 @@ include ("header_ad.php");
                                                 
                                             };
 
-                                        
-                                            
-                                           
+                                          
                                         }
                                         
                                     ?>
@@ -159,14 +161,22 @@ include ("header_ad.php");
                                             <li class="page-item"><a class="page-link" href="?page=<?php echo $total_no_pages_available; ?>">Last</a></li>
                                         </ul>
                                     </div>
-                                    <div class="input-group mb-3 col-12 col-md-5">   
-
+                                    <div class="input-group mb-3 col-8 col-md-4">   
                                       <input id="page" type="number" maxlength="1" class="form-control" min="1" max="<?php echo $total_no_pages_available; ?>"   
 
                                       placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>   
 
                                       <button class="btn btn-primary" onClick="go2Page();">Go</button>   
-
+                                    </div>
+                                    <div class="col-4 col-md-1">
+                                        <form method="POST">
+                                            <select class="custom-select mr-sm-2" id="no_of_records_displayed_per_page" name="no_of_records_displayed_per_page" onchange="javascript: submit()">
+                                                <option selected value="5" <?php if (isset($_POST['no_of_records_displayed_per_page']) && $_POST['no_of_records_displayed_per_page'] == 5) { echo ' selected="selected"'; } ?>>5</option>
+                                                <option value="10" <?php if (isset($_POST['no_of_records_displayed_per_page']) && $_POST['no_of_records_displayed_per_page'] == 10) { echo ' selected="selected"'; } ?>>10</option>
+                                                <option value="20" <?php if (isset($_POST['no_of_records_displayed_per_page']) && $_POST['no_of_records_displayed_per_page'] == 20) { echo ' selected="selected"'; } ?>>20</option>
+                                                <option value="50" <?php if (isset($_POST['no_of_records_displayed_per_page']) && $_POST['no_of_records_displayed_per_page'] == 50) { echo ' selected="selected"'; } ?>>50</option>
+                                            </select>
+                                        </form>
                                     </div>
                                 </div>
 
