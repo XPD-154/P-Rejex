@@ -115,13 +115,14 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInbox"
             aria-expanded="true" aria-controls="collapseInbox">
             <i class="fas fa-fw fa-info"></i>
-            <span>Inbox</span>
+            <span>Message</span>
         </a>
         <div id="collapseInbox" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Content:</h6>
-                <a class="collapse-item" href="messageus.php">Message</a>
+                <a class="collapse-item" href="messageus.php">Inbox</a>
+                <a class="collapse-item" href="messageusout.php">Outbox</a>
             </div>
         </div>
     </li>
@@ -191,7 +192,7 @@
                             };
                             
                         ?>
-                        <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                        <a class="dropdown-item text-center small text-gray-500" href="messageus.php">Read More Messages</a>
                     </div>
                 </li>
 

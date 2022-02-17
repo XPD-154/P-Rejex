@@ -95,7 +95,7 @@ include ("header_ad.php");
                                       if(isset($_GET['searchInput'])){
 
                                             $searchInput = $_GET['searchInput'];
-                                            $query="SELECT * FROM prcontractor WHERE CNcompany_name LIKE '%$searchInput%'";
+                                            $query="SELECT * FROM prcontractor WHERE CNcompany_name LIKE '%$searchInput%' ORDER BY contractorID DESC";
                                             $sql=$connection->prepare($query);
                                             $sql->execute();
 
@@ -119,7 +119,7 @@ include ("header_ad.php");
 
                                         }else{
 
-                                            $query="SELECT * FROM prcontractor LIMIT $limit_to_display, $no_of_records_displayed_per_page";
+                                            $query="SELECT * FROM prcontractor ORDER BY contractorID DESC LIMIT $limit_to_display, $no_of_records_displayed_per_page";
                                             $sql=$connection->prepare($query);
                                             $sql->execute();
 

@@ -118,6 +118,32 @@ if(isset($_GET['tenderID']) && isset($_POST['update'])) {
     
 }
 
+//check for and reply from admin message table
+if(isset($_GET['messageID']) && isset($_POST['update'])){
+
+	$useruniqueId=$_POST['useruniqueId'];
+
+    if($useruniqueId!=""){
+		//insert values into PRclient table
+		$query = "INSERT INTO PRmessage (useruniqueOutId, subjectOut, messageOut) VALUES (:useruniqueOutId, :subjectOut, :messageOut)";
+		$sql = $connection->prepare($query);
+		$sql->execute(array(
+				':useruniqueOutId'=>$_POST['useruniqueId'],
+				':subjectOut'=>$_POST['subjectOut'],
+				':messageOut'=>$_POST['messageOut']));
+			
+		$_SESSION['success']="Message Sent";
+		header('location: index.php');
+		return;
+
+    }else{
+
+    	$_SESSION['error']="Message sent unsucessfully<br>";
+        header('location: edit.php');
+        return;
+    }
+}
+
 //link to file containing header
 include ("header_ad.php");
 ?>
@@ -314,6 +340,62 @@ include ("header_ad.php");
 		               
 		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
 		                }
+
+		                //check for admin message reply
+	                	if(isset($_GET['messageID'])) {
+
+	                		$query="SELECT * FROM pradminmessage WHERE messageID = :messageID";
+                            $sql=$connection->prepare($query);
+                            $sql->execute(array(':messageID'=>$_GET['messageID']));
+                            $row=$sql->fetch(PDO::FETCH_ASSOC);
+
+		                	echo '<div class="text-center">';
+			                echo '<h1 class="h4 text-gray-900 mb-4">Reply</h1>';
+			                echo '</div>';
+		           
+		                    echo '<div class="form-group">';
+		                    echo '<label for="subjectOut">Subject</label>';
+		                    echo '<input type="text" id="subjectOut" class="form-control form-control-user" name="subjectOut" value="RE: '.$row['subject'].'">';
+		                    echo '</div>';
+		                 	echo '<div class="form-group">';
+		                 	echo '<label for="messageOut">Message</label>';
+		                    echo '<textarea type="text" class="form-control form-control-user" id="messageOut" placeholder="Message" name="messageOut"></textarea>';
+		                    echo '</div>';
+
+		                    echo '<input type="hidden" name="useruniqueId" value="'.$row['useruniqueId'].'">';
+		               
+		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Send</button>';
+		                }
+
+		                //check for admin outbox messages
+	                	/*if(isset($_GET['CLuniqueId'])) {
+
+	                		$query="SELECT * FROM prmessage WHERE CLuniqueId = :CLuniqueId";
+                            $sql=$connection->prepare($query);
+                            $sql->execute(array(':CLuniqueId'=>$_GET['CLuniqueId']));
+                            $row=$sql->fetch(PDO::FETCH_ASSOC);
+
+		                	echo '<div class="text-center">';
+			                echo '<h1 class="h4 text-gray-900 mb-4">Update Client Information</h1>';
+			                echo '</div>';
+		           
+		                    echo '<div class="form-group">';
+		                    echo '<label for="clientName">Company Name</label>';
+		                    echo '<input type="text" id="clientName" class="form-control form-control-user" name="CLcompany_name" value="'.$row['CLcompany_name'].'">';
+		                    echo '</div>';
+		                 	echo '<div class="form-group">';
+		                 	echo '<label for="clientPhone">Company Contact Line</label>';
+		                    echo '<input type="text" id="clientPhone" class="form-control form-control-user" name="CLphone_number" value="'.$row['CLphone_number'].'">';
+		                    echo '</div>';
+		                    echo '<div class="form-group">';
+		                    echo '<label for="clientEmail">Company Email</label>';
+		                    echo '<input type="text" id="clientEmail" class="form-control form-control-user" name="CLemail" value="'.$row['CLemail'].'">';
+		                    echo '</div>';
+
+		                    echo '<input type="hidden" name="CLuniqueId" value="'.$row['CLuniqueId'].'">';
+		               
+		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
+		                }*/
 
                 	?>
                 </form>

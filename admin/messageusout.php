@@ -1,42 +1,54 @@
 <?php
+//connection
+include ("../connection.php");
 
-  //start database connection
-  include ("../connection.php");
+//session start
+session_start();
 
-  //start session connection
-  session_start();  
-
-  //logout from dashboard and log that activity
-  include ("logout.php");
-
-  //reference to header file
-  include("header_cl.php");
+//link to file containing header
+include ("header_ad.php");
 ?>
+
 
 <body id="page-top">
 
-	<!-- Page Wrapper -->
+    <!-- Page Wrapper -->
     <div id="wrapper">
 
-		<?php include ("menu_sidebar_cl.php"); ?>
+		<!--link to file containing menu and sidebar-->
+        <?php include ("menu_sidebar_ad.php"); ?>
 
-                <!-- Begin Table Content for displaying projects -->
-                <div class="container-fluid">
+
+                <!--section for success alert upon adding project-->
+                <div id="success" style="padding: 10px;" class="text-center">
+                   <?php
+                    if(isset($_SESSION['success'])){
+
+                        echo ('<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                  <strong>'.$_SESSION['success'].'!</strong><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                               </div>');
+                        unset($_SESSION['success']);
+                    }
+                   ?> 
+                </div>
+                <!--end of section for success alert upon adding project-->
+
+                <!--section containing table for client--> 
+                <div class="container" style="margin: 10px;">
 
                     <!-- Table Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h1 class="m-0 font-weight-bold text-info">Tender Table</h1>
-                            <p class="mb-4">Tables showing projects offered by <?= $_SESSION['CLuniqueID'] ?> </p>
+                            <h6 class="m-0 font-weight-bold text-primary">Message Inbox</h6>
 
                             <form style="margin-top: 25px;">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="search" name="searchInput" id="myInput">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-info" id="myBtn">submit</button>
+                                        <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
                                     </div>
                                 </div>
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input tender name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input Client or Contractor ID<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
                             </form>
                         </div>
                         <div class="card-body">
@@ -44,22 +56,15 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Project Name</th>
-                                            <th>Introduction</th>
-                                            <th>Scope of Work</th>
-                                            <th>Eligibility Criteria</th>
-                                            <th>List of Work for Tender</th>
-                                            <th>Tender Evaluation Procedure and Method</th>
-                                            <th>Submission Closing Date</th>
-                                            <th>Bid Opening Date</th>
-                                            <th>Any Other Information</th>
-                                            <th>Disclaimer</th>
+                                            <th>ID</th>
+                                            <th>Subject</th>
+                                            <th>Message</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-
-                                      $CLuniqueID=$_SESSION['CLuniqueID'];
 
                                       //determine the page we are currently on using a GET variable, if there is more than one table, all their GET variables should have unique names
                                       if(isset($_GET['page'])){
@@ -79,7 +84,7 @@
                                       $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
                                       
                                       //determine the total amount of data in the database
-                                      $query="SELECT * FROM prtender";
+                                      $query="SELECT * FROM prclient";
                                       $sql=$connection->prepare($query);
                                       $sql->execute();
                                       $total_rows_available = $sql->rowCount();
@@ -90,68 +95,49 @@
                                       if(isset($_GET['searchInput'])){
 
                                             $searchInput = $_GET['searchInput'];
-                                            $query="SELECT * FROM prtender WHERE project_name LIKE '%$searchInput%' AND CLuniqueId = '$CLuniqueID' ORDER BY tenderID DESC";
+                                            $query="SELECT * FROM prmessage WHERE useruniqueOutId LIKE '%$searchInput%' ORDER BY messageOutID DESC";
                                             $sql=$connection->prepare($query);
                                             $sql->execute();
 
                                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
                                                 
                                                 echo"<tr><td>";
-                                                echo ($row['project_name']);
+                                                echo ($row['useruniqueOutId']);
                                                 echo ("</td><td>");
-                                                echo ($row['introduction']);
+                                                echo ($row['subjectOut']);
                                                 echo ("</td><td>");
-                                                echo ($row['scope_of_work']);
+                                                echo ($row['messageOut']);
                                                 echo ("</td><td>");
-                                                echo ($row['eligibility_criteria']);
+                                                echo ('<a class="btn btn-primary" href="edit.php?useruniqueOutId='.$row['useruniqueOutId'].'">Edit</a>');
                                                 echo ("</td><td>");
-                                                echo ($row['list_of_work_for_tender']);
-                                                echo ("</td><td>");
-                                                echo ($row['tender_evaluation_procedure_and_method']);
-                                                echo ("</td><td>");
-                                                echo ($row['submission_closing_date']);
-                                                echo ("</td><td>");
-                                                echo ($row['bid_opening_date']);
-                                                echo ("</td><td>");
-                                                echo ($row['any_other_information']);
-                                                echo ("</td><td>");
-                                                echo ($row['disclaimer']);
+                                                echo ('<a class="btn btn-danger" href="delete.php?useruniqueOutId='.$row['useruniqueOutId'].'">Delete</a>');
                                                 echo ("</td></tr>");
                                                 
                                             };
 
                                         }else{
 
-                                            $query="SELECT * FROM prtender WHERE CLuniqueId = '$CLuniqueID' ORDER BY tenderID DESC LIMIT $limit_to_display, $no_of_records_displayed_per_page";
+                                            $query="SELECT * FROM prmessage ORDER BY messageOutID DESC LIMIT $limit_to_display, $no_of_records_displayed_per_page";
                                             $sql=$connection->prepare($query);
                                             $sql->execute();
 
                                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
                                                 
                                                 echo"<tr><td>";
-                                                echo ($row['project_name']);
+                                                echo ($row['useruniqueOutId']);
                                                 echo ("</td><td>");
-                                                echo ($row['introduction']);
+                                                echo ($row['subjectOut']);
                                                 echo ("</td><td>");
-                                                echo ($row['scope_of_work']);
+                                                echo ($row['messageOut']);
                                                 echo ("</td><td>");
-                                                echo ($row['eligibility_criteria']);
+                                                echo ('<a class="btn btn-primary" href="edit.php?useruniqueOutId='.$row['useruniqueOutId'].'">Edit</a>');
                                                 echo ("</td><td>");
-                                                echo ($row['list_of_work_for_tender']);
-                                                echo ("</td><td>");
-                                                echo ($row['tender_evaluation_procedure_and_method']);
-                                                echo ("</td><td>");
-                                                echo ($row['submission_closing_date']);
-                                                echo ("</td><td>");
-                                                echo ($row['bid_opening_date']);
-                                                echo ("</td><td>");
-                                                echo ($row['any_other_information']);
-                                                echo ("</td><td>");
-                                                echo ($row['disclaimer']);
+                                                echo ('<a class="btn btn-danger" href="delete.php?useruniqueOutId='.$row['useruniqueOutId'].'">Delete</a>');
                                                 echo ("</td></tr>");
                                                 
                                             };
-                                           
+
+                                          
                                         }
                                         
                                     ?>
@@ -175,7 +161,7 @@
 
                                       placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>   
 
-                                      <button class="btn btn-info" onClick="go2Page();">Go</button>   
+                                      <button class="btn btn-primary" onClick="go2Page();">Go</button>   
                                     </div>
                                     <div class="col-4 col-md-1">
                                         <form method="POST">
@@ -192,13 +178,21 @@
                             </div>
                         </div>
                     </div>
-
+                    
                 </div>
-                <!-- end of Table Content -->
-
-
-			</div>
+               
+            </div>
             <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; P-Rejex 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
         </div> 
         <!-- End of Content Wrapper -->
@@ -206,8 +200,12 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!--reference to file containing scroll button at the buttom, logout button and profile button on top-->
-    <?php include("user_profile_cl.php"); ?>
 
-    <!--reference to footer-->
-	<?php include("footer_cl.php"); ?>
+    <!--link to file containing user profile modal-->
+    <?php include ("user_profile_ad.php"); ?>
+
+    <!--link to file containing footer-->
+    <?php include ("footer_ad.php"); ?>
+
+	
+	

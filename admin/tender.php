@@ -105,7 +105,7 @@ include ("header_ad.php");
                                       if(isset($_GET['searchInput'])){
 
                                             $searchInput = $_GET['searchInput'];
-                                            $query="SELECT * FROM prtender WHERE project_name LIKE '%$searchInput%'";
+                                            $query="SELECT * FROM prtender WHERE project_name LIKE '%$searchInput%' ORDER BY tenderID DESC";
                                             $sql=$connection->prepare($query);
                                             $sql->execute();
 
@@ -147,7 +147,7 @@ include ("header_ad.php");
 
                                         }else{
 
-                                            $query="SELECT * FROM prtender LIMIT $limit_to_display, $no_of_records_displayed_per_page";
+                                            $query="SELECT * FROM prtender ORDER BY tenderID DESC LIMIT $limit_to_display, $no_of_records_displayed_per_page";
                                             $sql=$connection->prepare($query);
                                             $sql->execute();
 

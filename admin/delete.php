@@ -159,6 +159,33 @@ if(isset($_GET['resultID'])) {
     }
 }
 
+//check for pradminmessage table
+if(isset($_GET['messageID'])) {
+
+    if(isset($_POST['delete'])){
+
+        $delete=$_POST['delete'];
+        $messageID=$_POST['messageID'];
+
+        if($delete!="" && $messageID!=""){
+
+            $query="DELETE FROM pradminmessage WHERE messageID = :messageID";
+            $sql=$connection->prepare($query);
+            $sql->execute(array(':messageID'=>$messageID));
+            $_SESSION['success']="Sucessfully deleted";
+            header('location: index.php');
+            return;
+
+        }else{
+            
+            $_SESSION['error']="Delete unsucessful";
+            header('location: delete.php');
+            return;
+        }
+    }
+}
+
+
 //link to file containing header
 include ("header_ad.php");
 ?>
@@ -293,6 +320,22 @@ include ("header_ad.php");
                                 echo '<p>Company Name: '.$row['CNcompany_name'].'</p>';
                                 echo '<input class="btn btn-primary" type="submit" name="delete" value="Delete">';
                                 echo '<input type="hidden" name="resultID" value="'.$row['resultID'].'">';
+                            }
+
+                            //fetch to display information for pradminmessage table
+                            if(isset($_GET['messageID'])) {
+                                
+                                $query="SELECT * FROM pradminmessage WHERE messageID = :messageID";
+                                $sql=$connection->prepare($query);
+                                $sql->execute(array(':messageID'=>$_GET['messageID']));
+                                $row=$sql->fetch(PDO::FETCH_ASSOC);
+
+                                echo '<h3>Are you sure you want to delete this message?</h3>';
+                                echo '<p>User ID: '.$row['useruniqueId'].'</p>';
+                                echo '<p>Subject: '.$row['subject'].'</p>';
+                                echo '<p>Message: '.$row['message'].'</p>';
+                                echo '<input class="btn btn-primary" type="submit" name="delete" value="Delete">';
+                                echo '<input type="hidden" name="messageID" value="'.$row['messageID'].'">';
                             }
                         ?>
 					</form>

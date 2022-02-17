@@ -41,13 +41,23 @@ $query = "CREATE TABLE IF NOT EXISTS PRcontractor (
 $sql = $connection->prepare($query);
 $sql->execute();
 
-//creation of database table for admin message if it doesnt exist
+//creation of database table for admin message inbox if it doesnt exist
 
 $query="CREATE TABLE IF NOT EXISTS PRadminmessage (
 		  messageID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 		  useruniqueId VARCHAR(50) NOT NULL,
 		  subject TEXT NOT NULL,
 		  message TEXT NOT NULL)";
+$sql= $connection->prepare($query);
+$sql->execute();
+
+//creation of database table for admin message outbox if it doesnt exist
+
+$query="CREATE TABLE IF NOT EXISTS PRmessage (
+		  messageOutID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+		  useruniqueOutId VARCHAR(50) NOT NULL,
+		  subjectOut TEXT NOT NULL,
+		  messageOut TEXT NOT NULL)";
 $sql= $connection->prepare($query);
 $sql->execute();
 
