@@ -23,7 +23,7 @@
                 <div class="container">
 
                     <!-- Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Available Projects</h1>
+                    <h1 class="m-0 font-weight-bold text-secondary">Available Projects</h1>
 
                     <form style="margin-top: 25px;">
                         <div class="input-group mb-3">
@@ -97,7 +97,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; P-Rejex 2021</span>
+                        <span>Copyright &copy; P-Rejex <script>document.write(new Date().getFullYear());</script></span>
                     </div>
                 </div>
             </footer>

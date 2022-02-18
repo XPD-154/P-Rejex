@@ -25,7 +25,8 @@
 
                 <!-- Begin Table Content for displaying projects -->
                 <div class="container-fluid">
-                     <!-- Table Heading -->
+                    
+                    <!-- Table Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h1 class="m-0 font-weight-bold text-info">Prequalification Results Table</h1>
@@ -171,6 +172,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; P-Rejex <script>document.write(new Date().getFullYear());</script></span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
 
                 </div>
                 <!-- end of Table Content -->

@@ -47,7 +47,8 @@ $query="CREATE TABLE IF NOT EXISTS PRadminmessage (
 		  messageID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 		  useruniqueId VARCHAR(50) NOT NULL,
 		  subject TEXT NOT NULL,
-		  message TEXT NOT NULL)";
+		  message TEXT NOT NULL,
+		  status TEXT NOT NULL)";
 $sql= $connection->prepare($query);
 $sql->execute();
 
@@ -57,7 +58,8 @@ $query="CREATE TABLE IF NOT EXISTS PRmessage (
 		  messageOutID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 		  useruniqueOutId VARCHAR(50) NOT NULL,
 		  subjectOut TEXT NOT NULL,
-		  messageOut TEXT NOT NULL)";
+		  messageOut TEXT NOT NULL,
+		  statusOut TEXT NOT NULL)";
 $sql= $connection->prepare($query);
 $sql->execute();
 

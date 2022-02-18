@@ -164,7 +164,7 @@
                         <!-- Counter - Messages -->
                         <span class="badge badge-danger badge-counter">
                             <?php
-                                $query = "SELECT * FROM PRadminmessage";
+                                $query = "SELECT * FROM PRadminmessage WHERE status = ' ' ";
                                 $sql = $connection->prepare($query);
                                 $sql->execute();
                                 $rowCount = $sql->rowCount();
@@ -179,11 +179,11 @@
                             Message Center
                         </h6>
                         <?php
-                            $query = "SELECT * FROM PRadminmessage LIMIT 4";
+                            $query = "SELECT * FROM PRadminmessage WHERE status = ' ' LIMIT 4";
                             $sql = $connection->prepare($query);
                             $sql->execute();
                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                echo '<a class="dropdown-item d-flex align-items-center" href="#">';
+                                echo '<a class="dropdown-item d-flex align-items-center" href="messageus.php">';
                                 echo '<div class="font-weight-bold">';
                                 echo ('<div class="text-truncate">'.$row['message'].'</div>');
                                 echo ('<div class="small text-gray-500">'.$row['useruniqueId'].'</div>');

@@ -344,6 +344,11 @@ include ("header_ad.php");
 		                //check for admin message reply
 	                	if(isset($_GET['messageID'])) {
 
+	                		$query = "UPDATE pradminmessage SET status = :status WHERE messageID = :messageID LIMIT 1";
+							$sql = $connection->prepare($query);
+							$sql->execute(array(':status'=>'read',
+												':messageID'=>$_GET['messageID']));
+
 	                		$query="SELECT * FROM pradminmessage WHERE messageID = :messageID";
                             $sql=$connection->prepare($query);
                             $sql->execute(array(':messageID'=>$_GET['messageID']));
