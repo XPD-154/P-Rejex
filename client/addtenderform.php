@@ -7,43 +7,6 @@ include ("../connection.php");
 
 session_start();
 
-// create table for tender if it doesnt exist
-
-$query="CREATE TABLE IF NOT EXISTS prtender (
-			tenderID INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-			project_name VARCHAR(50) NOT NULL,
-			introduction TEXT NOT NULL,
-			scope_of_work TEXT NOT NULL,
-			eligibility_criteria TEXT NOT NULL,
-  			list_of_work_for_tender TEXT NOT NULL,
-			tender_evaluation_procedure_and_method TEXT NOT NULL,
-  			submission_closing_date TEXT NOT NULL,
-  			bid_opening_date TEXT NOT NULL,  
-			any_other_information TEXT NOT NULL, 
-			disclaimer TEXT NOT NULL,
-			CLuniqueId VARCHAR(50) NOT NULL,
-			CLtenderuniqueId VARCHAR(50) NOT NULL, 
-			INDEX (CLuniqueId, project_name),
-			CONSTRAINT f2  
-			FOREIGN KEY (project_name)   
-			REFERENCES prproject (project_name)
-			ON DELETE CASCADE
-			ON UPDATE CASCADE)";
-$sql= $connection->prepare($query);
-$sql->execute();
-
-//alter PRtender by adding a foreign key to CLuniqueid
-try {
-    $query="ALTER TABLE PRtender add FOREIGN KEY(CLuniqueId) REFERENCES prclient(CLuniqueId)";
-    $sql= $connection->prepare($query);
-    $sql->execute();
-} catch (PDOException $exception) {
-    if($exception->errorInfo[2] == 1061) {
-        // references already exists
-    } else {
-        // Another error occurred
-    }
-}
 
 //tender form validation
 if (isset($_POST["submit"])){

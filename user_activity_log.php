@@ -2,22 +2,6 @@
 	// Include the database configuration file 
 	include 'connection.php';
 
-
-	//create the table for visitors activities
-	$query="CREATE TABLE IF NOT EXISTS `visitor_activity_logs` (
-		`id` int(11) NOT NULL AUTO_INCREMENT,
-		`user_ip_address` varchar(50) NOT NULL,
-		`user_agent` varchar(255) NOT NULL,
-		`page_url` varchar(255) NOT NULL,
-		`referrer_url` varchar(255) DEFAULT NULL,
-		`user` varchar(50),
-		`message` varchar(255),
-		`project` varchar(255),
-		`created_on` datetime NOT NULL DEFAULT current_timestamp(),
-		PRIMARY KEY (`id`))";
-	$sql=$connection->prepare($query);
-	$sql->execute();
-
 	//check if a registered user is working within the site
 	if (isset($_SESSION['user']) && isset($_SESSION['message']) && isset($_SESSION['project_name'])) {
 		

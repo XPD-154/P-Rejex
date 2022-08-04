@@ -23,40 +23,6 @@ if(!$_SESSION['CNuniqueID']){
 //store users activity using this file
 include ('user_activity_log.php');
 
-//creation of database table for prequalification process if it doesnt exist
-
-$query = "CREATE TABLE IF NOT EXISTS PRprequalification (
-                resultID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                project_name VARCHAR(50) NOT NULL,
-                CNuniqueId VARCHAR(50) NOT NULL,
-                CNcompany_name VARCHAR(50) NOT NULL,
-                CNemail VARCHAR(50) NOT NULL,
-                CNphone_number VARCHAR(50) NOT NULL,
-                score DECIMAL(4,2) NOT NULL,
-                verdict TEXT NOT NULL,
-                INDEX(CNuniqueId, project_name),
-                CONSTRAINT f4  
-                FOREIGN KEY (project_name)   
-                REFERENCES prproject (project_name)
-                ON DELETE CASCADE
-                ON UPDATE CASCADE)";
-$sql= $connection->prepare($query);
-$sql->execute();
-
-//alter PRprequalification by adding a foreign key to CNuniqueid
-try {
-    $query="ALTER TABLE PRprequalification add FOREIGN KEY(CNuniqueId) REFERENCES PRcontractor(CNuniqueId)";
-    $sql= $connection->prepare($query);
-    $sql->execute();
-} catch (PDOException $exception) {
-    if($exception->errorInfo[2] == 1061) {
-        // references already exists
-    } else {
-        // Another error occurred
-    }
-}
-
-
 //create a class to calculate total score after the the questions are answered
 class CalculateTotal
 {

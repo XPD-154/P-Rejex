@@ -8,15 +8,6 @@
 
   session_start(); 
 
-  //creation of database table for admin if it doesnt exist
-
-  $query="CREATE TABLE IF NOT EXISTS PRadmin(
-                    adminID INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
-                    admin_email VARCHAR(50) NOT NULL,
-                    admin_password VARCHAR(50) NOT NULL)" ;
-  $sql=$connection->prepare($query);
-  $sql->execute();
-
   if (!$_SESSION['adminID']){
 
       header('location:adminlogin.php');

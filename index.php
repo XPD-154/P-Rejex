@@ -1,67 +1,17 @@
 <?php
 
 //start database connection
-
 include ("connection.php");
 
 //start session connection
-
 session_start();
 
-//store users activity using this php file
+//create table for project if they don't exists
+include 'create_tables.php';
 
+//store users activity using this php file
 include 'user_activity_log.php';
 
-//creation of database table for client if it doesnt exist
-
-$query = "CREATE TABLE IF NOT EXISTS PRclient (
-    clientID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    CLemail VARCHAR(50) NOT NULL,
-    CLpassword VARCHAR(50) NOT NULL,
-    CLcompany_name VARCHAR(50) NOT NULL,
-    CLphone_number VARCHAR(50) NOT NULL,
-    CLuniqueId VARCHAR(50) NOT NULL,
-    INDEX(CLuniqueId)
-)";
-$sql= $connection->prepare($query);
-$sql->execute();
-
-
-//creation of database table for contractor if it doesnt exist
-
-$query = "CREATE TABLE IF NOT EXISTS PRcontractor (
-    contractorID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    CNemail VARCHAR(50) NOT NULL,
-    CNpassword VARCHAR(50) NOT NULL,
-    CNcompany_name VARCHAR(50) NOT NULL,
-    CNphone_number VARCHAR(50) NOT NULL,
-    CNuniqueId VARCHAR(50) NOT NULL,
-    INDEX(CNuniqueId)
-)";
-$sql = $connection->prepare($query);
-$sql->execute();
-
-//creation of database table for admin message inbox if it doesnt exist
-
-$query="CREATE TABLE IF NOT EXISTS PRadminmessage (
-		  messageID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		  useruniqueId VARCHAR(50) NOT NULL,
-		  subject TEXT NOT NULL,
-		  message TEXT NOT NULL,
-		  status TEXT NOT NULL)";
-$sql= $connection->prepare($query);
-$sql->execute();
-
-//creation of database table for admin message outbox if it doesnt exist
-
-$query="CREATE TABLE IF NOT EXISTS PRmessage (
-		  messageOutID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		  useruniqueOutId VARCHAR(50) NOT NULL,
-		  subjectOut TEXT NOT NULL,
-		  messageOut TEXT NOT NULL,
-		  statusOut TEXT NOT NULL)";
-$sql= $connection->prepare($query);
-$sql->execute();
 
 //Login form validation for client in modal
 

@@ -9,25 +9,6 @@ include ("../connection.php");
 
 session_start();  
 
-//creation of database table for projects if it doesnt exist
-
-$query="CREATE TABLE IF NOT EXISTS prproject (
-		  projectID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		  project_name VARCHAR(50) NOT NULL,
-		  project_type VARCHAR(50) NOT NULL,
-		  project_location VARCHAR(50) NOT NULL,
-		  project_est_bugt VARCHAR(50) NOT NULL,
-		  CLuniqueId VARCHAR(50) NOT NULL,
-          INDEX(project_name, CLuniqueId),
-		  CONSTRAINT f1
-		  FOREIGN KEY (CLuniqueId)
-		  REFERENCES prclient (CLuniqueId)
-		  ON DELETE CASCADE
-		  ON UPDATE CASCADE)";
-$sql= $connection->prepare($query);
-$sql->execute();
-
-
 //project form validation 
 if(isset($_POST['submit'])){
 
