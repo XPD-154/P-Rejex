@@ -29,7 +29,7 @@ if(isset($_GET['CLuniqueId']) && isset($_POST['update'])) {
             header('location: edit.php');
             return;
         }
-    
+
 }
 
 //check for contractor table
@@ -55,7 +55,7 @@ if(isset($_GET['CNuniqueId']) && isset($_POST['update'])) {
             header('location: edit.php');
             return;
         }
-    
+
 }
 
 //check for project table
@@ -82,7 +82,7 @@ if(isset($_GET['projectID']) && isset($_POST['update'])) {
             header('location: edit.php');
             return;
         }
-    
+
 }
 
 //check for tender table
@@ -115,7 +115,7 @@ if(isset($_GET['tenderID']) && isset($_POST['update'])) {
             header('location: edit.php');
             return;
         }
-    
+
 }
 
 //check for and reply from admin message table
@@ -124,14 +124,14 @@ if(isset($_GET['messageID']) && isset($_POST['update'])){
 	$useruniqueId=$_POST['useruniqueId'];
 
     if($useruniqueId!=""){
-		//insert values into PRclient table
+		//insert values into PRmessage table
 		$query = "INSERT INTO PRmessage (useruniqueOutId, subjectOut, messageOut) VALUES (:useruniqueOutId, :subjectOut, :messageOut)";
 		$sql = $connection->prepare($query);
 		$sql->execute(array(
 				':useruniqueOutId'=>$_POST['useruniqueId'],
 				':subjectOut'=>$_POST['subjectOut'],
 				':messageOut'=>$_POST['messageOut']));
-			
+
 		$_SESSION['success']="Message Sent";
 		header('location: index.php');
 		return;
@@ -161,7 +161,7 @@ include ("header_ad.php");
     <!--section containing project form-->
 	<section class="container" id="projectForm">
          <div class="p-5">
-                
+
                 <!--div containing error alert-->
                 <div id="error" class="text-center">
                 	<?php
@@ -176,7 +176,7 @@ include ("header_ad.php");
 
                 <form class="user" method="POST">
                 	<?php
-                		
+
                 		//check for client
 	                	if(isset($_GET['CLuniqueId'])) {
 
@@ -188,7 +188,7 @@ include ("header_ad.php");
 		                	echo '<div class="text-center">';
 			                echo '<h1 class="h4 text-gray-900 mb-4">Update Client Information</h1>';
 			                echo '</div>';
-		           
+
 		                    echo '<div class="form-group">';
 		                    echo '<label for="clientName">Company Name</label>';
 		                    echo '<input type="text" id="clientName" class="form-control form-control-user" name="CLcompany_name" value="'.$row['CLcompany_name'].'">';
@@ -203,7 +203,7 @@ include ("header_ad.php");
 		                    echo '</div>';
 
 		                    echo '<input type="hidden" name="CLuniqueId" value="'.$row['CLuniqueId'].'">';
-		               
+
 		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
 		                }
 
@@ -218,7 +218,7 @@ include ("header_ad.php");
 		                	echo '<div class="text-center">';
 			                echo '<h1 class="h4 text-gray-900 mb-4">Update Contractor Information</h1>';
 			                echo '</div>';
-		           
+
 		                    echo '<div class="form-group">';
 		                    echo '<label for="contractorName">Company Name</label>';
 		                    echo '<input type="text" id="contractorName" class="form-control form-control-user" name="CNcompany_name" value="'.$row['CNcompany_name'].'">';
@@ -233,7 +233,7 @@ include ("header_ad.php");
 		                    echo '</div>';
 
 		                    echo '<input type="hidden" name="CNuniqueId" value="'.$row['CNuniqueId'].'">';
-		               
+
 		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
 		                }
 
@@ -248,7 +248,7 @@ include ("header_ad.php");
 		                	echo '<div class="text-center">';
 			                echo '<h1 class="h4 text-gray-900 mb-4">Update Project Information</h1>';
 			                echo '</div>';
-		           
+
 		                    echo '<div class="form-group">';
 		                    echo '<label for="projectName">Project Name</label>';
 		                    echo '<input type="text" id="projectName" class="form-control form-control-user" name="project_name" value="'.$row['project_name'].'">';
@@ -270,7 +270,7 @@ include ("header_ad.php");
 		                    echo '</div>';
 
 		                    echo '<input type="hidden" name="projectID" value="'.$row['projectID'].'">';
-		               
+
 		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
 		                }
 
@@ -285,7 +285,7 @@ include ("header_ad.php");
 		                	echo '<div class="text-center">';
 			                echo '<h1 class="h4 text-gray-900 mb-4">Update Tender Information</h1>';
 			                echo '</div>';
-		           
+
 		                    echo '<div class="form-group">';
 		                    echo '<label for="projectName">Project Name</label>';
 		                    echo '<input type="text" id="projectName" class="form-control form-control-user" name="project_name" value="'.$row['project_name'].'">';
@@ -337,11 +337,11 @@ include ("header_ad.php");
 		                    echo '</div>';
 
 		                    echo '<input type="hidden" name="tenderID" value="'.$row['tenderID'].'">';
-		               
+
 		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
 		                }
 
-		                //check for admin message reply
+		                //check for admin inbox message reply
 	                	if(isset($_GET['messageID'])) {
 
 	                		$query = "UPDATE pradminmessage SET status = :status WHERE messageID = :messageID LIMIT 1";
@@ -357,7 +357,7 @@ include ("header_ad.php");
 		                	echo '<div class="text-center">';
 			                echo '<h1 class="h4 text-gray-900 mb-4">Reply</h1>';
 			                echo '</div>';
-		           
+
 		                    echo '<div class="form-group">';
 		                    echo '<label for="subjectOut">Subject</label>';
 		                    echo '<input type="text" id="subjectOut" class="form-control form-control-user" name="subjectOut" value="RE: '.$row['subject'].'">';
@@ -368,39 +368,10 @@ include ("header_ad.php");
 		                    echo '</div>';
 
 		                    echo '<input type="hidden" name="useruniqueId" value="'.$row['useruniqueId'].'">';
-		               
+
 		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Send</button>';
 		                }
 
-		                //check for admin outbox messages
-	                	/*if(isset($_GET['CLuniqueId'])) {
-
-	                		$query="SELECT * FROM prmessage WHERE CLuniqueId = :CLuniqueId";
-                            $sql=$connection->prepare($query);
-                            $sql->execute(array(':CLuniqueId'=>$_GET['CLuniqueId']));
-                            $row=$sql->fetch(PDO::FETCH_ASSOC);
-
-		                	echo '<div class="text-center">';
-			                echo '<h1 class="h4 text-gray-900 mb-4">Update Client Information</h1>';
-			                echo '</div>';
-		           
-		                    echo '<div class="form-group">';
-		                    echo '<label for="clientName">Company Name</label>';
-		                    echo '<input type="text" id="clientName" class="form-control form-control-user" name="CLcompany_name" value="'.$row['CLcompany_name'].'">';
-		                    echo '</div>';
-		                 	echo '<div class="form-group">';
-		                 	echo '<label for="clientPhone">Company Contact Line</label>';
-		                    echo '<input type="text" id="clientPhone" class="form-control form-control-user" name="CLphone_number" value="'.$row['CLphone_number'].'">';
-		                    echo '</div>';
-		                    echo '<div class="form-group">';
-		                    echo '<label for="clientEmail">Company Email</label>';
-		                    echo '<input type="text" id="clientEmail" class="form-control form-control-user" name="CLemail" value="'.$row['CLemail'].'">';
-		                    echo '</div>';
-
-		                    echo '<input type="hidden" name="CLuniqueId" value="'.$row['CLuniqueId'].'">';
-		               
-		                    echo '<button type="submit" name="update" class="btn btn-primary btn-user btn-block">Update</button>';
-		                }*/
 
                 	?>
                 </form>

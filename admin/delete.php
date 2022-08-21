@@ -21,7 +21,7 @@ if(isset($_GET['user'])){
             header('location: index.php');
             return;
         }else{
-            
+
             $_SESSION['error']="Delete unsucessful";
             header('location: delete.php');
             return;
@@ -47,7 +47,7 @@ if(isset($_GET['CLuniqueId'])) {
             header('location: client.php');
             return;
         }else{
-            
+
             $_SESSION['error']="Delete unsucessful";
             header('location: delete.php');
             return;
@@ -73,7 +73,7 @@ if(isset($_GET['CNuniqueId'])) {
             return;
 
         }else{
-            
+
             $_SESSION['error']="Delete unsucessful";
             header('location: delete.php');
             return;
@@ -99,7 +99,7 @@ if(isset($_GET['projectID'])) {
             return;
 
         }else{
-            
+
             $_SESSION['error']="Delete unsucessful";
             header('location: delete.php');
             return;
@@ -125,7 +125,7 @@ if(isset($_GET['tenderID'])) {
             return;
 
         }else{
-            
+
             $_SESSION['error']="Delete unsucessful";
             header('location: delete.php');
             return;
@@ -151,7 +151,7 @@ if(isset($_GET['resultID'])) {
             return;
 
         }else{
-            
+
             $_SESSION['error']="Delete unsucessful";
             header('location: delete.php');
             return;
@@ -159,7 +159,7 @@ if(isset($_GET['resultID'])) {
     }
 }
 
-//check for pradminmessage table
+//check for pradminmessage table (inbox)
 if(isset($_GET['messageID'])) {
 
     if(isset($_POST['delete'])){
@@ -177,7 +177,7 @@ if(isset($_GET['messageID'])) {
             return;
 
         }else{
-            
+
             $_SESSION['error']="Delete unsucessful";
             header('location: delete.php');
             return;
@@ -185,6 +185,31 @@ if(isset($_GET['messageID'])) {
     }
 }
 
+//check for prmessage table (outbox)
+if(isset($_GET['messageOutID'])) {
+
+    if(isset($_POST['delete'])){
+
+        $delete=$_POST['delete'];
+        $messageOutID=$_POST['messageOutID'];
+
+        if($delete!="" && $messageOutID!=""){
+
+            $query="DELETE FROM prmessage WHERE messageOutID = :messageOutID";
+            $sql=$connection->prepare($query);
+            $sql->execute(array(':messageOutID'=>$messageOutID));
+            $_SESSION['success']="Sucessfully deleted";
+            header('location: index.php');
+            return;
+
+        }else{
+
+            $_SESSION['error']="Delete unsucessful";
+            header('location: delete.php');
+            return;
+        }
+    }
+}
 
 //link to file containing header
 include ("header_ad.php");
@@ -209,7 +234,7 @@ include ("header_ad.php");
                                </div>');
                         unset($_SESSION['success']);
                     }
-                   ?> 
+                   ?>
                 </div>
                 <!--end of section for success alert-->
 
@@ -221,9 +246,10 @@ include ("header_ad.php");
                         echo ('<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                   <strong>'.$_SESSION['error'].'!</strong><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                </div>');
+
                         unset($_SESSION['error']);
                     }
-                   ?> 
+                   ?>
                 </div>
                 <!--end of section for error alert-->
 
@@ -231,7 +257,7 @@ include ("header_ad.php");
                 <div class="container">
 	                <form method="POST">
 	                	<?php
-                            //fetch to display information for activity logs table 
+                            //fetch to display information for activity logs table
                             if(isset($_GET['user'])) {
 
                                 $query="SELECT * FROM visitor_activity_logs WHERE user = :user";
@@ -249,7 +275,7 @@ include ("header_ad.php");
 
                             //fetch to display information for client table
                             if(isset($_GET['CLuniqueId'])) {
-                                
+
                                 $query="SELECT * FROM prclient WHERE CLuniqueId = :CLuniqueId";
                                 $sql=$connection->prepare($query);
                                 $sql->execute(array(':CLuniqueId'=>$_GET['CLuniqueId']));
@@ -264,7 +290,7 @@ include ("header_ad.php");
 
                             //fetch to display information for contractor table
                             if(isset($_GET['CNuniqueId'])) {
-                                
+
                                 $query="SELECT * FROM prcontractor WHERE CNuniqueId = :CNuniqueId";
                                 $sql=$connection->prepare($query);
                                 $sql->execute(array(':CNuniqueId'=>$_GET['CNuniqueId']));
@@ -279,7 +305,7 @@ include ("header_ad.php");
 
                             //fetch to display information for project table
                             if(isset($_GET['projectID'])) {
-                                
+
                                 $query="SELECT * FROM prproject WHERE projectID = :projectID";
                                 $sql=$connection->prepare($query);
                                 $sql->execute(array(':projectID'=>$_GET['projectID']));
@@ -291,10 +317,10 @@ include ("header_ad.php");
                                 echo '<input class="btn btn-primary" type="submit" name="delete" value="Delete">';
                                 echo '<input type="hidden" name="projectID" value="'.$row['projectID'].'">';
                             }
-    						
+
                             //fetch to display information for tender table
                             if(isset($_GET['tenderID'])) {
-                                
+
                                 $query="SELECT * FROM prtender WHERE tenderID = :tenderID";
                                 $sql=$connection->prepare($query);
                                 $sql->execute(array(':tenderID'=>$_GET['tenderID']));
@@ -309,7 +335,7 @@ include ("header_ad.php");
 
                             //fetch to display information for prequalification table
                             if(isset($_GET['resultID'])) {
-                                
+
                                 $query="SELECT * FROM prprequalification WHERE resultID = :resultID";
                                 $sql=$connection->prepare($query);
                                 $sql->execute(array(':resultID'=>$_GET['resultID']));
@@ -322,9 +348,9 @@ include ("header_ad.php");
                                 echo '<input type="hidden" name="resultID" value="'.$row['resultID'].'">';
                             }
 
-                            //fetch to display information for pradminmessage table
+                            //fetch to display information for pradminmessage table (inbox)
                             if(isset($_GET['messageID'])) {
-                                
+
                                 $query="SELECT * FROM pradminmessage WHERE messageID = :messageID";
                                 $sql=$connection->prepare($query);
                                 $sql->execute(array(':messageID'=>$_GET['messageID']));
@@ -337,11 +363,27 @@ include ("header_ad.php");
                                 echo '<input class="btn btn-primary" type="submit" name="delete" value="Delete">';
                                 echo '<input type="hidden" name="messageID" value="'.$row['messageID'].'">';
                             }
+
+                            //fetch to display information for prmessage table (outbox)
+                            if(isset($_GET['messageOutID'])) {
+
+                                $query="SELECT * FROM prmessage WHERE messageOutID = :messageOutID";
+                                $sql=$connection->prepare($query);
+                                $sql->execute(array(':messageOutID'=>$_GET['messageOutID']));
+                                $row=$sql->fetch(PDO::FETCH_ASSOC);
+
+                                echo '<h3>Are you sure you want to delete this message?</h3>';
+                                echo '<p>User ID: '.$row['useruniqueOutId'].'</p>';
+                                echo '<p>Subject: '.$row['subjectOut'].'</p>';
+                                echo '<p>Message: '.$row['messageOut'].'</p>';
+                                echo '<input class="btn btn-primary" type="submit" name="delete" value="delete">';
+                                echo '<input type="hidden" name="messageOutID" value="'.$row['messageOutID'].'">';
+                            }
                         ?>
 					</form>
 				</div>
 				<!--end section with form for the confirmation of delete-->
-               
+
             </div>
             <!-- End of Main Content -->
 
@@ -355,7 +397,7 @@ include ("header_ad.php");
             </footer>
             <!-- End of Footer -->
 
-        </div> 
+        </div>
         <!-- End of Content Wrapper -->
 
     </div>

@@ -1,10 +1,10 @@
 <?php
-  
+
   //start database connection
   include ("../connection.php");
 
   //start session connection
-  session_start();  
+  session_start();
 
   //logout from dashboard and log that activity
   include ("logout.php");
@@ -29,10 +29,10 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="search" name="searchInput" id="myInput">
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
+                                <button type="submit" class="btn btn-secondary" id="myBtn">submit</button>
                             </div>
                         </div>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input a location<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input a location<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
                     </form>
                     <?php
 
@@ -44,7 +44,7 @@
                             $sql=$connection->prepare($query);
                             $sql->execute();
                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                
+
                                 echo ('<div class="card border-dark mb-3 ml-3" style="width: 18rem;">');
                                 echo ('<div class="card-header">Project</div>');
                                 echo ('<div class="card-body text-dark">');
@@ -69,7 +69,7 @@
                             $sql=$connection->prepare($query);
                             $sql->execute();
                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                            
+
                                 echo ('<div class="card border-dark mb-3 ml-3" style="width: 18rem;">');
                                 echo ('<div class="card-header">Project</div>');
                                 echo ('<div class="card-body text-dark">');
@@ -86,9 +86,9 @@
                             }
                             echo ('</div>');
                         }
-                        
+
                     ?>
-                </div>    
+                </div>
 
             </div>
             <!-- End of Main Content -->
@@ -103,7 +103,7 @@
             </footer>
             <!-- End of Footer -->
 
-        </div> 
+        </div>
         <!-- End of Content Wrapper -->
 
     </div>
@@ -111,6 +111,6 @@
 
     <!--link to file containing user profile modal-->
     <?php include ("user_profile_co.php"); ?>
-    
+
     <!--link to file containing footer file-->
     <?php include ("footer_co.php"); ?>

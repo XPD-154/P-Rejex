@@ -1,54 +1,46 @@
 <?php
-//connection
-include ("../connection.php");
 
-//session start
-session_start();
+  //start database connection
+  include ("../connection.php");
 
-//link to file containing header
-include ("header_ad.php");
+  //start session connection
+  session_start();
+
+  //logout from dashboard and log that activity
+  include ("logout.php");
+
+  //reference to header file
+
+  include("header_co.php");
+
 ?>
+
 
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
+	<!-- Page Wrapper -->
     <div id="wrapper">
 
-		<!--link to file containing menu and sidebar-->
-        <?php include ("menu_sidebar_ad.php"); ?>
+		<?php include ("menu_sidebar_co.php"); ?>
 
-
-                <!--section for success alert-->
-                <div id="success" style="padding: 10px;" class="text-center">
-                   <?php
-                    if(isset($_SESSION['success'])){
-
-                        echo ('<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                  <strong>'.$_SESSION['success'].'!</strong><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                               </div>');
-                        unset($_SESSION['success']);
-                    }
-                   ?>
-                </div>
-                <!--end of section for success alert-->
-
-                <!--section containing table for prequalification results-->
-                <div class="container" style="margin: 10px;">
+                <!-- Begin Table Content for displaying projects -->
+                <div class="container-fluid">
 
                     <!-- Table Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Prequalification Table</h6>
+                            <h1 class="m-0 font-weight-bold text-secondary">Message Inbox</h1>
+                            <p class="mb-4">Tables showing messages for <?= $_SESSION['CNuniqueID'] ?> </p>
 
                             <form style="margin-top: 25px;">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="search" name="searchInput" id="myInput">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
+                                        <button type="submit" class="btn btn-secondary" id="myBtn">submit</button>
                                     </div>
                                 </div>
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input company name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please message subject<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
                             </form>
                         </div>
                         <div class="card-body">
@@ -57,18 +49,14 @@ include ("header_ad.php");
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Project Name</th>
-                                            <th>Contractor Unique ID</th>
-                                            <th>Company Name</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
-                                            <th>Score</th>
-                                            <th>Verdict</th>
-                                            <th>Delete</th>
+                                            <th>Subject</th>
+                                            <th>Message</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
+
+                                       $CNuniqueID=$_SESSION['CNuniqueID'];
 
                                       //determine the page we are currently on using a GET variable, if there is more than one table, all their GET variables should have unique names
                                       if(isset($_GET['page'])){
@@ -88,7 +76,7 @@ include ("header_ad.php");
                                       $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
 
                                       //determine the total amount of data in the database
-                                      $query="SELECT * FROM prprequalification";
+                                      $query="SELECT * FROM prclient";
                                       $sql=$connection->prepare($query);
                                       $sql->execute();
                                       $total_rows_available = $sql->rowCount();
@@ -99,60 +87,36 @@ include ("header_ad.php");
                                       if(isset($_GET['searchInput'])){
 
                                             $searchInput = $_GET['searchInput'];
-                                            $query="SELECT * FROM prprequalification WHERE CNcompany_name LIKE '%$searchInput%' ORDER BY resultID DESC";
+                                            $query="SELECT * FROM prmessage WHERE subjectOut LIKE '%$searchInput%' ORDER BY messageOutID DESC";
                                             $sql=$connection->prepare($query);
                                             $sql->execute();
 
                                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
 
                                                 echo"<tr><td>";
-                                                echo ($row['resultID']);
+                                                echo ($row['useruniqueOutId']);
                                                 echo ("</td><td>");
-                                                echo ($row['project_name']);
+                                                echo ($row['subjectOut']);
                                                 echo ("</td><td>");
-                                                echo ($row['CNuniqueId']);
-                                                echo ("</td><td>");
-                                                echo ($row['CNcompany_name']);
-                                                echo ("</td><td>");
-                                                echo ($row['CNemail']);
-                                                echo ("</td><td>");
-                                                echo ($row['CNphone_number']);
-                                                echo ("</td><td>");
-                                                echo ($row['score']);
-                                                echo ("</td><td>");
-                                                echo ($row['verdict']);
-                                                echo ("</td><td>");
-                                                echo ('<a class="btn btn-danger" href="delete.php?resultID='.$row['resultID'].'">Delete</a>');
+                                                echo ($row['messageOut']);
                                                 echo ("</td></tr>");
 
                                             };
 
                                         }else{
 
-                                            $query="SELECT * FROM prprequalification ORDER BY resultID DESC LIMIT $limit_to_display, $no_of_records_displayed_per_page";
+                                            $query="SELECT * FROM prmessage WHERE useruniqueOutId = '$CNuniqueID' ORDER BY messageOutID DESC LIMIT $limit_to_display, $no_of_records_displayed_per_page";
                                             $sql=$connection->prepare($query);
                                             $sql->execute();
 
                                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
 
                                                 echo"<tr><td>";
-                                                echo ($row['resultID']);
+                                                echo ($row['useruniqueOutId']);
                                                 echo ("</td><td>");
-                                                echo ($row['project_name']);
+                                                echo ($row['subjectOut']);
                                                 echo ("</td><td>");
-                                                echo ($row['CNuniqueId']);
-                                                echo ("</td><td>");
-                                                echo ($row['CNcompany_name']);
-                                                echo ("</td><td>");
-                                                echo ($row['CNemail']);
-                                                echo ("</td><td>");
-                                                echo ($row['CNphone_number']);
-                                                echo ("</td><td>");
-                                                echo ($row['score']);
-                                                echo ("</td><td>");
-                                                echo ($row['verdict']);
-                                                echo ("</td><td>");
-                                                echo ('<a class="btn btn-danger" href="delete.php?resultID='.$row['resultID'].'">Delete</a>');
+                                                echo ($row['messageOut']);
                                                 echo ("</td></tr>");
 
                                             };
@@ -180,7 +144,7 @@ include ("header_ad.php");
 
                                       placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>
 
-                                      <button class="btn btn-primary" onClick="go2Page();">Go</button>
+                                      <button class="btn btn-secondary" onClick="go2Page();">Go</button>
                                     </div>
                                     <div class="col-4 col-md-1">
                                         <form method="POST">
@@ -198,20 +162,22 @@ include ("header_ad.php");
                         </div>
                     </div>
 
-                </div>
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; P-Rejex <script>document.write(new Date().getFullYear());</script></span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
 
-            </div>
+                </div>
+                <!-- end of Table Content -->
+
+
+			</div>
             <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; P-Rejex 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
@@ -219,12 +185,8 @@ include ("header_ad.php");
     </div>
     <!-- End of Page Wrapper -->
 
+    <!--reference to file containing scroll button at the buttom, logout button and profile button on top-->
+    <?php include("user_profile_co.php"); ?>
 
-    <!--link to file containing user profile modal-->
-    <?php include ("user_profile_ad.php"); ?>
-
-    <!--link to file containing footer-->
-    <?php include ("footer_ad.php"); ?>
-
-
-
+    <!--reference to footer-->
+	<?php include("footer_co.php"); ?>
