@@ -4,7 +4,7 @@ include ("../connection.php");
 //session start
 session_start();
 
-//check log activity table
+//delete from log activity table
 if(isset($_GET['user'])){
 
         if(isset($_POST['delete'])){
@@ -30,7 +30,7 @@ if(isset($_GET['user'])){
 
 }
 
-//check for client table
+//delete from client table
 if(isset($_GET['CLuniqueId'])) {
 
     if(isset($_POST['delete'])){
@@ -55,7 +55,7 @@ if(isset($_GET['CLuniqueId'])) {
     }
 }
 
-//check for contractor table
+//delete from contractor table
 if(isset($_GET['CNuniqueId'])) {
 
     if(isset($_POST['delete'])){
@@ -81,7 +81,7 @@ if(isset($_GET['CNuniqueId'])) {
     }
 }
 
-//check for project table
+//delete from project table
 if(isset($_GET['projectID'])) {
 
     if(isset($_POST['delete'])){
@@ -107,7 +107,7 @@ if(isset($_GET['projectID'])) {
     }
 }
 
-//check for tender table
+//delete from tender table
 if(isset($_GET['tenderID'])) {
 
     if(isset($_POST['delete'])){
@@ -133,7 +133,7 @@ if(isset($_GET['tenderID'])) {
     }
 }
 
-//check for prequalification table
+//delete from prequalification table
 if(isset($_GET['resultID'])) {
 
     if(isset($_POST['delete'])){
@@ -159,7 +159,7 @@ if(isset($_GET['resultID'])) {
     }
 }
 
-//check for pradminmessage table (inbox)
+//delete from pradminmessage table (admin inbox)
 if(isset($_GET['messageID'])) {
 
     if(isset($_POST['delete'])){
@@ -185,7 +185,7 @@ if(isset($_GET['messageID'])) {
     }
 }
 
-//check for prmessage table (outbox)
+//delete from prmessage table (admin outbox)
 if(isset($_GET['messageOutID'])) {
 
     if(isset($_POST['delete'])){

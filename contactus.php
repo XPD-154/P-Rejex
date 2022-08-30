@@ -8,7 +8,7 @@ include ("connection.php");
 
 session_start();
 
-//store users activity using this file
+//log users activity using this file
 
 include 'user_activity_log.php';
 
@@ -16,7 +16,7 @@ include 'user_activity_log.php';
 
 if(isset($_POST['clientSubmit'])){
 
-	//check if an email is inserted 
+	//check if an email is inserted
 	if(!$_POST['CLemail']){
 
 		$_SESSION['error'] = "Input your email";
@@ -32,7 +32,7 @@ if(isset($_POST['clientSubmit'])){
 
 	}else{
 
-	//select all columns from PRclient table where inserted email matches a record 
+	//select all columns from PRclient table where inserted email matches a record
 	$query = "SELECT * FROM PRclient WHERE CLemail = :email";
 	$sql = $connection->prepare($query);
 	$sql->execute(array(':email'=>$_POST['CLemail']));
@@ -80,7 +80,7 @@ if(isset($_POST['clientSubmit'])){
 			$_SESSION['success']="Welcome back!!!";
 			header('location: client/index.php');
 			return;
-			
+
 		}else{
 
 			//determine user that enters the visitors log
@@ -95,7 +95,7 @@ if(isset($_POST['clientSubmit'])){
 				$_SESSION['message']="Logged in";
 			}
 
-			//store users activity using this file
+			//log users activity using this file
 			include 'client/user_activity_log_cl.php';
 
 			$_SESSION['error'] = "The email/password combination could not be found";
@@ -103,7 +103,7 @@ if(isset($_POST['clientSubmit'])){
 			return;
 		}
 
-		
+
 	}else{
 
 		//determine user that enters the visitors log
@@ -118,7 +118,7 @@ if(isset($_POST['clientSubmit'])){
 			$_SESSION['message']="Logged in";
 		}
 
-		//store users activity using this file
+		//log users activity using this file
 		include 'client/user_activity_log_cl.php';
 
 		$_SESSION['error'] = "The email/password combination could not be found";
@@ -150,7 +150,7 @@ if(isset($_POST['contractorSubmit'])){
 		return;
 	}else{
 
-	//select all columns from PRcontractor table where inserted email matches	
+	//select all columns from PRcontractor table where inserted email matches
 	$query = "SELECT * FROM PRcontractor WHERE CNemail = :email";
 	$sql = $connection->prepare($query);
 	$sql->execute(array(':email'=>$_POST['CNemail']));
@@ -221,7 +221,7 @@ if(isset($_POST['contractorSubmit'])){
 			return;
 		}
 
-		
+
 	}else{
 
 		//determine user that enters the visitors log
@@ -238,7 +238,7 @@ if(isset($_POST['contractorSubmit'])){
 
 		//store users activity using this file
 		include 'contractor/user_activity_log_cn.php';
-			
+
 		$_SESSION['error'] = "The email/password combination could not be found";
 		header('location: index.php');
 		return;
@@ -246,20 +246,6 @@ if(isset($_POST['contractorSubmit'])){
 }
 }
 
-//creation of database table for user feedback if it doesnt exist
-
-$query = "CREATE TABLE IF NOT EXISTS PRfeedback (
-    userID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    area_code VARCHAR(50) NOT NULL,
-    phone_number VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    message TEXT NOT NULL,
-    contact_me TEXT NOT NULL
-)";
-$sql= $connection->prepare($query);
-$sql->execute();
 
 //validation and submission for feedback form
 
@@ -340,10 +326,10 @@ if(isset($_POST['submit'])){
 			return;
 	  	}
 
-	  	
+
 	}
 
-
+//file contains header for html section with links
 include("header.php");
 ?>
 
@@ -375,7 +361,7 @@ include("header.php");
 						            <li><hr class="dropdown-divider"></li>
 						            <li><a class="dropdown-item" href="contractor/contractorsignup.php"><span class="fa fa-file"></span> Contractor</a></li>
 						          </ul>
-						        </li> 
+						        </li>
 					      </ul>
 					      <div>
 					      		<a class="btn btn-success" href="" data-bs-toggle="modal" data-bs-target="#loginModal"><span class="fa fa-sign-in"></span> Login</a>
@@ -384,13 +370,13 @@ include("header.php");
 				    </div>
 			    </div>
 			</nav>
-			<!--end of navigation bar-->
+			<!--end of Navigation bar-->
 
 	</header>
 
 	<main class="container">
 
-			<!--contact us intro section-->
+			<!--Contact us intro section-->
 			<section id="contactUsIntroSection">
 					   <div class="row">
 						   <div class="col-12">
@@ -403,7 +389,7 @@ include("header.php");
 				              <h3>Location Information</h3>
 				           </div>
 				           <div class="col-12 col-sm-1">
-				           	
+
 				           </div>
 				           <div class="col-12 col-sm-4">
 				                   <h5>Our Address</h5>
@@ -430,9 +416,9 @@ include("header.php");
 				            </div>
 			        	</div>
 			</section>
-			<!--end of contact us intro section-->
+			<!--end of Contact us intro section-->
 
-			<!--contact us message section-->
+			<!--Contact us message section-->
 			<section id="contactUsMessageSection">
 				<div class="row">
 					<div class="col-12">
@@ -440,31 +426,31 @@ include("header.php");
 		            </div>
 		            <div class="col-12 col-sm-6">
 
-		            	<!--section containing error alerts-->
+		            	<!--section containing Error alerts-->
 						<div id="error">
-							<?php 
+							<?php
 								if(isset($_SESSION['error'])){
 
-									echo ('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>'.$_SESSION['error'].'!</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'); 
+									echo ('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>'.$_SESSION['error'].'!</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
 									unset($_SESSION['error']);
-								} 
+								}
 							?>
 						</div>
-						<!--end of section containing error alerts-->
+						<!--end of section containing Error alerts-->
 
-						<!--section containing success alerts-->
+						<!--section containing Success alerts-->
 						<div id="success">
-							<?php 
+							<?php
 								if(isset($_SESSION['success'])){
 
 									echo ('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>'.$_SESSION['success'].'!</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-													
+
 									unset($_SESSION['success']);
 								}
-							 ?>
+							?>
 						</div>
-						<!--end section containing success alerts-->
+						<!--end section containing Success alerts-->
 
 						<form method="POST" style="margin-top: 20px">
 							<div class="form-floating mb-3">
@@ -513,10 +499,10 @@ include("header.php");
 				</div>
 
 			</section>
-			<!--contact us message section-->
-			
+			<!--end of Contact us message section-->
+
 	</main>
-	
+
 	<!--login modal for homepage login button-->
 	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -546,7 +532,7 @@ include("header.php");
 			</ul>
 			<div class="tab-content" id="myTabContent" style="margin-top: 10px;">
 			  <div class="tab-pane fade show active" id="loginClient" role="tabpanel" aria-labelledby="loginClient-tab">
-			  	
+
 			  	<!--client login tab-->
 			  	<form method="POST">
 					<div class="input-group mb-3">
@@ -566,11 +552,11 @@ include("header.php");
 					</div>
 					<div class="input-group mb-3">
 					  <button class="btn btn-primary" type="submit" name="clientSubmit">Log In</button>
-					</div>                        
+					</div>
 				</form>
 			  </div>
 			  <div class="tab-pane fade" id="loginContractor" role="tabpanel" aria-labelledby="loginContractor-tab">
-			  	
+
 			  	<!--contractor login tab-->
 			  	<form method="POST">
 					<div class="input-group mb-3">
@@ -590,7 +576,7 @@ include("header.php");
 					</div>
 					<div class="input-group mb-3">
 						<button class="btn btn-primary" type="submit" name="contractorSubmit">Log In</button>
-					</div>                        
+					</div>
 				</form>
 			  </div>
 			</div>

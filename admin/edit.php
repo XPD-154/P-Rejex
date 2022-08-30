@@ -6,7 +6,7 @@ include ("../connection.php");
 //session start
 session_start();
 
-//check for client table
+//update for client table
 if(isset($_GET['CLuniqueId']) && isset($_POST['update'])) {
 
         $CLuniqueId=$_POST['CLuniqueId'];
@@ -32,7 +32,7 @@ if(isset($_GET['CLuniqueId']) && isset($_POST['update'])) {
 
 }
 
-//check for contractor table
+//update for contractor table
 if(isset($_GET['CNuniqueId']) && isset($_POST['update'])) {
 
         $CNuniqueId=$_POST['CNuniqueId'];
@@ -58,7 +58,7 @@ if(isset($_GET['CNuniqueId']) && isset($_POST['update'])) {
 
 }
 
-//check for project table
+//update for project table
 if(isset($_GET['projectID']) && isset($_POST['update'])) {
 
         $projectID=$_POST['projectID'];
@@ -85,7 +85,7 @@ if(isset($_GET['projectID']) && isset($_POST['update'])) {
 
 }
 
-//check for tender table
+//update for tender table
 if(isset($_GET['tenderID']) && isset($_POST['update'])) {
 
         $tenderID=$_POST['tenderID'];
@@ -118,7 +118,7 @@ if(isset($_GET['tenderID']) && isset($_POST['update'])) {
 
 }
 
-//check for and reply from admin message table
+//update for and reply from admin message table
 if(isset($_GET['messageID']) && isset($_POST['update'])){
 
 	$useruniqueId=$_POST['useruniqueId'];
@@ -158,7 +158,7 @@ include ("header_ad.php");
     </nav>
     <!--end of breadcrumb nav bar-->
 
-    <!--section containing project form-->
+    <!--section containing edit form-->
 	<section class="container" id="projectForm">
          <div class="p-5">
 
@@ -174,6 +174,7 @@ include ("header_ad.php");
                 </div>
                 <!--end of div containing error alert-->
 
+                <!--section with form for the confirmation of edit-->
                 <form class="user" method="POST">
                 	<?php
 
@@ -377,7 +378,7 @@ include ("header_ad.php");
                 </form>
         </div>
 	</section>
-	<!--end of section containing project form-->
+	<!--end of section containing edit form-->
 
     <!--link to file containing footer-->
     <?php include ("footer_ad.php"); ?>

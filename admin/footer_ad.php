@@ -1,3 +1,5 @@
+<!--footer for admin homepage-->
+
     <script src="../js/script.js"></script><!--script containing calender-->
     <script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
     <script src="../js/popper.min.js"></script> <!--link to popper js file-->

@@ -219,6 +219,21 @@ include ("header_ad.php");
     </div>
     <!-- End of Page Wrapper -->
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('table').DataTable();
+        });
+
+        function go2Page()
+        {
+            var page = document.getElementById("page").value;
+
+            page = ((page><?php echo $total_no_pages_available; ?>)?<?php echo $total_no_pages_available; ?>:((page<1)?1:page));
+
+            window.location.href = 'prequalification.php?page='+page;
+
+        }
+    </script>
 
     <!--link to file containing user profile modal-->
     <?php include ("user_profile_ad.php"); ?>

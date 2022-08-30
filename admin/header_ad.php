@@ -1,3 +1,4 @@
+<!--header section for admin homepage-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +10,9 @@
 
     <title>P-Rejex Admin</title>
     <link rel="shortcut icon" type="image/jpg" href="../img/Untitled-5.png"> <!--link to favicon-->
-    
+
     <!--link to boostrap css file-->
-    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template-->
     <link href="../dashboard-asserts/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,5 +22,5 @@
     <!-- Custom styles for this template-->
     <link href="../dashboard-asserts/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/style.css"> <!--link to css stylesheet for project-->
-    
+
 </head>

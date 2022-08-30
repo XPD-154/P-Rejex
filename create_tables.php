@@ -1,4 +1,5 @@
 <?php
+//create every table for database and creates a relationship them
 
 //creation of database table for client if it doesnt exist
 $query = "CREATE TABLE IF NOT EXISTS PRclient (
@@ -25,6 +26,14 @@ $query = "CREATE TABLE IF NOT EXISTS PRcontractor (
     INDEX(CNuniqueId)
 )";
 $sql = $connection->prepare($query);
+$sql->execute();
+
+//creation of database table for admin if it doesnt exist
+$query="CREATE TABLE IF NOT EXISTS PRadmin(
+                adminID INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+                admin_email VARCHAR(50) NOT NULL,
+                admin_password VARCHAR(50) NOT NULL)" ;
+$sql=$connection->prepare($query);
 $sql->execute();
 
 //creation of database table for admin message inbox if it doesnt exist
@@ -81,7 +90,7 @@ $sql->execute();
 
 // create table for tender if it doesnt exist
 $query="CREATE TABLE IF NOT EXISTS prtender (
-			tenderID INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+			tenderID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 			project_name VARCHAR(50) NOT NULL,
 			introduction TEXT NOT NULL,
 			scope_of_work TEXT NOT NULL,
@@ -89,14 +98,14 @@ $query="CREATE TABLE IF NOT EXISTS prtender (
   			list_of_work_for_tender TEXT NOT NULL,
 			tender_evaluation_procedure_and_method TEXT NOT NULL,
   			submission_closing_date TEXT NOT NULL,
-  			bid_opening_date TEXT NOT NULL,  
-			any_other_information TEXT NOT NULL, 
+  			bid_opening_date TEXT NOT NULL,
+			any_other_information TEXT NOT NULL,
 			disclaimer TEXT NOT NULL,
 			CLuniqueId VARCHAR(50) NOT NULL,
-			CLtenderuniqueId VARCHAR(50) NOT NULL, 
+			CLtenderuniqueId VARCHAR(50) NOT NULL,
 			INDEX (CLuniqueId, project_name),
-			CONSTRAINT f2  
-			FOREIGN KEY (project_name)   
+			CONSTRAINT f2
+			FOREIGN KEY (project_name)
 			REFERENCES prproject (project_name)
 			ON DELETE CASCADE
 			ON UPDATE CASCADE)";
@@ -127,8 +136,8 @@ $query = "CREATE TABLE IF NOT EXISTS PRprequalification (
                 score DECIMAL(4,2) NOT NULL,
                 verdict TEXT NOT NULL,
                 INDEX(CNuniqueId, project_name),
-                CONSTRAINT f4  
-                FOREIGN KEY (project_name)   
+                CONSTRAINT f4
+                FOREIGN KEY (project_name)
                 REFERENCES prproject (project_name)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE)";
@@ -148,10 +157,16 @@ try {
     }
 }
 
-//creation of database table for admin if it doesnt exist
-$query="CREATE TABLE IF NOT EXISTS PRadmin(
-                adminID INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
-                admin_email VARCHAR(50) NOT NULL,
-                admin_password VARCHAR(50) NOT NULL)" ;
-$sql=$connection->prepare($query);
+//creation of database table for user feedback if it doesnt exist
+$query = "CREATE TABLE IF NOT EXISTS PRfeedback (
+    userID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    area_code VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    message TEXT NOT NULL,
+    contact_me TEXT NOT NULL
+)";
+$sql= $connection->prepare($query);
 $sql->execute();

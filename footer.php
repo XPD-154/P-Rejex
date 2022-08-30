@@ -1,9 +1,9 @@
- 
+
   <!--footer section for homepage-->
   <div class="footer text-center" id="footerSection">
       <div>
-                      
-        <p ><a href=""><img style="width: 100px; height: 100px" src="http:\\localhost\prequalification\preq\img\Untitled-5.png"></a></p>
+
+        <p ><a href=""><img style="width: 100px; height: 100px" src="img\Untitled-5.png"></a></p>
 
         <div class="row">
           <div class="col-12">

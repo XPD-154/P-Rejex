@@ -6,10 +6,10 @@ include ("../connection.php");
 
 //start session connection
 
-session_start();  
+session_start();
 
 
-//admin sign up form validation 
+//admin sign up form validation
 if(isset($_POST['submit'])){
 
     //check if an email is inserted
@@ -40,7 +40,7 @@ if(isset($_POST['submit'])){
 		$sql = $connection->prepare($query);
 		$sql->execute(array(':admin_email'=>$_POST['admin_email'],
 							':admin_password'=>$_POST['admin_password']));
-		
+
         //set last inserted ID as a session variable
         $adminlastID = $connection->lastInsertId();
         $_SESSION['adminID'] = $adminlastID;
@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
     <link rel="shortcut icon" type="image/jpg" href="../img/Untitled-5.png"> <!--link to favicon-->
 
     <!--link to boostrap css file-->
-    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template-->
     <link href="../dashboard-asserts/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -86,13 +86,13 @@ if(isset($_POST['submit'])){
     <link href="../dashboard-asserts/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <style type="text/css">
-    	
+
     </style>
 </head>
 
 <body class="bg-gradient-primary"> <!--color for the entire background-->
 
-    <!--section containing project form-->
+    <!--section containing admin sign up form-->
 	<section class="container" id="projectForm">
          <div class="p-5">
                 <div class="text-center">
@@ -112,7 +112,7 @@ if(isset($_POST['submit'])){
                 <!--end of div containing error alert-->
 
                 <form class="user" method="POST">
-           
+
                     <div class="form-group">
                         <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email address" name="admin_email">
                     </div>
@@ -127,7 +127,7 @@ if(isset($_POST['submit'])){
                 </form>
         </div>
 	</section>
-	<!--end of section containing project form-->
+	<!--end of section containing admin sign up form-->
 
 	<script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
     <script src="../js/popper.min.js"></script> <!--link to popper js file-->

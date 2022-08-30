@@ -4,14 +4,14 @@
   include ("../connection.php");
 
   //start session connection
-  session_start();  
+  session_start();
 
   //logout from dashboard and log that activity
   include ("logout.php");
 
   //reference to header file
-  include("header_cl.php"); 
-   
+  include("header_cl.php");
+
 ?>
 
 
@@ -25,7 +25,7 @@
 
                 <!-- Begin Table Content for displaying projects -->
                 <div class="container-fluid">
-                    
+
                     <!-- Table Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -38,7 +38,7 @@
                                         <button type="submit" class="btn btn-info" id="myBtn">submit</button>
                                     </div>
                                 </div>
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input project name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input project name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
                             </form>
                         </div>
                         <div class="card-body">
@@ -73,13 +73,13 @@
 
                                       //determine limit of data to show on any current table page displaying
                                       $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
-                                      
+
                                       //determine the total amount of data in the database
                                       $query="SELECT * FROM prprequalification";
                                       $sql=$connection->prepare($query);
                                       $sql->execute();
                                       $total_rows_available = $sql->rowCount();
-                                      
+
                                       //total number of pages available based on the total number of rows in database
                                       $total_no_pages_available=ceil($total_rows_available/$no_of_records_displayed_per_page);
 
@@ -91,7 +91,7 @@
                                             $sql->execute();
 
                                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                
+
                                                 echo"<tr><td>";
                                                 echo ($row['project_name']);
                                                 echo ("</td><td>");
@@ -105,7 +105,7 @@
                                                 echo ("</td><td>");
                                                 echo ($row['verdict']);
                                                 echo ("</td></tr>");
-                                                
+
                                             };
 
                                         }else{
@@ -115,7 +115,7 @@
                                             $sql->execute();
 
                                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                
+
                                                 echo"<tr><td>";
                                                 echo ($row['project_name']);
                                                 echo ("</td><td>");
@@ -129,11 +129,11 @@
                                                 echo ("</td><td>");
                                                 echo ($row['verdict']);
                                                 echo ("</td></tr>");
-                                                
+
                                             };
-                                           
+
                                         }
-                                        
+
                                     ?>
                                     </tbody>
                                 </table>
@@ -150,12 +150,12 @@
                                             <li class="page-item"><a class="page-link" href="?page=<?php echo $total_no_pages_available; ?>">Last</a></li>
                                         </ul>
                                     </div>
-                                    <div class="input-group mb-3 col-8 col-md-4">   
-                                      <input id="page" type="number" maxlength="1" class="form-control" min="1" max="<?php echo $total_no_pages_available; ?>"   
+                                    <div class="input-group mb-3 col-8 col-md-4">
+                                      <input id="page" type="number" maxlength="1" class="form-control" min="1" max="<?php echo $total_no_pages_available; ?>"
 
-                                      placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>   
+                                      placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>
 
-                                      <button class="btn btn-info" onClick="go2Page();">Go</button>   
+                                      <button class="btn btn-info" onClick="go2Page();">Go</button>
                                     </div>
                                     <div class="col-4 col-md-1">
                                         <form method="POST">
@@ -190,11 +190,27 @@
 			</div>
             <!-- End of Main Content -->
 
-        </div> 
+        </div>
         <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('table').DataTable();
+        });
+
+        function go2Page()
+        {
+            var page = document.getElementById("page").value;
+
+            page = ((page><?php echo $total_no_pages_available; ?>)?<?php echo $total_no_pages_available; ?>:((page<1)?1:page));
+
+            window.location.href = 'viewresults.php?page='+page;
+
+        }
+    </script>
 
     <!--reference to file containing scroll button at the buttom, logout button and profile button on top-->
     <?php include("user_profile_cl.php"); ?>

@@ -26,16 +26,16 @@ include ('user_activity_log.php');
 //create a class to calculate total score after the the questions are answered
 class CalculateTotal
 {
-    //initialize every score as a public member of the class
+    //initialize every score as a public member (attribute) of the class
     public $Q1_score = "";
     public $Q2_score = "";
     public $Q3_score = "";
     public $Q4_score = "";
-    public $Q5_score = ""; 
+    public $Q5_score = "";
     public $Q6_score = "";
     public $Q7_score = "";
-    public $Q8_score = ""; 
-    public $Q9_score = "";  
+    public $Q8_score = "";
+    public $Q9_score = "";
     public $Q10_score = "";
     public $Q11_score = "";
     public $Q12_score = "";
@@ -52,16 +52,15 @@ class CalculateTotal
     public $Q23_score = "";
     public $Q24_score = "";
     public $Q25_score = "";
-    
-    //create a public function to get the percentage
+
+    //create a public function (method) to get the percentage
     public function getPercentage(){
         return ((($this->Q1_score + $this->Q2_score + $this->Q3_score + $this->Q4_score + $this->Q5_score + $this->Q6_score + $this->Q7_score + $this->Q8_score + $this->Q9_score + $this->Q10_score + $this->Q11_score + $this->Q12_score + $this->Q13_score + $this->Q14_score + $this->Q15_score + $this->Q16_score + $this->Q17_score + $this->Q18_score + $this->Q19_score + $this->Q20_score + $this->Q21_score + $this->Q22_score + $this->Q23_score + $this->Q24_score + $this->Q25_score)/51)*100);
-
     }
- 
+
 }
 
-//function for the modification of user input 
+//function for the modification of user input
 function test_input($data) {
 
     $data = trim($data); // strip unnecessary characters (extra space, tab, newline, etc.) from the user input data
@@ -95,7 +94,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['auditedAccounts'])) {
 
          $_SESSION['error'] .= "A response is required for question on audited accounts <br>";
-         
+
     }else{
 
         $Q1 = test_input($_POST['auditedAccounts']);
@@ -105,7 +104,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['bankingAgreement'])) {
 
          $_SESSION['error'] .= "A response is required for question on banking agreement <br>";
-         
+
 
     }else{
 
@@ -116,7 +115,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['obligations'])) {
 
          $_SESSION['error'] .= "A response is required for question on obligations <br>";
-         
+
 
     }else{
 
@@ -134,7 +133,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['creditRating'])) {
 
          $_SESSION['error'] .= "A response is required for question on credit rating <br>";
-         
+
 
     }else{
 
@@ -142,10 +141,10 @@ elseif(isset($_POST['calculateScore'])) {
 
     }
 
-    if (empty($_POST['employersLiabilityInsurance'])) {  
+    if (empty($_POST['employersLiabilityInsurance'])) {
 
          $_SESSION['error'] .= "A response is required for question on Employers' liability insurance <br>";
-         
+
 
     }else{
 
@@ -153,10 +152,10 @@ elseif(isset($_POST['calculateScore'])) {
     }
 
 
-    if (empty($_POST['publicLiabilityInsurance'])) {  
+    if (empty($_POST['publicLiabilityInsurance'])) {
 
          $_SESSION['error'] .= "A response is required for question on Public liability insurance <br>";
-         
+
 
     }else{
 
@@ -167,7 +166,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['NumberOfSimilarProjects'])) {
 
          $_SESSION['error'] .= "A response is required for question on Number Of Similar Projects <br>";
-        
+
 
     }else{
 
@@ -178,7 +177,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['numberOfYears'])) {
 
          $_SESSION['error'] .= "A response is required for question on number of years in the construction business <br>";
-         
+
 
     }else{
 
@@ -189,7 +188,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['NumberOfStaff'])) {
 
          $_SESSION['error'] .= "A response is required for question on Number Of Staff <br>";
-         
+
 
     }else{
 
@@ -200,7 +199,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['HQofStaff'])) {
 
          $_SESSION['error'] .= "A response is required for question on Highest Qualification of Staff <br>";
-         
+
 
     }else{
 
@@ -211,7 +210,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['contractTerminated'])) {
 
          $_SESSION['error'] .= "A response is required for question on contract terminated <br>";
-         
+
 
     }else{
 
@@ -222,7 +221,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['managementCertification'])) {
 
          $_SESSION['error'] .= "A response is required for question on management certification <br>";
-         
+
 
     }else{
 
@@ -233,7 +232,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['managementSystem'])) {
 
          $_SESSION['error'] .= "A response is required for question on management system <br>";
-        
+
 
     }else{
 
@@ -244,7 +243,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['HSEpolicy'])) {
 
          $_SESSION['error'] .= "A response is required for question on HSE policy <br>";
-        
+
 
     }else{
 
@@ -255,7 +254,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['routinelyRecord'])) {
 
          $_SESSION['error'] .= "A response is required for question on routinely record <br>";
-         
+
 
     }else{
 
@@ -266,7 +265,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['HSEadvice'])) {
 
          $_SESSION['error'] .= "A response is required for question on HSE advice <br>";
-         
+
 
     }else{
 
@@ -277,7 +276,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['environmentalManagementSystem'])) {
 
          $_SESSION['error'] .= "A response is required for question on Environmental Management System <br>";
-         
+
     }else{
 
         $Q18 = test_input($_POST['environmentalManagementSystem']);
@@ -287,7 +286,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['BPS1'])) {
 
          $_SESSION['error'] .= "A response is required for question on BUSINESS AND PROFESSIONAL STANDING question 1 <br>";
-         
+
 
     }else{
 
@@ -298,7 +297,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['BPS2'])) {
 
          $_SESSION['error'] .= "A response is required for question on BUSINESS AND PROFESSIONAL STANDING question 2 <br>";
-         
+
     }else{
 
         $Q20 = test_input($_POST['BPS2']);
@@ -341,7 +340,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['externalResources'])) {
 
          $_SESSION['error'] .= "A response is required for question on external resources <br>";
-         
+
     }else{
 
         $Q24 = test_input($_POST['externalResources']);
@@ -351,7 +350,7 @@ elseif(isset($_POST['calculateScore'])) {
     if (empty($_POST['storage'])) {
 
          $_SESSION['error'] .= "A response is required for question on storage facilities <br>";
-         
+
     }else{
 
         $Q25 = test_input($_POST['storage']);
@@ -367,48 +366,48 @@ elseif(isset($_POST['calculateScore'])) {
         $obj->Q1_score = ($Q1==1) ? 1 : 0;
         $obj->Q2_score = ($Q2==1) ? 1 : 0;
         $obj->Q3_score = ($Q3==1) ? 1 : 0;
-        $obj->Q4_score = (isset($Q4A) && isset($Q4B)) ? 1 : 0; 
+        $obj->Q4_score = (isset($Q4A) && isset($Q4B)) ? 1 : 0;
 
         if  ($Q5==1){
 
                 $obj->Q5_score =1;
 
         }elseif($Q5==2){
-                
+
                 $obj->Q5_score =2;
 
         }elseif($Q5==3){
-                
+
                 $obj->Q5_score =3;
-                
+
         }elseif($Q5==4){
-                
+
                 $obj->Q5_score =4;
-                
+
         }elseif($Q5==5){
-                
+
                 $obj->Q5_score =5;
-                
+
         }elseif($Q5==6){
-                
+
                 $obj->Q5_score =6;
-                
+
         }elseif($Q5==7){
-                
+
                 $obj->Q5_score =7;
-                
+
         }elseif($Q5==8){
-                
+
                 $obj->Q5_score =8;
-                
+
         }elseif($Q5==9){
-                
+
                 $obj->Q5_score =9;
-                
-        } 
+
+        }
 
         $obj->Q6_score = ($Q6==1) ? 1 : 0;
-        
+
         $obj->Q7_score = ($Q7==1) ? 1 : 0;
 
         if($Q8==0){
@@ -453,7 +452,7 @@ elseif(isset($_POST['calculateScore'])) {
 
             $obj->Q9_score =4;
 
-        } 
+        }
 
         if($Q10<50){
 
@@ -482,42 +481,42 @@ elseif(isset($_POST['calculateScore'])) {
                 $obj->Q11_score =1;
 
         }elseif($Q11==2){
-                
+
                 $obj->Q11_score =2;
 
         }elseif($Q11==3){
-                
-                $obj->Q11_score =3;
-                
-        }elseif($Q11==4){
-                
-                $obj->Q11_score =4;
-                
-        }elseif($Q11==5){
-                
-                $obj->Q11_score =5;
-                
-        }elseif($Q11==6){
-                
-                $obj->Q11_score =6;
-                
-        }elseif($Q11==7){
-                
-                $obj->Q11_score =7;
-                
-        }elseif($Q11==8){
-                
-                $obj->Q11_score =8;
-                
-        }elseif($Q11==9){
-                
-                $obj->Q11_score =9;
-                
-        }  
 
-        $obj->Q12_score = ($Q12==2) ? 1 : 0; 
+                $obj->Q11_score =3;
+
+        }elseif($Q11==4){
+
+                $obj->Q11_score =4;
+
+        }elseif($Q11==5){
+
+                $obj->Q11_score =5;
+
+        }elseif($Q11==6){
+
+                $obj->Q11_score =6;
+
+        }elseif($Q11==7){
+
+                $obj->Q11_score =7;
+
+        }elseif($Q11==8){
+
+                $obj->Q11_score =8;
+
+        }elseif($Q11==9){
+
+                $obj->Q11_score =9;
+
+        }
+
+        $obj->Q12_score = ($Q12==2) ? 1 : 0;
         $obj->Q13_score = ($Q13==1) ? 1 : 0;
-        $obj->Q14_score = ($Q14==1) ? 1 : 0; 
+        $obj->Q14_score = ($Q14==1) ? 1 : 0;
         $obj->Q15_score = ($Q15==1) ? 1 : 0;
         $obj->Q16_score = ($Q16==1) ? 1 : 0;
         $obj->Q17_score = ($Q17==1) ? 1 : 0;
@@ -554,8 +553,8 @@ elseif(isset($_POST['calculateScore'])) {
                             ':CNphone_number'=>$_SESSION['CNphone_number'],
                             ':score'=>$percentageScore,
                             ':verdict'=>$verdict));
-        
-            
+
+
 
     }
 
@@ -576,7 +575,7 @@ elseif(isset($_POST['calculateScore'])) {
     <link rel="shortcut icon" type="image/jpg" href="img/Untitled-5.png"> <!--link to favicon-->
 
     <!--link to boostrap css file-->
-    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template-->
     <link href="dashboard-asserts/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -587,8 +586,8 @@ elseif(isset($_POST['calculateScore'])) {
     <link href="dashboard-asserts/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
-        
-    	
+
+
     </style>
 </head>
 <body class="bg-gradient-warning"> <!--color for the entire background-->
@@ -605,7 +604,7 @@ elseif(isset($_POST['calculateScore'])) {
     <!--section containing prequalification process form-->
     <section class="container-fluid" id="prequalificationForm">
          <div class="p-5">
-                
+
                 <!--div containing error alert-->
                 <div id="error" class="text-center">
                     <?php
@@ -619,16 +618,16 @@ elseif(isset($_POST['calculateScore'])) {
                 <!--end of div containing error alert-->
 
                 <form class="user" method="POST">
-                    
+
                     <div id="financialSection" class="prequalificationSection">
-                        
+
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Financial Section</h1>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-12 col-lg-6">
-                                <label for="auditedAccounts">Can a copy of the most recent audited accounts for your organization covering either the most recent three year period of trading, or if trading for less than three years, the period that is available?</label> 
+                                <label for="auditedAccounts">Can a copy of the most recent audited accounts for your organization covering either the most recent three year period of trading, or if trading for less than three years, the period that is available?</label>
                             </div>
 
                             <div  class="col-12 col-lg-2 form-inline">
@@ -652,7 +651,7 @@ elseif(isset($_POST['calculateScore'])) {
 
                          <div class="form-group row">
                             <div class="col-12 col-lg-6">
-                                <label for="bankingAgreement">Has your organisation met the terms of its banking facilities and loan agreement (if any) during the past year</label> 
+                                <label for="bankingAgreement">Has your organisation met the terms of its banking facilities and loan agreement (if any) during the past year</label>
                             </div>
 
                             <div  class="col-12 col-lg-2 form-inline">
@@ -695,8 +694,8 @@ elseif(isset($_POST['calculateScore'])) {
                                                 $DebitRatio = $TotalDebt/$TotalAssets;
 
                                                 echo " <label for='DebitRatio'>Debit Ratio is given below:</label><input type='text' class='form-control' id='DebitRatio' name='DebitRatio' value= '{$DebitRatio}'>";
-                                                       
-                                                    
+
+
                                             }
                                     ?>
                                 </div>
@@ -719,7 +718,7 @@ elseif(isset($_POST['calculateScore'])) {
                                         <option value="8" <?php echo (isset($Q5) && $Q5 === '8') ? 'selected':'';?>>Very Low Credit Risk (AA+)</option>
                                         <option value="9" <?php echo (isset($Q5) && $Q5 === '9') ? 'selected':'';?>>Minimal Credit Risk (AAA)</option>
                                 </select> <span class="badge rounded-pill bg-danger">impt</span>
-                            </div>    
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -810,7 +809,7 @@ elseif(isset($_POST['calculateScore'])) {
                             </div>
                         </div>
 
-                        <div class="table-responsive"> 
+                        <div class="table-responsive">
                             <table class= "table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="thead-dark">
                                     <tr>
@@ -818,7 +817,7 @@ elseif(isset($_POST['calculateScore'])) {
                                       <th scope= "col" >Reference 1</th>
                                       <th scope= "col" >Reference 2</th>
                                       <th scope= "col" >Reference 3</th>
-                                    </tr> 
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -920,7 +919,7 @@ elseif(isset($_POST['calculateScore'])) {
                                             </div>
                                         </td>
                                     </tr>
-                                 
+
                                 </tbody>
                             </table>
                         </div>
@@ -959,7 +958,7 @@ elseif(isset($_POST['calculateScore'])) {
                                         <option value="8" <?php echo (isset($Q11) && $Q11 === '8') ? 'selected':'';?>>MSc</option>
                                         <option value="9" <?php echo (isset($Q11) && $Q11 === '9') ? 'selected':'';?>>PhD</option>
                                 </select> <span class="badge rounded-pill bg-danger">impt</span>
-                            </div>    
+                            </div>
                         </div>
 
 
@@ -989,7 +988,7 @@ elseif(isset($_POST['calculateScore'])) {
                     </div>
 
                     <div id="qualityAssuranceSection" class="prequalificationSection">
-                        
+
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Quality Assurance Section</h1>
                         </div>
@@ -1022,7 +1021,7 @@ elseif(isset($_POST['calculateScore'])) {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div id="HSEsection" class="prequalificationSection">
 
                         <div class="text-center">
@@ -1040,7 +1039,7 @@ elseif(isset($_POST['calculateScore'])) {
                                             <option value="1" <?php echo (isset($Q15) && $Q15 === '1') ? 'selected':'';?>>yes</option>
                                             <option value="2" <?php echo (isset($Q15) && $Q15 === '2') ? 'selected':'';?>>no</option>
                                         </select> <span class="badge rounded-pill bg-danger">impt</span>
-                                        
+
                                     </div>
                                     <div class="col-12 col-lg-4">
                                         <div class="row">
@@ -1065,7 +1064,7 @@ elseif(isset($_POST['calculateScore'])) {
                                             <option value="1" <?php echo (isset($Q16) && $Q16 === '1') ? 'selected':'';?>>yes</option>
                                             <option value="2" <?php echo (isset($Q16) && $Q16 === '3') ? 'selected':'';?>>no</option>
                                         </select> <span class="badge rounded-pill bg-danger">impt</span>
-                                        
+
                                     </div>
                                     <div class="col-12 col-lg-4">
                                         <div class="row">
@@ -1091,7 +1090,7 @@ elseif(isset($_POST['calculateScore'])) {
                                                     <option value="1" <?php echo (isset($Q17) && $Q17 === '1') ? 'selected':'';?>>yes</option>
                                                     <option value="2" <?php echo (isset($Q17) && $Q17 === '2') ? 'selected':'';?>>no</option>
                                                 </select> <span class="badge rounded-pill bg-danger">impt</span>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -1108,10 +1107,10 @@ elseif(isset($_POST['calculateScore'])) {
                                         <option value="1" <?php echo (isset($Q18) && $Q18 === '1') ? 'selected':'';?>>yes</option>
                                         <option value="2" <?php echo (isset($Q18) && $Q18 === '2') ? 'selected':'';?>>no</option>
                                     </select> <span class="badge rounded-pill bg-danger">impt</span>
-                                    
+
                                 </div>
                             </div>
-                                
+
                     </div>
 
 
@@ -1132,7 +1131,7 @@ elseif(isset($_POST['calculateScore'])) {
                                         <option value="1" <?php echo (isset($Q19) && $Q19 === '1') ? 'selected':'';?>>yes</option>
                                         <option value="2" <?php echo (isset($Q19) && $Q19 === '2') ? 'selected':'';?>>no</option>
                                     </select> <span class="badge rounded-pill bg-danger">impt</span>
-                                    
+
                                 </div>
                             </div>
 
@@ -1147,7 +1146,7 @@ elseif(isset($_POST['calculateScore'])) {
                                         <option value="1" <?php echo (isset($Q20) && $Q20 === '1') ? 'selected':'';?>>yes</option>
                                         <option value="2" <?php echo (isset($Q20) && $Q20 === '2') ? 'selected':'';?>>no</option>
                                     </select> <span class="badge rounded-pill bg-danger">impt</span>
-                                    
+
                                 </div>
                             </div>
                     </div>
@@ -1169,7 +1168,7 @@ elseif(isset($_POST['calculateScore'])) {
                                             <option value="1" <?php echo (isset($Q24) && $Q24 === '1') ? 'selected':'';?>>yes</option>
                                             <option value="2" <?php echo (isset($Q24) && $Q24 === '2') ? 'selected':'';?>>no</option>
                                         </select> <span class="badge rounded-pill bg-danger">impt</span>
-                                        
+
                                     </div>
                             </div>
 
@@ -1193,7 +1192,7 @@ elseif(isset($_POST['calculateScore'])) {
                                             <option value="1" <?php echo (isset($Q25) && $Q25 === '1') ? 'selected':'';?>>yes</option>
                                             <option value="2" <?php echo (isset($Q25) && $Q25 === '2') ? 'selected':'';?>>no</option>
                                         </select> <span class="badge rounded-pill bg-danger">impt</span>
-                                        
+
                                     </div>
                             </div>
 
@@ -1206,14 +1205,14 @@ elseif(isset($_POST['calculateScore'])) {
                                     </div>
                             </div>
 
-                            
+
                     </div>
-                    
+
                     <button type="submit" name="calculateScore" id="calculateScoreBtn" class="btn btn-warning btn-user btn-block">Submit</button>
                 </form>
 
                 <div id="percentageScore" style="margin-top: 50px;">
-                    <?php 
+                    <?php
 
                           if($percentageScore>60){
 
@@ -1227,7 +1226,7 @@ elseif(isset($_POST['calculateScore'])) {
                                         <a class="btn btn-danger" href="contractor/index.php" id="navBarAnchorBtn">Thank for your participation, but you failed to meet up with the requirements</a>
                                       </div>';
                             }
-                    ?> 
+                    ?>
                 </div>
         </div>
     </section>

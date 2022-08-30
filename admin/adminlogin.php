@@ -6,10 +6,17 @@ include ("../connection.php");
 
 //start session connection
 
-session_start();  
+session_start();
 
+//forgot password
+if(isset($_POST['forgot_password_admin'])){
 
-//admin login form validation 
+    $_SESSION['forgot_password_admin'] = $_POST['forgot_password_admin'];
+    header('location: ../forgot_password.php');
+    return;
+}
+
+//admin login form validation
 if(isset($_POST['submit'])){
 
     //check if an email is inserted
@@ -37,7 +44,7 @@ if(isset($_POST['submit'])){
         //check if row exists
         if(isset($row)){
 
-             //create modified password similar to that on the table 
+             //create modified password similar to that on the table
              $modifiedPassword=md5(md5($row['adminID'].$_POST['admin_password']));
 
              //check if inserted password is equal to that in the table
@@ -83,7 +90,7 @@ if(isset($_POST['submit'])){
     <link rel="shortcut icon" type="image/jpg" href="../img/Untitled-5.png"> <!--link to favicon-->
 
     <!--link to boostrap css file-->
-    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template-->
     <link href="../dashboard-asserts/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -94,12 +101,12 @@ if(isset($_POST['submit'])){
     <link href="../dashboard-asserts/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <style type="text/css">
-    	
+
     </style>
 </head>
 <body class="bg-gradient-primary"> <!--color for the entire background-->
 
-    <!--section containing project form-->
+    <!--section containing admin login form-->
 	<section class="container" id="projectForm">
          <div class="p-5">
                 <div class="text-center">
@@ -119,7 +126,7 @@ if(isset($_POST['submit'])){
                 <!--end of div containing error alert-->
 
                 <form class="user" method="POST">
-           
+
                     <div class="form-group">
                         <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email address" name="admin_email">
                     </div>
@@ -127,11 +134,13 @@ if(isset($_POST['submit'])){
                         <input type="password" class="form-control form-control-user" id="exampleInputEmail" placeholder="Password" name="admin_password">
                     </div>
                     <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                    <button type="submit" name="forgot_password_admin" class="btn btn-link btn-user btn-block">Forgot Password</button>
                     <p class="mt-3">Do not have an account yet?,<a href="adminsignup.php"> Register</a></p>
+
                 </form>
         </div>
 	</section>
-	<!--end of section containing project form-->
+	<!--end of section containing admin login form-->
 
 	<script src="../js/jquery-3.4.1.js"></script> <!--link to jquery js file-->
     <script src="../js/popper.min.js"></script> <!--link to popper js file-->

@@ -29,11 +29,11 @@ include ("header_ad.php");
                                </div>');
                         unset($_SESSION['success']);
                     }
-                   ?> 
+                   ?>
                 </div>
                 <!--end of section for success alert-->
 
-                <!--section containing table for projects--> 
+                <!--section containing table for projects-->
                 <div class="container" style="margin: 10px;">
 
                     <!-- Table Heading -->
@@ -48,7 +48,7 @@ include ("header_ad.php");
                                         <button type="submit" class="btn btn-primary" id="myBtn">submit</button>
                                     </div>
                                 </div>
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input project name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>      
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">Please input project name<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
                             </form>
                         </div>
                         <div class="card-body">
@@ -85,13 +85,13 @@ include ("header_ad.php");
 
                                       //determine limit of data to show on any current table page displaying
                                       $limit_to_display=($page_currently_on-1)*$no_of_records_displayed_per_page;
-                                      
+
                                       //determine the total amount of data in the database
                                       $query="SELECT * FROM prproject";
                                       $sql=$connection->prepare($query);
                                       $sql->execute();
                                       $total_rows_available = $sql->rowCount();
-                                      
+
                                       //total number of pages available based on the total number of rows in database
                                       $total_no_pages_available=ceil($total_rows_available/$no_of_records_displayed_per_page);
 
@@ -103,7 +103,7 @@ include ("header_ad.php");
                                             $sql->execute();
 
                                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                
+
                                                 echo"<tr><td>";
                                                 echo ($row['projectID']);
                                                 echo ("</td><td>");
@@ -121,7 +121,7 @@ include ("header_ad.php");
                                                 echo ("</td><td>");
                                                 echo ('<a class="btn btn-danger" href="delete.php?projectID='.$row['projectID'].'">Delete</a>');
                                                 echo ("</td></tr>");
-                                                
+
                                             };
 
                                         }else{
@@ -131,7 +131,7 @@ include ("header_ad.php");
                                             $sql->execute();
 
                                             while($row=$sql->fetch(PDO::FETCH_ASSOC)){
-                                                
+
                                                 echo"<tr><td>";
                                                 echo ($row['projectID']);
                                                 echo ("</td><td>");
@@ -149,11 +149,11 @@ include ("header_ad.php");
                                                 echo ("</td><td>");
                                                 echo ('<a class="btn btn-danger" href="delete.php?projectID='.$row['projectID'].'">Delete</a>');
                                                 echo ("</td></tr>");
-                                                
+
                                             };
-                                           
+
                                         }
-                                        
+
                                     ?>
                                     </tbody>
                                 </table>
@@ -170,12 +170,12 @@ include ("header_ad.php");
                                             <li class="page-item"><a class="page-link" href="?page=<?php echo $total_no_pages_available; ?>">Last</a></li>
                                         </ul>
                                     </div>
-                                    <div class="input-group mb-3 col-8 col-md-4">   
-                                      <input id="page" type="number" maxlength="1" class="form-control" min="1" max="<?php echo $total_no_pages_available; ?>"   
+                                    <div class="input-group mb-3 col-8 col-md-4">
+                                      <input id="page" type="number" maxlength="1" class="form-control" min="1" max="<?php echo $total_no_pages_available; ?>"
 
-                                      placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>   
+                                      placeholder="<?php echo $page_currently_on."/".$total_no_pages_available; ?>" required>
 
-                                      <button class="btn btn-primary" onClick="go2Page();">Go</button>   
+                                      <button class="btn btn-primary" onClick="go2Page();">Go</button>
                                     </div>
                                     <div class="col-4 col-md-1">
                                         <form method="POST">
@@ -192,9 +192,9 @@ include ("header_ad.php");
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
-               
+
             </div>
             <!-- End of Main Content -->
 
@@ -208,12 +208,27 @@ include ("header_ad.php");
             </footer>
             <!-- End of Footer -->
 
-        </div> 
+        </div>
         <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('table').DataTable();
+        });
+
+        function go2Page()
+        {
+            var page = document.getElementById("page").value;
+
+            page = ((page><?php echo $total_no_pages_available; ?>)?<?php echo $total_no_pages_available; ?>:((page<1)?1:page));
+
+            window.location.href = 'project.php?page='+page;
+
+        }
+    </script>
 
     <!--link to file containing user profile modal-->
     <?php include ("user_profile_ad.php"); ?>
@@ -221,5 +236,5 @@ include ("header_ad.php");
     <!--link to file containing footer-->
     <?php include ("footer_ad.php"); ?>
 
-	
-	
+
+
