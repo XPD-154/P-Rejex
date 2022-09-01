@@ -73,7 +73,7 @@
 
 					//store users activity using this php file
 					include 'user_activity_log_cl.php';
-					
+
 					$_SESSION['error'] = "email address already been taken";
 			  		header('location: clientsignup.php');
 					return;
@@ -128,7 +128,7 @@
 						$sql = $connection->prepare($query);
 						$sql->execute(array(':uniqueID'=>$uniqueID));
 
-						//create a session variable for uniqueID 
+						//create a session variable for uniqueID
 						$query="SELECT * FROM prclient WHERE clientID = '$lastID' LIMIT 1";
 						$sql=$connection->prepare($query);
 						$sql->execute();
@@ -174,21 +174,21 @@
 	<meta charset="utf-8"> <!--conversion of typed charater into machine readable code-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!--viewport is the user's visisble area of a web page, the meta tag allows modification to the viewport, width=device-width sets the width of the page to follow screen width of the device, initial-sacle=1 set the initial zoom level on a page, shrink-to-fit=no prevent contents that are initially bigger than the viewport to be shrink too small-->
     <meta http-equiv="x-ua-compatible" content="ie=edge"> <!--x-ua compatible is a document mode meta tag that allows choice of what version of Internet Explorer the page should be rendered as-->
-    
-    <link rel="shortcut icon" type="image/jpg" href="../img/Untitled-5.png"> <!--link to favicon-->        
+
+    <link rel="shortcut icon" type="image/jpg" href="../img/Untitled-5.png"> <!--link to favicon-->
     <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css"> <!--link to boostrap css file-->
 	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css"> <!--link to font awesome css file-->
     <link rel="stylesheet" href="../bootstrap-social/bootstrap-social.css"> <!--link to boostrap social css file-->
     <link rel="stylesheet" href="../css/style.css"><!--link to css stylesheet for project-->
     <title>P-Rejex</title>
-    
+
 </head>
 <body>
 
 	<div class="container-fluid" id="clientSignUpSection">
 
 		<header class="row" id="clientSignUpSubSection1">
-			
+
 			<!--navigation breadcrumb-->
 			<div id="clientSignUpSubSection2">
 				<nav style="--bs-breadcrumb-divider: '>';" id="clientSignUpBreadCrum" aria-label="breadcrumb">
@@ -213,10 +213,10 @@
 				<div class="text-center mb-5">
 					<h4>Register with</h4>
 				</div>
-				
+
 				<!--section containing error alert-->
 				<div id="error">
-					<?php 
+					<?php
 
 					if(isset($_SESSION['error'])){
 
@@ -226,11 +226,11 @@
 							   </div>');
 						unset($_SESSION['error']);
 					}
-					
-					?>			
+
+					?>
 				</div>
 				<!--end of section containing error alert-->
-				
+
 				<form method="POST">
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" name="CLcompanyName" id="floatingInput" placeholder="company name">
@@ -261,10 +261,10 @@
 					</div>
 					<div class="input-group mb-3 d-grid gap-2">
 						<button class="btn btn-primary" type="submit" name="submit">Sign Up</button>
-					</div> 	
+					</div>
 					<div class="input-group mb-3">
 						<p>Already have an account? <a href="clientlogin.php"> Login</a></p>
-					</div>		                       
+					</div>
 				</form>
 			</div>
 			<div class="col-2 col-md-4 col-lg-4" id="clientSignUpSubSection4"></div>

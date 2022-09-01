@@ -6,6 +6,22 @@ include ("connection.php");
 //start session connection
 session_start();
 
+//forgot password client
+if(isset($_POST['forgot_password_cl'])){
+
+    $_SESSION['forgot_password_cl'] = $_POST['forgot_password_cl'];
+    header('location: forgot_password.php');
+    return;
+}
+
+//forgot password contractor
+if(isset($_POST['forgot_password_cn'])){
+
+    $_SESSION['forgot_password_cn'] = $_POST['forgot_password_cn'];
+    header('location: forgot_password.php');
+    return;
+}
+
 //create tables for project if they don't exists
 include 'create_tables.php';
 
@@ -483,6 +499,9 @@ include("header.php");
 					<div class="input-group mb-3">
 					  <button class="btn btn-primary" type="submit" name="clientSubmit">Log In</button>
 					</div>
+					<div class="input-group mb-3">
+					  <button class="btn btn-link" type="submit" name="forgot_password_cl">Forgot Password</button>
+					</div>
 				</form>
 			  </div>
 			  <div class="tab-pane fade" id="loginContractor" role="tabpanel" aria-labelledby="loginContractor-tab">
@@ -506,6 +525,9 @@ include("header.php");
 					</div>
 					<div class="input-group mb-3">
 						<button class="btn btn-primary" type="submit" name="contractorSubmit">Log In</button>
+					</div>
+					<div class="input-group mb-3">
+					  <button class="btn btn-link" type="submit" name="forgot_password_cn">Forgot Password</button>
 					</div>
 				</form>
 			  </div>
