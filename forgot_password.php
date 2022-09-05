@@ -130,20 +130,40 @@ include("header.php");
 
                             $_SESSION['adminID'] = $row['adminID'];
 
-                            echo '<form method="POST" style="margin-top: 20px">
+                            echo '<form method="POST" style="margin-top: 20px" onsubmit="return validateForm()" name="Form">
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="new_admin_password_1" placeholder="Password" class="form-control" id="floatingInput">
+                                        <input type="password" name="new_admin_password_1" id="new_admin_password_1" placeholder="Password" class="form-control" id="floatingInput">
                                         <label for="floatingInput">Password</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="new_admin_password_2" placeholder="Password" class="form-control" id="floatingInput">
+                                        <input type="password" name="new_admin_password_2" id="new_admin_password_2" placeholder="Password" class="form-control" id="floatingInput">
                                         <label for="floatingInput">Password</label>
                                     </div>
-
                                     <div class="input-group mt-3">
                                         <button class="btn btn-primary" type="submit" name="f_p_confirm">Change</button>
                                     </div>
                                 </form>';
+
+                            //validation for password
+                            echo '<script type="text/javascript">
+
+                                    function validateForm(){
+                                        var a=document.forms["Form"]["new_admin_password_1"].value;
+                                        var b=document.forms["Form"]["new_admin_password_2"].value;
+
+                                        if (a=="" || b==""){
+                                            var errorEntered = "Please Fill All Required Field";
+                                            document.getElementById("error").innerHTML= errorEntered;
+                                            return false;
+                                        }
+                                        if (a!==b){
+                                            var errorEntered = "Please check password";
+                                            document.getElementById("error").innerHTML= errorEntered;
+                                            return false;
+                                        }
+                                    }
+
+                                </script>';
 
                         }else{
 
@@ -157,28 +177,21 @@ include("header.php");
                 //step 3
                 if(isset($_POST['f_p_confirm'])){
 
-                        //check if password entered is correct
-                        if($_POST['new_admin_password_1'] == $_POST['new_admin_password_2']){
 
-                            $modifiedPassword = md5(md5($_SESSION['adminID'].$_POST['new_admin_password_1']));
+                    $modifiedPassword = md5(md5($_SESSION['adminID'].$_POST['new_admin_password_1']));
 
-                            //update the PRadmin with new password
-                            $query="UPDATE PRadmin SET admin_password = :new_admin_password WHERE admin_email = :admin_email";
-                            $sql=$connection->prepare($query);
-                            $sql->execute(array(':new_admin_password'=>$modifiedPassword,
-                                                ':admin_email'=>$_SESSION['admin_email']));
+                    //update the PRadmin with new password
+                    $query="UPDATE PRadmin SET admin_password = :new_admin_password WHERE admin_email = :admin_email";
+                    $sql=$connection->prepare($query);
+                    $sql->execute(array(':new_admin_password'=>$modifiedPassword,
+                                        ':admin_email'=>$_SESSION['admin_email']));
 
-                            //alert for sucessful added admin details
-                            $_SESSION['success'] = "Sucessfully updated password!!!";
-                            header('location: index.php');
-                            return;
+                    //alert for sucessful added admin details
+                    $_SESSION['success'] = "Sucessfully updated password!!!";
+                    header('location: index.php');
+                    return;
 
-                        }else{
 
-                            $_SESSION['error'] = "Re-enter password";
-                            header('location: forgot_password.php');
-                            return;
-                        }
 
                 }
 
@@ -199,7 +212,7 @@ include("header.php");
 
                             $_SESSION['clientID'] = $row['clientID'];
 
-                            echo '<form method="POST" style="margin-top: 20px">
+                            echo '<form method="POST" style="margin-top: 20px" onsubmit="return validateForm()" name="Form">
                                     <div class="form-floating mb-3">
                                         <input type="password" name="NewCLpassword_1" placeholder="Password" class="form-control" id="floatingInput">
                                         <label for="floatingInput">Password</label>
@@ -214,6 +227,27 @@ include("header.php");
                                     </div>
                                 </form>';
 
+                            //validation for password
+                            echo '<script type="text/javascript">
+
+                                function validateForm(){
+                                    var a=document.forms["Form"]["NewCLpassword_1"].value;
+                                    var b=document.forms["Form"]["NewCLpassword_2"].value;
+
+                                    if (a=="" || b==""){
+                                        var errorEntered = "Please Fill All Required Field";
+                                        document.getElementById("error").innerHTML= errorEntered;
+                                        return false;
+                                    }
+                                    if (a!==b){
+                                        var errorEntered = "Please check password";
+                                        document.getElementById("error").innerHTML= errorEntered;
+                                        return false;
+                                    }
+                                }
+
+                            </script>';
+
                         }else{
 
                             $_SESSION['error'] = "Account does not exist";
@@ -226,31 +260,21 @@ include("header.php");
                 //step 3
                 if(isset($_POST['f_p_cl_confirm'])){
 
-                        //check if password entered is correct
-                        if($_POST['NewCLpassword_1'] == $_POST['NewCLpassword_2']){
+                    $modifiedPassword = md5(md5($_SESSION['clientID']).$_POST['NewCLpassword_1']);
 
+                    //update the PRclient with new password
+                    $query="UPDATE PRclient SET CLpassword = :NewCLpassword WHERE CLemail = :CLemail";
+                    $sql=$connection->prepare($query);
+                    $sql->execute(array(':NewCLpassword'=>$modifiedPassword,
+                                        ':CLemail'=>$_SESSION['CLemail']));
 
-                            $modifiedPassword = md5(md5($_SESSION['clientID']).$_POST['NewCLpassword_1']);
-
-                            //update the PRclient with new password
-                            $query="UPDATE PRclient SET CLpassword = :NewCLpassword WHERE CLemail = :CLemail";
-                            $sql=$connection->prepare($query);
-                            $sql->execute(array(':NewCLpassword'=>$modifiedPassword,
-                                                ':CLemail'=>$_SESSION['CLemail']));
-
-                            //alert for sucessful added admin details
-                            $_SESSION['success'] = "Sucessfully updated password!!!";
-                            header('location: index.php');
-                            return;
-
-                        }else{
-
-                            $_SESSION['error'] = "Re-enter password";
-                            header('location: forgot_password.php');
-                            return;
-                        }
+                    //alert for sucessful added admin details
+                    $_SESSION['success'] = "Sucessfully updated password!!!";
+                    header('location: index.php');
+                    return;
 
                 }
+
                 //forgot password contractor
                 //step 2
                 if(isset($_POST['f_p_cn_check'])){
@@ -266,9 +290,10 @@ include("header.php");
                         //check if row exists
                         if($row){
 
+
                             $_SESSION['contractorID'] = $row['contractorID'];
 
-                            echo '<form method="POST" style="margin-top: 20px">
+                            echo '<form method="POST" style="margin-top: 20px" onsubmit="return validateForm()" name="Form">
                                     <div class="form-floating mb-3">
                                         <input type="password" name="NewCNpassword_1" placeholder="Password" class="form-control" id="floatingInput">
                                         <label for="floatingInput">Password</label>
@@ -283,6 +308,28 @@ include("header.php");
                                     </div>
                                 </form>';
 
+                            //validation for password
+                            echo '<script type="text/javascript">
+
+                                    function validateForm(){
+                                        var a=document.forms["Form"]["NewCNpassword_1"].value;
+                                        var b=document.forms["Form"]["NewCNpassword_2"].value;
+
+                                        if (a=="" || b==""){
+                                            var errorEntered = "Please Fill All Required Field";
+                                            document.getElementById("error").innerHTML= errorEntered;
+                                            return false;
+                                        }
+                                        if (a!==b){
+                                            var errorEntered = "Please check password";
+                                            document.getElementById("error").innerHTML= errorEntered;
+                                            return false;
+                                        }
+                                    }
+
+                                </script>';
+
+
                         }else{
 
                             $_SESSION['error'] = "Account does not exist";
@@ -295,28 +342,18 @@ include("header.php");
                 //step 3
                 if(isset($_POST['f_p_cn_confirm'])){
 
-                        //check if password entered is correct
-                        if($_POST['NewCNpassword_1'] == $_POST['NewCNpassword_2']){
+                    $modifiedPassword = md5(md5($_SESSION['contractorID']).$_POST['NewCNpassword_1']);
 
-                            $modifiedPassword = md5(md5($_SESSION['contractorID']).$_POST['NewCNpassword_1']);
+                    //update the PRcontractor with new password
+                    $query="UPDATE PRcontractor SET CNpassword = :NewCNpassword WHERE CNemail = :CNemail";
+                    $sql=$connection->prepare($query);
+                    $sql->execute(array(':NewCNpassword'=>$modifiedPassword,
+                                        ':CNemail'=>$_SESSION['CNemail']));
 
-                            //update the PRcontractor with new password
-                            $query="UPDATE PRcontractor SET CNpassword = :NewCNpassword WHERE CNemail = :CNemail";
-                            $sql=$connection->prepare($query);
-                            $sql->execute(array(':NewCNpassword'=>$modifiedPassword,
-                                                ':CNemail'=>$_SESSION['CNemail']));
-
-                            //alert for sucessful added admin details
-                            $_SESSION['success'] = "Sucessfully updated password!!!";
-                            header('location: index.php');
-                            return;
-
-                        }else{
-
-                            $_SESSION['error'] = "Re-enter password";
-                            header('location: forgot_password.php');
-                            return;
-                        }
+                    //alert for sucessful added admin details
+                    $_SESSION['success'] = "Sucessfully updated password!!!";
+                    header('location: index.php');
+                    return;
 
                 }
             ?>
